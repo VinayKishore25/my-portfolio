@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Technologies
+This web page was made with the following technologies:
+- HTML5
+- CSS3
+- JavaScript
+- React
+- Next
+- Framer Motion
+- React Countup
+- React DOM
+- React Icons
+- React tsParticles
+- Swiper
+- Tailwind CSS
 
-First, run the development server:
+## Pages
+This project contains 6 sections: **Home**, **About**, **Services**, **Work**, **Testimonials** and **Contact**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Home
+#### In that home section, there is a title and description of the web page, and to the right of it an image. On the right side there is a navigation bar that will take you to different sections of the website. And at the top right you will find the social networks.
+![preview home](public/home-preview.jpeg)
+ 
+### About
+#### In that other section, you will see a title and a description. Below that you will see information such as years of experience, number of satisfied clients, completed projects, and awards won. On the right, you will see skills, awards, experience and credentials.
+![preview about](public/about-preview.jpeg)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Services
+#### In this services section, there is a title and a short description. And on the right side the services offered to the client.
+![preview services](public/services-preview.jpeg)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Work
+#### In this other section, you will see a title and a short description. Additionally, on the right side you will see the completed projects.
+![preview work](public/work-preview.jpeg)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Testimonials
+#### In this section, you will see testimonials from satisfied customers.
+![preview testimonials](public/testimonials-preview.jpeg)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Contact
+#### In this other section, you will see a form which you can fill out to send a message and get in touch.
+![preview contact](public/contact-preview.jpeg)

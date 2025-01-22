@@ -1,0 +1,114 @@
+
+.qualification__content {
+    display: none;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.qualification__content-active {
+    display: block;
+}
+
+.qualification__content::-webkit-scrollbar {
+    width: 10px; 
+}
+
+.qualification__content::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px; 
+}
+
+.qualification__content::-webkit-scrollbar-thumb {
+    background: #393A47; 
+    border-radius: 10px;
+    border: 3px solid #ffffff; 
+}
+.qualification__content::-webkit-scrollbar-thumb:hover {
+    background: #F13024;
+}
+
+
+.qualification__sections {
+    display: grid;
+    grid-template-columns: 0.5fr;
+    justify-content: center;
+}
+
+.qualification__icons{
+    width: 80%;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 24px;
+
+}
+
+.qualification__data {
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    column-gap: 1.5rem;
+}
+
+.qualification__title {
+    font-size: 1.2rem; 
+    font-weight: 500;
+}
+
+.qualification__subtitle {
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-bottom: 10px; 
+}
+
+.qualification__calendar {
+    font-size: 0.9rem; 
+}
+
+.qualification__rounder {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background-color: white; 
+    border-radius: 50%;
+}
+
+.qualification__line {
+    display: block;
+    width: 1px;
+    height: 100%;
+    background-color: white;
+    transform: translate(6px, -7px);
+}
+
+@media screen and (max-width: 992px) {
+    .qualification__container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .qualification__container {
+        margin-left: 12px; /* Replaced var(--mb-1-5) */
+        margin-right: 12px; /* Replaced var(--mb-1-5) */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .qualification__sections {
+        grid-template-columns: initial;
+    }
+
+    .qualification__button {
+        margin: 0 6px; /* Replaced var(--mb-0-75) */
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .qualification__data {
+        gap: 8px; /* Replaced var(--mb-0-5) */
+    }
+}
