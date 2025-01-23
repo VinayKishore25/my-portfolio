@@ -68,7 +68,7 @@ const ParticlesContainer = () => {
               default: 'bounce'
             },
             random: false,
-            speed: 1.5,
+            speed: 1.25,
             straight: false
           },
           number: {
