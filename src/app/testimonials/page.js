@@ -1,6 +1,6 @@
 // Components
 'use client';
-import TestimonialSlider from "../../components/TestimonialSlider";
+import TestimonialSlider from "../../../components/TestimonialSlider";
 
 // Framer Motion
 import { motion } from "framer-motion";

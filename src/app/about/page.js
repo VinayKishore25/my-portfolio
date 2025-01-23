@@ -2,7 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import "./page.css";
-import Bulb from "@/components/Bulb";
+import Bulb from "../../../components/Bulb";
 // Icons
 import {
   FaHtml5,
@@ -169,8 +169,8 @@ const aboutData = [
 ];
 
 // Components
-import Avatar from "../../components/Avatar";
-import Circles from "../../components/Circles";
+import Avatar from "../../../components/Avatar";
+import Circles from "../../../components/Circles";
 
 // Framer Motion
 import { motion } from "framer-motion";

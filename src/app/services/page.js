@@ -1,8 +1,8 @@
 // Components
 "use client";
-import ServiceSlider from "../../components/ServiceSlider";
-import Bulb from "../../components/Bulb";
-import Circles from "../../components/Circles";
+import ServiceSlider from "../../../components/ServiceSlider";
+import Bulb from "../../../components/Bulb";
+import Circles from "../../../components/Circles";
 
 // Framer Motion
 import { motion } from "framer-motion";

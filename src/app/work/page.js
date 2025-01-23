@@ -1,8 +1,8 @@
 // Components
 "use client";
-import Bulb from "../../components/Bulb";
-import Circles from "../../components/Circles";
-import WorkDetails from "../../components/workDetails";
+import Bulb from "../../../components/Bulb";
+import Circles from "../../../components/Circles";
+import WorkDetails from "../../../components/workDetails";
 import React, { useState } from "react";
 
 // Framer Motion

@@ -2,10 +2,10 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Transition from "@/components/Transition";
+import Transition from "../../components/Transition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

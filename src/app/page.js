@@ -3,10 +3,10 @@
 import Image from "next/image";
 
 //Importing Components
-import ParticlesContainer from "../components/ParticlesContainer";
-import ResumeButtons from "../components/ResumeButtons";
-import Avatar from "../components/Avatar";
-import Bulb from "@/components/Bulb";
+import ParticlesContainer from "../../components/ParticlesContainer";
+import ResumeButtons from "../../components/ResumeButtons";
+import Avatar from "../../components/Avatar";
+import Bulb from "../../components/Bulb";
 
 //Importing Framer Motion
 import { motion } from "framer-motion";

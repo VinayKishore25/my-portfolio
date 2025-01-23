@@ -1,4 +1,4 @@
-import Circles from '@/components/Circles';
+import Circles from '../../components/Circles';
 import React from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 
