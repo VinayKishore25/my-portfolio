@@ -1,5 +1,5 @@
 // Fonts
-import { Sora } from "@next/font/google"
+import { Sora } from "next/font/google"
 
 // Font settings
 const sora = Sora({
