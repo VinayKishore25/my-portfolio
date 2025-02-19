@@ -49,3 +49,56 @@
     @apply w-full h-[180px] p-6 capitalize rounded-lg resize-none;
   }
 }
+/* .bio {
+  width: max-content;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 3rem;
+  position: relative;
+} */
+
+/* Ensuring the parent element is positioned correctly */
+.bio {
+  position: relative;
+  display: inline-block;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Typewriter Effect */
+.bio::before,
+.bio::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.bio::before {
+  left: 0;
+  right: 0;
+  background: #282B46; /* Fallback color */
+  animation: typewriter 2.5s steps(24, end) 500ms forwards;
+}
+
+.bio::after {
+  right: 0;
+  width: 0.125em;
+  background: #F13024; /* Fallback color */
+  animation: typewriter 2.5s steps(24, end) 500ms forwards,
+             blink 750ms steps(24, end) infinite;
+}
+
+/* Keyframes */
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    background: transparent;
+  }
+}

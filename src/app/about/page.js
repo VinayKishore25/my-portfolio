@@ -112,37 +112,37 @@ const aboutData = [
       {
         title: "C - NPTEL",
         stage: "Jan-Mar 2023",
-        link: "www.checkingcertificate.com",
+        link: "https://archive.nptel.ac.in/content/noc/NOC23/SEM1/Ecertificates/106/noc23-cs02/Course/NPTEL23CS02S4483019403132840.jpg",
       },
       {
         title: "Java Programmer - HackerRank",
         stage: "27 Jan 2024",
-        link: "www.checkingcertificate.com",
+        link: "https://www.hackerrank.com/certificates/69fe13c9faa7",
       },
       {
         title: "DBMS - NPTEL",
         stage: "Jan-Mar 2024",
-        link: "www.checkingcertificate.com",
+        link: "https://archive.nptel.ac.in/content/noc/NOC24/SEM1/Ecertificates/106/noc24-cs21/Course/NPTEL24CS21S64110029730198379.pdf",
       },
       {
         title: "Java - NPTEL",
         stage: "Jan-Apr  2024",
-        link: "www.checkingcertificate.com",
+        link: "https://archive.nptel.ac.in/content/noc/NOC24/SEM1/Ecertificates/106/noc24-cs43/Course/NPTEL24CS43S105850040030794576.pdf",
       },
       {
         title: "Python Programmer - HackerRank",
         stage: "20 Apr 2024",
-        link: "www.checkingcertificate.com",
+        link: "https://www.hackerrank.com/certificates/1e716a2943c6",
       },
       {
         title: "RHCSA - Redhat",
         stage: "20 June  2024",
-        link: "www.checkingcertificate.com",
+        link: "https://www.credly.com/badges/5455d9cf-2ce2-493b-a4d0-6927dc98ec17/public_url",
       },
       {
         title: "Java Script - HackerRank",
         stage: "23 Sep 2024  ",
-        link: "www.checkingcertificate.com",
+        link: "https://www.hackerrank.com/certificates/9625a1e985cd",
       },
     ],
   },
@@ -185,7 +185,6 @@ const About = () => {
   return (
     <div className="h-full bg-primary/30 py-32 text-center xl:text-left">
       <Circles />
-      {/* Avatar Img */}
       <motion.div
         variants={fadeIn("right", 0.2)}
         initial="hidden"
@@ -276,7 +275,9 @@ const About = () => {
           exit="hidden"
           className="flex flex-col w-full xl:max-w-[48%] h-[480px]"
         >
-          <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4">
+          <div className="mobile-overflow">
+          
+          <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4 mobile-view">
             {aboutData.map((item, index) => {
               return (
                 <div
@@ -291,6 +292,7 @@ const About = () => {
                 </div>
               );
             })}
+          </div>
           </div>
           <div className="py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center xl:items-start">
             <div className="qualification__content qualification__content-active">
@@ -406,6 +408,7 @@ const About = () => {
                   )}
                 </div>
               ))}
+              <div className="extraSpacing"></div>
             </div>
           </div>
         </motion.div>
