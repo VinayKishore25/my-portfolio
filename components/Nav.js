@@ -1,5 +1,5 @@
 // Icons
-'use client'
+"use client";
 import {
   HiHome,
   HiUser,
@@ -7,62 +7,55 @@ import {
   HiRectangleGroup,
   HiChatBubbleBottomCenterText,
   HiEnvelope,
-} from 'react-icons/hi2';
+} from "react-icons/hi2";
 
 // Nav data
 export const navData = [
-  { name: 'home', path: '/', icon: <HiHome /> },
-  { name: 'about', path: '/about', icon: <HiUser /> },
-  { name: 'services', path: '/services', icon: <HiRectangleGroup /> },
-  { name: 'work', path: '/work', icon: <HiViewColumns /> },
+  { name: "home", path: "/", icon: <HiHome /> },
+  { name: "about", path: "/about", icon: <HiUser /> },
+  { name: "skills", path: "/skills", icon: <HiRectangleGroup /> },
+  { name: "work", path: "/work", icon: <HiViewColumns /> },
   {
-    name: 'testimonials',
-    path: '/testimonials',
+    name: "blogs",
+    path: "/blogs",
     icon: <HiChatBubbleBottomCenterText />,
   },
   {
-    name: 'contact',
-    path: '/contact',
-    icon: <HiEnvelope />,
+    name: "feed",
+    path: "/feed",
+    icon: <HiChatBubbleBottomCenterText />,
   },
 ];
 
 // Next Link
-import Link from 'next/link';
+import Link from "next/link";
 
 // Next Router
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from "next/navigation";
 const Nav = () => {
-  const router = useRouter()
-  const pathname = router.pathname
+  const pathname = usePathname();
 
   return (
-    <nav className='flex flex-col items-center xl:justify-center gap-y-4 fixed h-max bottom-0 mt-auto xl:right-[2%] z-50 top-0 w-full xl:w-16 xl:max-w-md xl:h-screen'>
-      {/* Inner */}
-      <div className='flex w-full xl:flex-col items-center justify-between xl:justify-center gap-y-10 px-4 md:px-40 xl:px-0 h-[80px] xl:h-max py-8 bg-white/10 backdrop-blur-sm text-3xl xl:text-xl xl:rounded-full'>
-        {
-          navData.map((link, index) => {
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-white/10 backdrop-blur-sm border-b border-white/10">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-center md:justify-start gap-4 md:gap-8 py-4 md:py-6 flex-wrap">
+          {navData.map((link, index) => {
             return (
               <Link
-                className={`${link.path == pathname && 'text-accent'} relative flex items-center group hover:text-accent transition-all duration-300`}
+                className={`${
+                  link.path === pathname ? "text-accent" : "text-white"
+                } flex items-center gap-2 hover:text-accent transition-all duration-300 capitalize font-medium text-sm md:text-base lg:text-lg`}
                 href={link.path}
                 key={index}
               >
-                {/* Tooltip */}
-                <div className="absolute pr-20 right-0 hidden xl:group-hover:flex">
-                <div className="bg-white relative flex text-primary items-center p-[10px] rounded-[5px]">
-                  <div className="text-[16px] leading-none font-semibold capitalize ">
-                    {link.name}
-                  </div>
-                  <div className="border-solid border-l-white border-l-8 border-y-transparent border-y-[10px] border-r-0 absolute -right-2"></div>
-                </div>
-              </div>
                 {/* Icon */}
-                <div>{link.icon}</div>
+                <div className="text-lg md:text-xl">{link.icon}</div>
+                {/* Text - Hidden on mobile, shown on tablet and up */}
+                <span className="hidden sm:inline">{link.name}</span>
               </Link>
-            )
-          })
-        }
+            );
+          })}
+        </div>
       </div>
     </nav>
   );

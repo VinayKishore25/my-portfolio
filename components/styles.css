@@ -28,6 +28,7 @@
 .cardColor{
     background-color: #131424;
     border-radius: 20px;
+    height: 500px;
     /* height: 400px; */
 }
 .cardColor:hover

@@ -1,25 +1,38 @@
+"use client";
 import Link from "next/link";
-import { HiArrowRight } from "react-icons/hi2";
+import { useTheme } from "./ThemeContext";
+import { useState } from "react";
+import ResumeModal from "./ResumeModal";
 
 const ResumeButtons = () => {
+  const { theme } = useTheme();
+  const [open, setOpen] = useState(false);
   return (
     <div className="flex justify-center gap-4 mx-auto xl:mx-0">
-      {/* View Resume Button */}
-      <Link
-        href="https://drive.google.com/file/d/1ZxScVEp2M9r3CRGHniHHokE8l7KWCQ9w/view"
-        className="relative w-[185px] h-[50px] flex justify-center items-center bg-white text-black font-semibold rounded-lg group z-50"
+      {/* View Resume Button opens modal */}
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="relative w-[185px] h-[50px] flex justify-center items-center bg-white text-black font-semibold rounded-lg group z-50 hover:opacity-90 transition"
       >
         View Resume
-      </Link>
+      </button>
 
       {/* Download Resume Button */}
       <a
-        href="\resume.pdf"
+        href="/Vinay_SDE.pdf"
         download
-        className="relative w-[185px] h-[50px] flex justify-center items-center bg-accent/90 text-white text-lg font-semibold rounded-lg group z-50"
+        className="relative w-[185px] h-[50px] flex justify-center items-center text-lg font-semibold rounded-lg group z-50 transition-all duration-300 hover:scale-105"
+        style={{ backgroundColor: theme.accent, color: theme.primary }}
       >
         Download Resume
       </a>
+      {/* Modal */}
+      <ResumeModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        file="/Vinay_SDE.pdf"
+      />
     </div>
   );
 };

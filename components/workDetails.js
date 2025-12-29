@@ -1,35 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import "./styles.css";
-import Tilt from "react-parallax-tilt";
+import { motion, AnimatePresence } from "framer-motion";
+import { fadeIn } from "../variants";
+import { FaExternalLinkAlt, FaGithub, FaEye } from "react-icons/fa";
+import Image from "next/image";
 
 // Sample Data
 const projectData = [
   {
     category: "All",
-    projects: [
-      // {
-      //   name: "Coming Soon",
-      //   image: "/comingsoon.jpeg",
-      //   description:
-      //     "A platform to create professional resumes with customizable templates.",
-      //   techStack: ["React", "Node.js", "MongoDB"],
-      // },
-      // {
-      //   name: "Coming Soon",
-      //   image: "/comingsoon.jpeg",
-      //   description:
-      //     "An educational website for events and learning opportunities.",
-      //   techStack: ["Next.js", "Bootstrap", "Express"],
-      // },
-      // {
-      //   name: "Coming Soon",
-      //   image: "/comingsoon.jpeg",
-      //   description:
-      //     "A machine learning platform for training custom AI models.",
-      //   techStack: ["Python", "TensorFlow", "Flask"],
-      // },
-    ],
+    projects: [],
   },
   {
     category: "Java",
@@ -37,29 +17,42 @@ const projectData = [
       {
         name: "Snake Game",
         image: "/snake-game.png",
-        description: "Developed a snake game using JFrames",
+        description:
+          "Classic snake game with modern UI and smooth gameplay mechanics",
         techStack: ["Java", "Swing", "AWT"],
         link: "https://github.com/VinayKishore25/Snake-Game",
+        featured: true,
       },
       {
         name: "Pac Man Game",
         image: "/pac-man.png",
-        description: "Developed a pac man game using JFrames",
+        description: "Retro Pac-Man game recreation with enhanced graphics",
         techStack: ["Java", "Swing", "AWT"],
         link: "https://github.com/VinayKishore25/Pac-Man",
+        featured: false,
       },
     ],
   },
-
   {
     category: "Python",
     projects: [
       {
-        name: "Coming Soon",
-        image: "comingsoon.jpeg",
+        name: "Number Detection",
+        image: "/number_detection.png",
         description:
-          "A machine learning platform for training custom AI models.",
-        techStack: ["Python"],
+          "AI-powered phone number information finder with intuitive interface",
+        techStack: ["Python", "Tkinter", "ML"],
+        link: "https://github.com/VinayKishore25/Number-Detection",
+        featured: true,
+      },
+      {
+        name: "Language Translator",
+        image: "/comingsoon.jpeg",
+        description:
+          "Multi-language translation tool with real-time processing",
+        techStack: ["Python", "NLP"],
+        link: "#",
+        featured: false,
       },
     ],
   },
@@ -70,61 +63,28 @@ const projectData = [
         name: "Veda Website",
         image: "/veda-website.png",
         description:
-          "A platform to create professional resumes with customizable templates.",
+          "Comprehensive event management platform with seamless registration",
         techStack: ["React", "Node.js", "MongoDB"],
         link: "https://adityauniversity.in/veda2024",
+        featured: true,
       },
       {
-        name: "InfraStructer Tracker",
+        name: "Infrastructure Tracker",
         image: "/comingsoon.jpeg",
         description:
-          "A platform to create professional resumes with customizable templates.",
+          "Hierarchical system for efficient infrastructure asset management",
         techStack: ["React", "Node.js", "MongoDB"],
         link: "/_notfound",
+        featured: false,
       },
       {
         name: "Resume Builder",
         image: "/comingsoon.jpeg",
         description:
-          "A platform to create professional resumes with customizable templates.",
-        techStack: ["HTML", "CSS", "JS"],
+          "Professional resume creation platform with customizable templates",
+        techStack: ["HTML", "CSS", "JavaScript"],
         link: "/_notfound",
-      },
-    ],
-  },
-  // {
-  //   category: "ServiceNow",
-  //   projects: [
-  //     {
-  //       name: "Coming Soon",
-  //       image: "/comingsoon.jpeg",
-  //       description:
-  //         "An educational website for events and learning opportunities.",
-  //       techStack: ["Next.js", "Bootstrap", "Express"],
-  //     },
-  //   ],
-  // },
-  {
-    category: "ML",
-    projects: [
-      {
-        name: "Coming Soon",
-        image: "/comingsoon.jpeg",
-        description:
-          "An educational website for events and learning opportunities.",
-        techStack: ["Next.js", "Bootstrap", "Express"],
-      },
-    ],
-  },
-  {
-    category: "DS",
-    projects: [
-      {
-        name: "Coming Soon",
-        image: "/comingsoon.jpeg",
-        description:
-          "An educational website for events and learning opportunities.",
-        techStack: ["Next.js", "Bootstrap", "Express"],
+        featured: false,
       },
     ],
   },
@@ -132,96 +92,170 @@ const projectData = [
     category: "App",
     projects: [
       {
-        name: "Coming Soon",
+        name: "Connect",
         image: "/comingsoon.jpeg",
         description:
-          "An educational website for events and learning opportunities.",
-        techStack: ["Next.js", "Bootstrap", "Express"],
+          "Social networking app connecting people based on their needs",
+        techStack: ["React Native", "Spring Boot"],
+        link: "/_notfound",
+        featured: false,
       },
     ],
   },
 ];
 
-// Components
 const WorkDetails = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [hoveredProject, setHoveredProject] = useState(null);
 
   const filteredProjects =
     selectedCategory === "All"
       ? projectData.flatMap((data) => data.projects)
       : projectData.find((data) => data.category === selectedCategory)
           ?.projects || [];
+
   const openProjectLink = (link) => {
     window.open(link, "_blank");
   };
-  return (
-    <div className="bg-primary/0 text-center xl:text-left project_content">
-      <div className="container mx-auto h-full flex flex-col items-center">
-        {/* Categories */}
-        <div className="flex gap-4 mb-8 domain_buttons">
-          {projectData.map((data, index) => (
-            <button
-              key={index}
-              className={`px-4 py-2 text-lg font-medium rounded ${
-                selectedCategory === data.category
-                  ? "bg-accent text-white"
-                  : "bg-gray-200 text-black"
-              }`}
-              onClick={() => setSelectedCategory(data.category)}
-            >
-              {data.category}
-            </button>
-          ))}
-        </div>
-        {/* Projects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 project-section">
-          {filteredProjects.map((project, index) => (
-            <Tilt
-              key={index}
-              tiltMaxAngleX={7}
-              tiltMaxAngleY={7}
-              perspective={1000}
-              // scale={1.05}
-              // transitionSpeed={1500}
-              // className="min-h-[500px]"
-            >
-              <div
-                key={index}
-                className="bg-black shadow-lg rounded overflow-hidden m-7 px-5 py-4 w-80 cardColor"
-              >
-                <div
-                  className="w-full h-48"
-                  style={{
-                    backgroundImage: `url(${project.image})`,
-                    backgroundSize: "100% 100%",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
 
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2 text-white">
-                    {project.name}
-                  </h3>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
-                  <div className="mb-4">
-                    <strong>Tech Stack:</strong> {project.techStack.join(", ")}
-                  </div>
-                  <div className="flex gap-4">
-                  <button
-                    className="bg-accent text-white px-4 py-2 rounded hover:bg-accent-dark"
-                    onClick={() => openProjectLink(project.link)}
-                  > 
-                    View Project
-                  </button>
+  return (
+    <div className="w-full">
+      {/* Category Filter */}
+      <motion.div
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        animate="show"
+        exit="hidden"
+        className="flex flex-wrap justify-center gap-4 mb-12"
+      >
+        {projectData.map((data, index) => (
+          <motion.button
+            key={index}
+            onClick={() => setSelectedCategory(data.category)}
+            className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+              selectedCategory === data.category
+                ? "bg-accent text-white shadow-lg shadow-accent/25"
+                : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+            }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {data.category}
+          </motion.button>
+        ))}
+      </motion.div>
+
+      {/* Projects Grid */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedCategory}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={`${selectedCategory}-${index}`}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative bg-secondary/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-accent/50 transition-all duration-300"
+              onMouseEnter={() => setHoveredProject(index)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              {/* Featured Badge */}
+              {project.featured && (
+                <div className="absolute top-4 left-4 z-10 bg-accent text-white text-xs px-3 py-1 rounded-full font-medium">
+                  Featured
+                </div>
+              )}
+
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+
+                {/* Overlay */}
+                <div
+                  className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ${
+                    hoveredProject === index ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  <div className="absolute inset-0 flex items-center justify-center space-x-4">
+                    <motion.button
+                      onClick={() => openProjectLink(project.link)}
+                      className="bg-accent text-white p-3 rounded-full hover:bg-accent/80 transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <FaExternalLinkAlt size={16} />
+                    </motion.button>
+                    <motion.button
+                      className="bg-white text-black p-3 rounded-full hover:bg-white/80 transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <FaEye size={16} />
+                    </motion.button>
                   </div>
                 </div>
               </div>
-            </Tilt>
+
+              {/* Project Content */}
+              <div className="p-6">
+                <h3 className="text-white font-bold text-xl mb-3 group-hover:text-accent transition-colors">
+                  {project.name}
+                </h3>
+                <p className="text-white/70 mb-4 text-sm leading-relaxed line-clamp-2">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.techStack.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="bg-accent/20 text-accent text-xs px-3 py-1 rounded-full font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action Button */}
+                <motion.button
+                  onClick={() => openProjectLink(project.link)}
+                  className="w-full bg-gradient-to-r from-accent to-accent/80 text-white py-3 rounded-lg font-medium hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 flex items-center justify-center space-x-2"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <FaExternalLinkAlt size={14} />
+                  <span>View Project</span>
+                </motion.button>
+              </div>
+            </motion.div>
           ))}
-          <div className="extraSpaceInWork"></div>
-        </div>
-      </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Empty State */}
+      {filteredProjects.length === 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center py-20"
+        >
+          <div className="text-white/40 text-6xl mb-4">🚀</div>
+          <h3 className="text-white/60 text-xl mb-2">No projects yet</h3>
+          <p className="text-white/40">More amazing projects coming soon!</p>
+        </motion.div>
+      )}
     </div>
   );
 };

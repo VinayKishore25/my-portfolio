@@ -6,9 +6,9 @@ import { RiYoutubeLine, RiInstagramLine, RiFacebookLine } from "react-icons/ri"
 import { FaLinkedinIn } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaGithub,FaXTwitter } from "react-icons/fa6";
-const Socials = () => {
+const Socials = ({ className = "flex items-center gap-x-5 text-lg" }) => {
   return (
-    <div className="flex items-center gap-x-5 text-lg">
+    <div className={className}>
       <Link href={'https://www.linkedin.com/in/vinaykishore2512/'} className="hover:text-accent transition-all duration-300 ">
         <FaLinkedinIn />
       </Link>

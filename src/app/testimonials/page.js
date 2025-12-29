@@ -1,5 +1,5 @@
 // Components
-'use client';
+"use client";
 import TestimonialSlider from "../../../components/TestimonialSlider";
 
 // Framer Motion
@@ -12,17 +12,17 @@ const Testimonials = () => {
       <div className="container mx-auto h-full flex flex-col justify-center">
         {/* Title */}
         <motion.h2
-          variants={fadeIn('up', 0.2)}
+          variants={fadeIn("up", 0.2)}
           initial="hidden"
           animate="show"
           exit="hidden"
           className="h2 mb-8 xl:mb-0"
         >
-          What Mentors   <span className="text-accent">say.</span>
+          What Mentors <span className="text-accent">say.</span>
         </motion.h2>
         {/* Slider */}
         <motion.div
-          variants={fadeIn('up', 0.4)}
+          variants={fadeIn("up", 0.4)}
           initial="hidden"
           animate="show"
           exit="hidden"

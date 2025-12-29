@@ -37,41 +37,7 @@ import {
 
 // Data
 const aboutData = [
-  {
-    title: "skills",
-    info: [
-      {
-        title: "Web Development",
-        icons: [<FaHtml5 />, <FaCss3 />, <FaJs />, <SiTypescript />],
-      },
-      {
-        title: "Coding Languages",
-        icons: [<FaJava />, <TbBrandCpp />, <FaPython />, <SiCodio />],
-      },
-      {
-        title: "FrameWorks & Libraries",
-        icons: [
-          <FaReact />,
-          <SiNextdotjs />,
-          <SiExpress />,
-          <BiLogoSpringBoot />,
-        ],
-      },
-      {
-        title: "Technical Skills",
-        icons: [<SiMysql />, <FaLinux />, <SiMongodb />, <FaGit />],
-      },
-      {
-        title: "Development Tools",
-        icons: [
-          <TbBrandVscode />,
-          <SiSpyderide />,
-          <SiJupyter />,
-          <SiIntellijidea />,
-        ],
-      },
-    ],
-  },
+
   {
     title: "awards",
     info: [
@@ -170,7 +136,6 @@ const aboutData = [
 
 // Components
 import Avatar from "../../../components/Avatar";
-import Circles from "../../../components/Circles";
 
 // Framer Motion
 import { motion } from "framer-motion";
@@ -184,16 +149,14 @@ const About = () => {
 
   return (
     <div className="h-full bg-primary/30 py-32 text-center xl:text-left">
-      <Circles />
       <motion.div
         variants={fadeIn("right", 0.2)}
         initial="hidden"
         animate="show"
         exit="hidden"
         className="hidden xl:flex absolute top-12 -left-[380px] "
-      >
-      </motion.div>
-        <Bulb />
+      ></motion.div>
+      <Bulb />
       <div className="container mx-auto h-full flex flex-col items-center xl:flex-row gap-x-6">
         {/* Text */}
         <div className="flex-1 flex flex-col justify-center">
@@ -276,23 +239,22 @@ const About = () => {
           className="flex flex-col w-full xl:max-w-[48%] h-[480px]"
         >
           <div className="mobile-overflow">
-          
-          <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4 mobile-view">
-            {aboutData.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`${
-                    itemIndex === index &&
-                    "text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300"
-                  } cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] after:bg-white after:absolute after:-bottom-1 after:left-0`}
-                  onClick={() => setItemIndex(index)}
-                >
-                  {item.title}
-                </div>
-              );
-            })}
-          </div>
+            <div className="flex gap-x-4 xl:gap-x-8 mx-auto xl:mx-0 mb-4 mobile-view">
+              {aboutData.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`${
+                      itemIndex === index &&
+                      "text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300"
+                    } cursor-pointer capitalize xl:text-lg relative after:w-8 after:h-[2px] after:bg-white after:absolute after:-bottom-1 after:left-0`}
+                    onClick={() => setItemIndex(index)}
+                  >
+                    {item.title}
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="py-2 xl:py-6 flex flex-col gap-y-2 xl:gap-y-4 items-center xl:items-start">
             <div className="qualification__content qualification__content-active">
