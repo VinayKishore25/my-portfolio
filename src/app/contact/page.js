@@ -1,7 +1,7 @@
 "use client";
 
-import ContactForm from "../../../components/ContactForm";
-import Socials from "../../../components/Socials";
+import ContactForm from "@/components/features/ContactForm";
+import Socials from "@/components/ui/Socials";
 
 const ContactPage = () => {
   return (

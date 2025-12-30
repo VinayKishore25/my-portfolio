@@ -26,10 +26,10 @@ import { FaJava } from "react-icons/fa";
 import { TbBrandThreejs } from "react-icons/tb";
 import { HiOutlineSpeakerphone } from "react-icons/hi";
 
-import SpiderChart from "../../../components/SpiderChart";
-import Bulb from "../../../components/Bulb";
-import Circles from "../../../components/Circles";
-import { fadeIn } from "../../../variants";
+import SpiderChart from "@/components/features/SpiderChart";
+import Bulb from "@/components/ui/Bulb";
+import Circles from "@/components/ui/Circles";
+import { fadeIn } from "@/lib/animations";
 
 // --- SKILL CATEGORIES DATA ---
 const skillCategories = [

@@ -1,12 +1,12 @@
 // Components
 "use client";
-import ServiceSlider from "../../../components/ServiceSlider";
-import Bulb from "../../../components/Bulb";
-import Circles from "../../../components/Circles";
+import ServiceSlider from "@/components/sections/ServiceSlider";
+import Bulb from "@/components/ui/Bulb";
+import Circles from "@/components/ui/Circles";
 
 // Framer Motion
 import { motion } from "framer-motion";
-import { fadeIn } from "../../../variants";
+import { fadeIn } from "@/lib/animations";
 
 const Services = () => {
   return (
@@ -32,21 +32,23 @@ const Services = () => {
                 exit="hidden"
                 className="mb-4 max-w-[400px] mx-auto lg:mx-0"
               >
-                I am a passionate developer skilled in building innovative, user-friendly web solutions. With experience on projects like 
-                the Resume Builder and Veda Website, I excel in front-end design, back-end integration, and problem-solving. Dedicated to 
-                collaboration and quality, I deliver seamless, impactful results that exceed user expectations.
+                I am a passionate developer skilled in building innovative,
+                user-friendly web solutions. With experience on projects like
+                the Resume Builder and Veda Website, I excel in front-end
+                design, back-end integration, and problem-solving. Dedicated to
+                collaboration and quality, I deliver seamless, impactful results
+                that exceed user expectations.
               </motion.p>
-              </div>
-              <motion.div
-            variants={fadeIn('down', 0.6)}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            className="w-full xl:max-w-[65%]"
-          >
-            <ServiceSlider />
-          </motion.div>
-            
+            </div>
+            <motion.div
+              variants={fadeIn("down", 0.6)}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              className="w-full xl:max-w-[65%]"
+            >
+              <ServiceSlider />
+            </motion.div>
           </div>
         </div>
         <Bulb />

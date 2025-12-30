@@ -2,7 +2,7 @@
 
 // Framer Motion
 import { motion } from "framer-motion";
-import { fadeIn } from "../../../variants";
+import { fadeIn } from "@/lib/animations";
 import Link from "next/link";
 
 const dummyBlogs = [

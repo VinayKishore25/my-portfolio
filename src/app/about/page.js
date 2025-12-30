@@ -2,7 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import "./page.css";
-import Bulb from "../../../components/Bulb";
+import Bulb from "@/components/ui/Bulb";
 // Icons
 import {
   FaHtml5,
@@ -167,11 +167,11 @@ const aboutData = [
 ];
 
 // Components
-import Avatar from "../../../components/Avatar";
+import Avatar from "@/components/ui/Avatar";
 
 // Framer Motion
 import { motion } from "framer-motion";
-import { fadeIn } from "../../../variants";
+import { fadeIn } from "@/lib/animations";
 
 // Counter
 import CountUp from "react-countup";

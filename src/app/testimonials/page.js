@@ -1,10 +1,10 @@
 // Components
 "use client";
-import TestimonialSlider from "../../../components/TestimonialSlider";
+import TestimonialSlider from "@/components/sections/TestimonialSlider";
 
 // Framer Motion
 import { motion } from "framer-motion";
-import { fadeIn } from "../../../variants";
+import { fadeIn } from "@/lib/animations";
 
 const Testimonials = () => {
   return (

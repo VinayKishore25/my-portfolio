@@ -1,12 +1,12 @@
 // Components
 "use client";
-import Bulb from "../../../components/Bulb";
-import WorkDetails from "../../../components/workDetails";
+import Bulb from "@/components/ui/Bulb";
+import WorkDetails from "@/components/features/WorkDetails";
 import React, { useState } from "react";
 
 // Framer Motion
 import { motion } from "framer-motion";
-import { fadeIn } from "../../../variants";
+import { fadeIn } from "@/lib/animations";
 
 const Work = () => {
   return (

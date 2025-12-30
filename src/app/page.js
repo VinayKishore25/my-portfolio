@@ -1,6 +1,5 @@
 "use client";
 //Importing React and other important libraries
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import {
   HiBolt,
@@ -22,35 +21,26 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import CountUp from "react-countup";
 
 //Importing Components
-import ParticlesContainer from "../../components/ParticlesContainer";
-import ResumeButtons from "../../components/ResumeButtons";
-import Avatar from "../../components/Avatar";
-import Bulb from "../../components/Bulb";
-import ScrollControls from "../../components/ScrollControlls";
+import ParticlesContainer from "@/components/features/ParticlesContainer";
+import ResumeButtons from "@/components/ui/ResumeButtons";
+import Avatar from "@/components/ui/Avatar";
+import Bulb from "@/components/ui/Bulb";
+import ScrollControls from "@/components/features/ScrollControls";
 //Importing Framer Motion
 import { motion, useInView } from "framer-motion";
-import { fadeIn } from "../../variants";
-import AboutMe from "../../components/AboutMe";
+import { fadeIn } from "@/lib/animations";
+import AboutMe from "@/components/sections/AboutMe";
 import { useRef } from "react";
 
 // Lazy load below-the-fold components
-const Journey = dynamic(() => import("../../components/Journey"), {
-  loading: () => <div className="h-screen" />,
-});
-const SkillsHighlight = dynamic(
-  () => import("../../components/SkillsHighlight"),
-  {
-    loading: () => <div className="h-screen" />,
-  }
-);
 const FeaturedProjects = dynamic(
-  () => import("../../components/FeaturedProjects"),
+  () => import("@/components/sections/FeaturedProjects"),
   {
     loading: () => <div className="h-screen" />,
   }
 );
 const TestimonialSlider = dynamic(
-  () => import("../../components/TestimonialSlider"),
+  () => import("@/components/sections/TestimonialSlider"),
   {
     loading: () => <div className="h-screen" />,
   }

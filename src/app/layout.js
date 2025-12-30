@@ -2,13 +2,13 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Layout from "../../components/Layout";
+import Layout from "@/components/layout/Layout";
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import Transition from "../../components/Transition";
-import PreLoader from "../../components/PreLoader";
-import { ThemeProvider } from "../../components/ThemeContext";
+import Transition from "@/components/layout/Transition";
+import PreLoader from "@/components/layout/PreLoader";
+import { ThemeProvider } from "@/components/context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

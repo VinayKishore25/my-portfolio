@@ -1,12 +1,17 @@
 {
-  "name": "personal-portfolio",
-  "version": "0.1.0",
+  "name": "vinay-portfolio",
+  "version": "1.0.0",
   "private": true,
+  "description": "Personal portfolio website built with Next.js 16 and React 19",
+  "author": "Vinay",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "clean": "rm -rf .next node_modules",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@next/font": "^14.2.15",
