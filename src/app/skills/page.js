@@ -24,6 +24,7 @@ import {
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { TbBrandThreejs } from "react-icons/tb";
+import { HiOutlineSpeakerphone } from "react-icons/hi";
 
 import SpiderChart from "../../../components/SpiderChart";
 import Bulb from "../../../components/Bulb";
@@ -36,31 +37,31 @@ const skillCategories = [
     id: "web-dev",
     name: "Web Development",
     skills: [
-      { name: "React", icon: <SiReact />, color: "text-sky-400", hours: 600 },
+      { name: "React", icon: <SiReact />, color: "text-sky-400", hours: 1200 },
       {
         name: "Next.js",
         icon: <SiNextdotjs />,
         color: "text-white",
-        hours: 450,
+        hours: 800,
       },
       {
         name: "Node.js",
         icon: <SiNodedotjs />,
         color: "text-green-500",
-        hours: 500,
+        hours: 900,
       },
-      { name: "Express", icon: <SiExpress />, color: "text-white", hours: 400 },
+      { name: "Express", icon: <SiExpress />, color: "text-white", hours: 850 },
       {
-        name: "Tailwind",
+        name: "HTML/CSS",
         icon: <SiTailwindcss />,
-        color: "text-cyan-400",
-        hours: 350,
+        color: "text-orange-500",
+        hours: 1000,
       },
       {
-        name: "Three.js",
-        icon: <TbBrandThreejs />,
-        color: "text-gray-300",
-        hours: 200,
+        name: "Bootstrap",
+        icon: <SiTailwindcss />,
+        color: "text-purple-500",
+        hours: 600,
       },
     ],
   },
@@ -72,175 +73,313 @@ const skillCategories = [
         name: "JavaScript",
         icon: <SiJavascript />,
         color: "text-yellow-400",
-        hours: 700,
+        hours: 1500,
+      },
+      { name: "Java", icon: <FaJava />, color: "text-red-500", hours: 1300 },
+      {
+        name: "Python",
+        icon: <SiPython />,
+        color: "text-blue-500",
+        hours: 1100,
+      },
+      {
+        name: "C",
+        icon: <SiCplusplus />,
+        color: "text-blue-700",
+        hours: 800,
       },
       {
         name: "TypeScript",
         icon: <SiTypescript />,
         color: "text-blue-400",
-        hours: 500,
+        hours: 700,
       },
-      {
-        name: "Python",
-        icon: <SiPython />,
-        color: "text-blue-500",
-        hours: 600,
-      },
-      { name: "Java", icon: <FaJava />, color: "text-red-500", hours: 400 },
       {
         name: "C++",
         icon: <SiCplusplus />,
         color: "text-blue-600",
-        hours: 350,
+        hours: 600,
       },
-      { name: "Go", icon: <SiGo />, color: "text-cyan-400", hours: 250 },
     ],
   },
   {
-    id: "data-ai",
-    name: "Data & AI",
+    id: "backend-db",
+    name: "Backend & Databases",
     skills: [
       {
-        name: "TensorFlow",
-        icon: <SiTensorflow />,
-        color: "text-orange-500",
-        hours: 300,
+        name: "Spring Boot",
+        icon: <SiGo />,
+        color: "text-green-600",
+        hours: 650,
       },
-      {
-        name: "PyTorch",
-        icon: <SiPytorch />,
-        color: "text-red-600",
-        hours: 280,
-      },
-      {
-        name: "Python",
-        icon: <SiPython />,
-        color: "text-blue-500",
-        hours: 600,
-      },
+      { name: "Express", icon: <SiExpress />, color: "text-white", hours: 850 },
       {
         name: "MongoDB",
         icon: <SiMongodb />,
         color: "text-green-600",
-        hours: 350,
+        hours: 750,
       },
       {
         name: "PostgreSQL",
         icon: <SiPostgresql />,
+        color: "text-blue-600",
+        hours: 700,
+      },
+      {
+        name: "MySQL",
+        icon: <SiPostgresql />,
         color: "text-blue-700",
-        hours: 320,
+        hours: 650,
+      },
+      {
+        name: "Microservices",
+        icon: <SiDocker />,
+        color: "text-cyan-500",
+        hours: 400,
       },
     ],
   },
   {
-    id: "tools",
-    name: "Tools & Platforms",
+    id: "devops-tools",
+    name: "DevOps & Cloud Tools",
     skills: [
-      { name: "Git", icon: <SiGit />, color: "text-orange-600", hours: 500 },
+      { name: "Git", icon: <SiGit />, color: "text-orange-600", hours: 1000 },
+      {
+        name: "GitHub",
+        icon: <SiGit />,
+        color: "text-gray-400",
+        hours: 950,
+      },
+      {
+        name: "Linux",
+        icon: <SiGit />,
+        color: "text-yellow-600",
+        hours: 800,
+      },
       {
         name: "Docker",
         icon: <SiDocker />,
         color: "text-blue-500",
-        hours: 300,
+        hours: 500,
       },
       {
-        name: "Figma",
-        icon: <SiFigma />,
-        color: "text-purple-500",
-        hours: 400,
+        name: "Postman",
+        icon: <SiGit />,
+        color: "text-orange-500",
+        hours: 600,
       },
       {
-        name: "Adobe XD",
-        icon: <SiAdobexd />,
-        color: "text-pink-500",
-        hours: 250,
+        name: "ServiceNow",
+        icon: <SiGit />,
+        color: "text-green-400",
+        hours: 450,
       },
     ],
   },
   {
-    id: "uiux",
-    name: "UI/UX Design",
+    id: "tools-ide",
+    name: "IDEs & Dev Tools",
     skills: [
+      {
+        name: "VS Code",
+        icon: <TbBrandThreejs />,
+        color: "text-blue-400",
+        hours: 1500,
+      },
+      {
+        name: "IntelliJ",
+        icon: <TbBrandThreejs />,
+        color: "text-purple-500",
+        hours: 800,
+      },
+      {
+        name: "Jupyter",
+        icon: <TbBrandThreejs />,
+        color: "text-orange-500",
+        hours: 550,
+      },
+      {
+        name: "Colab",
+        icon: <TbBrandThreejs />,
+        color: "text-yellow-500",
+        hours: 500,
+      },
+      {
+        name: "Spyder",
+        icon: <TbBrandThreejs />,
+        color: "text-red-500",
+        hours: 400,
+      },
+      {
+        name: "PGAdmin",
+        icon: <TbBrandThreejs />,
+        color: "text-blue-600",
+        hours: 450,
+      },
+    ],
+  },
+  {
+    id: "mobile-design",
+    name: "Mobile & Design",
+    skills: [
+      {
+        name: "React Native",
+        icon: <SiReact />,
+        color: "text-sky-500",
+        hours: 700,
+      },
       {
         name: "Figma",
         icon: <SiFigma />,
         color: "text-purple-500",
-        hours: 450,
+        hours: 600,
+      },
+      {
+        name: "Material UI",
+        icon: <SiReact />,
+        color: "text-blue-400",
+        hours: 550,
+      },
+      {
+        name: "Tailwind",
+        icon: <SiTailwindcss />,
+        color: "text-cyan-400",
+        hours: 650,
       },
       {
         name: "Adobe XD",
         icon: <SiAdobexd />,
         color: "text-pink-500",
-        hours: 300,
+        hours: 350,
       },
-      { name: "React", icon: <SiReact />, color: "text-sky-400", hours: 600 },
       {
-        name: "Tailwind",
-        icon: <SiTailwindcss />,
-        color: "text-cyan-400",
-        hours: 400,
+        name: "Responsive",
+        icon: <SiReact />,
+        color: "text-green-400",
+        hours: 800,
+      },
+    ],
+  },
+  {
+    id: "languages",
+    name: "Spoken Languages",
+    skills: [
+      {
+        name: "Telugu",
+        icon: <span className="text-2xl font-bold">తె</span>,
+        color: "text-green-500",
+        hours: 5,
+        proficiency: "Advanced",
+      },
+      {
+        name: "English",
+        icon: <span className="text-2xl font-bold">En</span>,
+        color: "text-blue-400",
+        hours: 5,
+        proficiency: "Advanced",
+      },
+      {
+        name: "Hindi",
+        icon: <span className="text-2xl font-bold">हि</span>,
+        color: "text-orange-500",
+        hours: 3,
+        proficiency: "Intermediate",
+      },
+      {
+        name: "Kannada",
+        icon: <span className="text-2xl font-bold">ಕ</span>,
+        color: "text-purple-500",
+        hours: 1,
+        proficiency: "Beginner",
+      },
+      {
+        name: "Tamil",
+        icon: <span className="text-2xl font-bold">த</span>,
+        color: "text-pink-500",
+        hours: 1,
+        proficiency: "Beginner",
       },
     ],
   },
 ];
-
-// Spider chart data mapping per category
 const getSpiderChartData = (categoryId) => {
   const dataMap = {
     "web-dev": {
       labels: [
         "Frontend",
         "Backend",
-        "APIs",
-        "UI/UX",
+        "Full-Stack",
         "Performance",
-        "Animation",
+        "Scalability",
+        "Deployment",
       ],
-      values: [5, 4.5, 4, 4.5, 4, 4],
+      values: [5, 5, 5, 4.5, 4.5, 4],
     },
     programming: {
       labels: [
-        "Syntax",
+        "Problem Solving",
+        "DSA",
         "OOP",
+        "Clean Code",
         "Algorithms",
-        "Data Structures",
         "Debugging",
-        "Best Practices",
       ],
-      values: [5, 4.5, 4, 4.5, 4.5, 4],
+      values: [5, 5, 5, 4.5, 5, 4.5],
     },
-    "data-ai": {
+    "backend-db": {
       labels: [
-        "ML Models",
-        "Data Processing",
-        "Neural Networks",
-        "Databases",
-        "Analytics",
-        "Deployment",
+        "REST APIs",
+        "Authentication",
+        "Database Design",
+        "Query Optimization",
+        "Microservices",
+        "Spring Boot",
       ],
-      values: [3.5, 4, 3, 4, 3.5, 3],
+      values: [5, 4.5, 4.5, 4.5, 4, 4.5],
     },
-    tools: {
+    "devops-tools": {
       labels: [
         "Version Control",
-        "Containerization",
-        "Design Tools",
         "CI/CD",
-        "Collaboration",
-        "Automation",
+        "Linux Admin",
+        "Containerization",
+        "ServiceNow",
+        "Postman",
       ],
-      values: [5, 3.5, 4, 3, 4.5, 4],
+      values: [5, 4, 5, 4, 4.5, 5],
     },
-    uiux: {
+    "tools-ide": {
       labels: [
-        "Prototyping",
-        "Visual Design",
-        "User Research",
-        "Interaction",
-        "Accessibility",
-        "Responsive",
+        "VS Code",
+        "IntelliJ",
+        "Jupyter",
+        "Colab",
+        "Database Tools",
+        "Productivity",
       ],
-      values: [4.5, 4, 3.5, 4.5, 4, 5],
+      values: [5, 4.5, 4, 4, 4.5, 5],
+    },
+    "mobile-design": {
+      labels: [
+        "React Native",
+        "Responsive Design",
+        "UI Frameworks",
+        "Figma",
+        "Accessibility",
+        "User Experience",
+      ],
+      values: [4.5, 5, 4.5, 4, 4, 4.5],
+    },
+    languages: {
+      labels: [
+        "Telugu",
+        "English",
+        "Hindi",
+        "Kannada",
+        "Tamil",
+        "Communication",
+      ],
+      values: [5, 5, 3, 1, 1, 4.5],
     },
   };
   return dataMap[categoryId];
@@ -396,15 +535,19 @@ const Skills = () => {
                 className="text-white/70 text-sm text-center mt-4 max-w-md"
               >
                 {currentCategory.name === "Web Development" &&
-                  "Full-stack expertise with modern frameworks and tools for building performant web applications."}
+                  "Professional full-stack developer at Airbus India & Technical Hub. Built 2+ production apps (Resume Builder, Infrastructure Tracker) with 95% Lighthouse scores and 30% faster load times."}
                 {currentCategory.name === "Programming Languages" &&
-                  "Strong foundation across multiple paradigms—OOP, functional, and systems programming."}
-                {currentCategory.name === "Data & AI" &&
-                  "Machine learning pipelines, data processing, and intelligent system development."}
-                {currentCategory.name === "Tools & Platforms" &&
-                  "DevOps, version control, and design tools for efficient development workflows."}
-                {currentCategory.name === "UI/UX Design" &&
-                  "User-centered design thinking with modern prototyping and implementation skills."}
+                  "Competitive programmer with 660+ LeetCode problems (rating 1813), 650+ GFG problems (1850 score). 5-star HackerRank badges in C, Python, Java. 3-star CodeChef (1643 rating)."}
+                {currentCategory.name === "Backend & Databases" &&
+                  "Enterprise backend development with Spring Boot, Express.js & PostgreSQL at Airbus. Built microservices handling 1000+ concurrent queries. NPTEL certified in DBMS, Oracle Database Foundations."}
+                {currentCategory.name === "DevOps & Cloud Tools" &&
+                  "Red Hat Certified System Administrator (RHCSA). ServiceNow Certified System Admin & App Developer. Proficient in Git version control with 1000+ commits across production projects."}
+                {currentCategory.name === "IDEs & Dev Tools" &&
+                  "Expert in professional development environments: VS Code (1500+ hours), IntelliJ IDEA, Jupyter Notebooks, Google Colab, Spyder IDE, PGAdmin for database management."}
+                {currentCategory.name === "Mobile & Design" &&
+                  "Cross-platform mobile development with React Native. Built Connect App serving 2000+ users with women's safety features, blood donation system, and ambulance services with 30% faster response times."}
+                {currentCategory.name === "Spoken Languages" &&
+                  "Fluent in Telugu and English. Intermediate Hindi proficiency. Basic understanding of Kannada and Tamil. Strong communication skills in professional and casual environments."}
               </motion.p>
             </AnimatePresence>
           </motion.div>
@@ -414,10 +557,12 @@ const Skills = () => {
             variants={fadeIn("left", 0.3)}
             initial="hidden"
             animate="show"
-            className="flex-1 bg-white/5 rounded-2xl p-6 border border-white/10 shadow-lg relative"
+            className="flex-1 bg-white/5 rounded-2xl p-6 border border-white/10 shadow-lg"
           >
-            <h4 className="text-sm font-bold mb-4 text-center">
-              Practice Hours
+            <h4 className="text-sm font-bold mb-6 text-center text-white">
+              {currentCategory.name === "Spoken Languages"
+                ? "Proficiency Level"
+                : "Practice Hours"}
             </h4>
             <AnimatePresence mode="wait">
               <motion.div
@@ -425,71 +570,51 @@ const Skills = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="h-[300px] flex items-end justify-around gap-2 px-4 pb-6 border-b border-white/10 relative"
+                className="space-y-4"
               >
-                {/* Grid lines */}
-                <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="border-t border-white w-full h-0" />
-                  ))}
-                </div>
-
                 {/* Bars */}
                 {currentCategory.skills.map((skill, i) => {
-                  const heightPercent = (skill.hours / maxHours) * 100;
+                  const isLanguage = currentCategory.id === "languages";
+                  const heightPercent = isLanguage
+                    ? (skill.hours / 5) * 100
+                    : (skill.hours / maxHours) * 100;
+                  const barColors = [
+                    "bg-yellow-400",
+                    "bg-blue-500",
+                    "bg-green-500",
+                    "bg-red-500",
+                    "bg-purple-500",
+                    "bg-pink-500",
+                  ];
+                  const barColor = barColors[i % barColors.length];
+
                   return (
-                    <div
-                      key={skill.name}
-                      className="flex flex-col items-center gap-2 w-full z-10 group"
-                    >
-                      <div className="opacity-0 group-hover:opacity-100 absolute -top-10 text-xs bg-black text-white px-3 py-1.5 rounded shadow-lg transition-opacity whitespace-nowrap">
-                        {skill.hours} hours
+                    <div key={skill.name} className="group">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-xs md:text-sm text-white/80 font-medium truncate flex-1">
+                          {skill.name}
+                        </span>
+                        <span className="text-xs text-accent font-bold ml-2 min-w-fit">
+                          {isLanguage ? skill.proficiency : `${skill.hours}h`}
+                        </span>
                       </div>
-                      <motion.div
-                        initial={{ height: 0 }}
-                        animate={{ height: `${heightPercent}%` }}
-                        transition={{
-                          duration: 0.8,
-                          delay: i * 0.1,
-                          ease: "easeOut",
-                        }}
-                        className={`w-full max-w-[50px] rounded-t-lg ${
-                          skill.color.includes("yellow")
-                            ? "bg-yellow-400"
-                            : skill.color.includes("blue")
-                            ? "bg-blue-500"
-                            : skill.color.includes("green")
-                            ? "bg-green-500"
-                            : skill.color.includes("red")
-                            ? "bg-red-500"
-                            : skill.color.includes("purple")
-                            ? "bg-purple-500"
-                            : skill.color.includes("pink")
-                            ? "bg-pink-500"
-                            : skill.color.includes("orange")
-                            ? "bg-orange-500"
-                            : skill.color.includes("cyan")
-                            ? "bg-cyan-400"
-                            : "bg-gray-400"
-                        } opacity-80 hover:opacity-100 transition-opacity cursor-pointer`}
-                      />
-                      <span className="text-[9px] md:text-[10px] text-white/60 truncate w-full text-center">
-                        {skill.name}
-                      </span>
+                      <div className="w-full bg-white/10 rounded-full h-2.5 overflow-hidden border border-white/20">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${heightPercent}%` }}
+                          transition={{
+                            duration: 0.8,
+                            delay: i * 0.1,
+                            ease: "easeOut",
+                          }}
+                          className={`h-full rounded-full ${barColor} shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                        />
+                      </div>
                     </div>
                   );
                 })}
               </motion.div>
             </AnimatePresence>
-
-            {/* Y-axis labels */}
-            <div className="absolute left-2 top-20 bottom-16 flex flex-col justify-between text-[10px] text-white/30">
-              <span>{Math.round(maxHours)}</span>
-              <span>{Math.round(maxHours * 0.75)}</span>
-              <span>{Math.round(maxHours * 0.5)}</span>
-              <span>{Math.round(maxHours * 0.25)}</span>
-              <span>0</span>
-            </div>
           </motion.div>
         </div>
       </div>

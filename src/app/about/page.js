@@ -37,21 +37,28 @@ import {
 
 // Data
 const aboutData = [
-
   {
-    title: "awards",
+    title: "achievements",
     info: [
       {
-        title: "Gemini API Workshop - 2nd Place",
-        stage: "JNTUGV",
+        title: "LeetCode - 660+ Problems Solved",
+        stage: "Peak Contest Rating: 1813",
+      },
+      {
+        title: "GeeksforGeeks - 650+ Problems",
+        stage: "Score: 1850 | Contest Rating: 1716",
+      },
+      {
+        title: "HackerRank - 5 Star Badges",
+        stage: "C, Python & Java",
+      },
+      {
+        title: "CodeChef - 3 Star Rating",
+        stage: "Highest Rating: 1643",
       },
       {
         title: "Monthly Coding Contest - 3rd Place",
         stage: "Technical Hub",
-      },
-      {
-        title: "Code Carnival - 1st Place",
-        stage: "Aditya University",
       },
     ],
   },
@@ -59,16 +66,16 @@ const aboutData = [
     title: "experience",
     info: [
       {
-        title: "Java Trainee - Technical Hub",
-        stage: "Aug 2023 - Dec 2023",
+        title: "Software Engineer Intern - Airbus India Pvt Ltd",
+        stage: "September 2025 - Present",
       },
       {
-        title: "Junior Web Developer - Technical Hub",
-        stage: "June 2024 - Dec 2024",
+        title: "Junior Developer - Technical Hub Pvt Ltd",
+        stage: "June 2024 - June 2025",
       },
       {
-        title: "Intern - Technical Hub",
-        stage: "Jan 2025 - Apr 2025",
+        title: "Java Trainee - Technical Hub Pvt Ltd",
+        stage: "August 2023 - December 2023",
       },
     ],
   },
@@ -76,9 +83,19 @@ const aboutData = [
     title: "credentials",
     info: [
       {
-        title: "C - NPTEL",
+        title: "C Programming - NPTEL",
         stage: "Jan-Mar 2023",
         link: "https://archive.nptel.ac.in/content/noc/NOC23/SEM1/Ecertificates/106/noc23-cs02/Course/NPTEL23CS02S4483019403132840.jpg",
+      },
+      {
+        title: "Java Programming - NPTEL",
+        stage: "Jan-Apr 2024",
+        link: "https://archive.nptel.ac.in/content/noc/NOC24/SEM1/Ecertificates/106/noc24-cs43/Course/NPTEL24CS43S105850040030794576.pdf",
+      },
+      {
+        title: "Database Management System - NPTEL",
+        stage: "Jan-Mar 2024",
+        link: "https://archive.nptel.ac.in/content/noc/NOC24/SEM1/Ecertificates/106/noc24-cs21/Course/NPTEL24CS21S64110029730198379.pdf",
       },
       {
         title: "Java Programmer - HackerRank",
@@ -86,29 +103,44 @@ const aboutData = [
         link: "https://www.hackerrank.com/certificates/69fe13c9faa7",
       },
       {
-        title: "DBMS - NPTEL",
-        stage: "Jan-Mar 2024",
-        link: "https://archive.nptel.ac.in/content/noc/NOC24/SEM1/Ecertificates/106/noc24-cs21/Course/NPTEL24CS21S64110029730198379.pdf",
-      },
-      {
-        title: "Java - NPTEL",
-        stage: "Jan-Apr  2024",
-        link: "https://archive.nptel.ac.in/content/noc/NOC24/SEM1/Ecertificates/106/noc24-cs43/Course/NPTEL24CS43S105850040030794576.pdf",
-      },
-      {
         title: "Python Programmer - HackerRank",
         stage: "20 Apr 2024",
         link: "https://www.hackerrank.com/certificates/1e716a2943c6",
       },
       {
-        title: "RHCSA - Redhat",
-        stage: "20 June  2024",
+        title: "Red Hat Certified System Administrator",
+        stage: "20 June 2024",
         link: "https://www.credly.com/badges/5455d9cf-2ce2-493b-a4d0-6927dc98ec17/public_url",
       },
       {
-        title: "Java Script - HackerRank",
-        stage: "23 Sep 2024  ",
+        title: "JavaScript Basic - HackerRank",
+        stage: "23 Sep 2024",
         link: "https://www.hackerrank.com/certificates/9625a1e985cd",
+      },
+      {
+        title: "JavaScript Intermediate - HackerRank",
+        stage: "2024",
+        link: "#",
+      },
+      {
+        title: "IT Specialist - JavaScript - Pearson",
+        stage: "2024",
+        link: "#",
+      },
+      {
+        title: "Oracle Database - Foundations",
+        stage: "2024",
+        link: "#",
+      },
+      {
+        title: "ServiceNow Certified System Admin",
+        stage: "2024",
+        link: "#",
+      },
+      {
+        title: "ServiceNow Certified App Developer",
+        stage: "2024",
+        link: "#",
       },
     ],
   },
@@ -121,14 +153,14 @@ const aboutData = [
         marks: "9.5",
       },
       {
-        title: "Narayana Junior College",
+        title: "Narayana Junior College (MPC)",
         stage: "2020-2022",
         marks: "9.68",
       },
       {
-        title: "Aditya Engineering College",
-        stage: "2022-2026",
-        marks: "8.88",
+        title: "Aditya Engineering College (AI & ML)",
+        stage: "October 2022 - Present",
+        marks: "8.82",
       },
     ],
   },
@@ -177,10 +209,11 @@ const About = () => {
             exit="hidden"
             className="max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0"
           >
-            Two years ago, I began my journey as a developer. Since then,
-            I&apos;ve worked as a trainee, collaborated on impactful projects
-            like a Resume Builder and the Veda Website, and contributed to
-            creating digital solutions for events and user-centric platforms.
+            Software Engineer Intern at Airbus India with expertise in
+            full-stack development. Built production-ready applications at
+            Technical Hub achieving 95% Lighthouse scores. Competitive
+            programmer with 660+ LeetCode problems solved (rating 1813) and
+            5-star HackerRank badges in C, Python, and Java.
           </motion.p>
           {/* Counters */}
           <motion.div
@@ -194,37 +227,37 @@ const About = () => {
               {/* Experience */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={21} duration={5} /> +
+                  <CountUp start={0} end={1300} duration={2} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Comprehensive expertise
+                  Problems Solved
                 </div>
               </div>
               {/* Clients */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={10} duration={5} /> +
+                  <CountUp start={0} end={12} duration={2} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Certified proficiencies
+                  Certifications
                 </div>
               </div>
               {/* Projects */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={25} duration={5} /> +
+                  <CountUp start={0} end={10000} duration={2} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Finished projects
+                  Users Impacted
                 </div>
               </div>
               {/* Awards */}
               <div className="relative flex-1">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={4} duration={5} /> +
+                  <CountUp start={0} end={1813} duration={2} />
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Winning awards
+                  LeetCode Rating
                 </div>
               </div>
             </div>

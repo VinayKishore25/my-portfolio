@@ -5,7 +5,8 @@ import {
   HiUser,
   HiViewColumns,
   HiRectangleGroup,
-  HiChatBubbleBottomCenterText,
+  HiBookOpen,
+  HiRss,
   HiEnvelope,
 } from "react-icons/hi2";
 
@@ -18,12 +19,12 @@ export const navData = [
   {
     name: "blogs",
     path: "/blogs",
-    icon: <HiChatBubbleBottomCenterText />,
+    icon: <HiBookOpen />,
   },
   {
     name: "feed",
     path: "/feed",
-    icon: <HiChatBubbleBottomCenterText />,
+    icon: <HiRss />,
   },
 ];
 

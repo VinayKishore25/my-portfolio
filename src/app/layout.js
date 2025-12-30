@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); 
+    }, 1000);
 
     return () => clearTimeout(timer);
 
@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
     // This ensures the effect only runs when the user navigates (pathname changes),
     // not when the preloader simply turns off.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]); 
+  }, [pathname]);
 
   return (
     <html lang="en">
@@ -53,6 +53,7 @@ export default function RootLayout({ children }) {
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <ThemeProvider>
           {isInitialLoading ? (

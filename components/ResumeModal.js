@@ -4,10 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import ReactDOM from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
 
-// Configure PDF.js worker (ensure client-side)
-// Use legacy worker to avoid dynamic import issues across environments
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/legacy/build/pdf.worker.min.js`;
+// Configure PDF.js worker using unpkg CDN (recommended for react-pdf v9+)
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const backdropVariants = {
   hidden: { opacity: 0 },
