@@ -33,12 +33,6 @@ import AboutMe from "@/components/sections/AboutMe";
 import { useRef } from "react";
 
 // Lazy load below-the-fold components
-const FeaturedProjects = dynamic(
-  () => import("@/components/sections/FeaturedProjects"),
-  {
-    loading: () => <div className="h-screen" />,
-  }
-);
 const TestimonialSlider = dynamic(
   () => import("@/components/sections/TestimonialSlider"),
   {
@@ -593,7 +587,6 @@ const Home = () => {
       </section>
 
       {/* Existing Sections */}
-      <FeaturedProjects />
       <TestimonialSlider />
       <ScrollControls />
     </>

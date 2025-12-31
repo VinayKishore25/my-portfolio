@@ -8,14 +8,10 @@ import { useTheme } from "@/components/context/ThemeContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navData } from "@/data/navigation";
-import { useState } from "react";
-import { HiEnvelope } from "react-icons/hi2";
-import ContactMeModal from "@/components/modals/ContactMeModal";
 
 const Header = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
-  const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <header className="fixed top-0 z-30 w-full bg-white/10 backdrop-blur-sm border-b border-white/10">
@@ -49,25 +45,8 @@ const Header = () => {
                   </span>
                 </Link>
               ))}
-              {/* Contact Me button, styled like nav items */}
-              <button
-                onClick={() => setIsContactOpen(true)}
-                className="text-white flex items-center gap-2 hover:text-accent transition-all duration-300 capitalize font-medium text-sm sm:text-base"
-                aria-haspopup="dialog"
-                aria-expanded={isContactOpen}
-              >
-                <span className="text-lg sm:text-xl">
-                  <HiEnvelope />
-                </span>
-                <span className="hidden xs:inline sm:inline">contact me</span>
-              </button>
             </nav>
           </div>
-          {/* Modal mounted at header level */}
-          <ContactMeModal
-            isOpen={isContactOpen}
-            onClose={() => setIsContactOpen(false)}
-          />
         </div>
       </div>
     </header>

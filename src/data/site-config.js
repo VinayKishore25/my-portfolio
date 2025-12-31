@@ -32,7 +32,6 @@ export const navLinks = [
   { name: "services", path: "/services" },
   { name: "work", path: "/work" },
   { name: "testimonials", path: "/testimonials" },
-  { name: "contact", path: "/contact" },
 ];
 
 export default siteConfig;

@@ -7,6 +7,7 @@ import {
   HiBookOpen,
   HiRss,
   HiEnvelope,
+  HiCodeBracket,
 } from "react-icons/hi2";
 
 export const navData = [
@@ -15,13 +16,13 @@ export const navData = [
   { name: "skills", path: "/skills", icon: <HiRectangleGroup /> },
   { name: "work", path: "/work", icon: <HiViewColumns /> },
   {
-    name: "blogs",
-    path: "/blogs",
-    icon: <HiBookOpen />,
+    name: "journey",
+    path: "/coding-journey",
+    icon: <HiCodeBracket />,
   },
   {
-    name: "feed",
-    path: "/feed",
-    icon: <HiRss />,
+    name: "contact",
+    path: "/contact",
+    icon: <HiEnvelope />,
   },
 ];

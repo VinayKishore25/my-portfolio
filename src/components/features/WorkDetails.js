@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
-import { FaExternalLinkAlt, FaGithub, FaEye } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import Image from "next/image";
 
 // Sample Data
@@ -22,6 +22,13 @@ const projectData = [
         techStack: ["Java", "Swing", "AWT"],
         link: "https://github.com/VinayKishore25/Snake-Game",
         featured: true,
+        highlights: [
+          "Real-time collision detection",
+          "Score tracking system",
+          "Responsive controls",
+        ],
+        status: "Completed",
+        year: "2024",
       },
       {
         name: "Pac Man Game",
@@ -30,6 +37,13 @@ const projectData = [
         techStack: ["Java", "Swing", "AWT"],
         link: "https://github.com/VinayKishore25/Pac-Man",
         featured: false,
+        highlights: [
+          "Ghost AI pathfinding",
+          "Level progression",
+          "Power-up mechanics",
+        ],
+        status: "Completed",
+        year: "2024",
       },
     ],
   },
@@ -44,6 +58,13 @@ const projectData = [
         techStack: ["Python", "Tkinter", "ML"],
         link: "https://github.com/VinayKishore25/Number-Detection",
         featured: true,
+        highlights: [
+          "Carrier detection",
+          "Location tracking",
+          "Real-time validation",
+        ],
+        status: "Completed",
+        year: "2024",
       },
       {
         name: "Language Translator",
@@ -53,6 +74,9 @@ const projectData = [
         techStack: ["Python", "NLP"],
         link: "#",
         featured: false,
+        highlights: ["50+ languages", "Voice input support", "Offline mode"],
+        status: "In Progress",
+        year: "2025",
       },
     ],
   },
@@ -67,6 +91,13 @@ const projectData = [
         techStack: ["React", "Node.js", "MongoDB"],
         link: "https://adityauniversity.in/veda2024",
         featured: true,
+        highlights: [
+          "1000+ registrations",
+          "Payment integration",
+          "Live event tracking",
+        ],
+        status: "Live",
+        year: "2024",
       },
       {
         name: "Infrastructure Tracker",
@@ -76,6 +107,13 @@ const projectData = [
         techStack: ["React", "Node.js", "MongoDB"],
         link: "/_notfound",
         featured: false,
+        highlights: [
+          "Asset lifecycle tracking",
+          "Multi-level hierarchy",
+          "Report generation",
+        ],
+        status: "In Progress",
+        year: "2025",
       },
       {
         name: "Resume Builder",
@@ -85,6 +123,9 @@ const projectData = [
         techStack: ["HTML", "CSS", "JavaScript"],
         link: "/_notfound",
         featured: false,
+        highlights: ["10+ templates", "PDF export", "ATS-friendly format"],
+        status: "Planning",
+        year: "2025",
       },
     ],
   },
@@ -99,6 +140,13 @@ const projectData = [
         techStack: ["React Native", "Spring Boot"],
         link: "/_notfound",
         featured: false,
+        highlights: [
+          "Real-time chat",
+          "Need-based matching",
+          "Push notifications",
+        ],
+        status: "In Development",
+        year: "2025",
       },
     ],
   },
@@ -165,13 +213,6 @@ const WorkDetails = () => {
               onMouseEnter={() => setHoveredProject(index)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              {/* Featured Badge */}
-              {project.featured && (
-                <div className="absolute top-4 left-4 z-10 bg-accent text-white text-xs px-3 py-1 rounded-full font-medium">
-                  Featured
-                </div>
-              )}
-
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
                 <Image
@@ -181,28 +222,46 @@ const WorkDetails = () => {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
 
-                {/* Overlay */}
+                {/* Overlay with project highlights */}
                 <div
-                  className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ${
+                  className={`absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent transition-opacity duration-300 ${
                     hoveredProject === index ? "opacity-100" : "opacity-0"
                   }`}
                 >
-                  <div className="absolute inset-0 flex items-center justify-center space-x-4">
-                    <motion.button
-                      onClick={() => openProjectLink(project.link)}
-                      className="bg-accent text-white p-3 rounded-full hover:bg-accent/80 transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <FaExternalLinkAlt size={16} />
-                    </motion.button>
-                    <motion.button
-                      className="bg-white text-black p-3 rounded-full hover:bg-white/80 transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <FaEye size={16} />
-                    </motion.button>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <div className="flex items-center justify-between mb-3">
+                      <span
+                        className={`text-xs px-2 py-1 rounded-full font-medium ${
+                          project.status === "Live"
+                            ? "bg-green-500/20 text-green-400 border border-green-500/50"
+                            : project.status === "Completed"
+                            ? "bg-blue-500/20 text-blue-400 border border-blue-500/50"
+                            : project.status === "In Progress" ||
+                              project.status === "In Development"
+                            ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/50"
+                            : "bg-purple-500/20 text-purple-400 border border-purple-500/50"
+                        }`}
+                      >
+                        {project.status}
+                      </span>
+                      <span className="text-xs text-white/60">
+                        {project.year}
+                      </span>
+                    </div>
+                    <p className="text-xs font-medium mb-2 text-accent">
+                      Key Features:
+                    </p>
+                    <ul className="space-y-1.5">
+                      {project.highlights?.map((highlight, hIndex) => (
+                        <li
+                          key={hIndex}
+                          className="text-xs text-white/90 flex items-start"
+                        >
+                          <span className="text-accent mr-2">•</span>
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>

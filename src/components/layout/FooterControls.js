@@ -24,7 +24,7 @@ const FooterControls = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Contact Button */}
         <Link
-          href="/feed"
+          href="/contact"
           className="flex items-center gap-2 bg-accent text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-accent-hover transition-colors duration-300 shadow-lg"
         >
           <FaEnvelope className="text-lg" />

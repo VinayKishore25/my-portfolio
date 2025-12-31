@@ -82,19 +82,19 @@ const ScrollControls = () => {
 
       {/* Floating Scroll control with SVG ring and animated label */}
       <div
-        className={`fixed right-6 bottom-8 z-50 transition-transform duration-300 flex items-center gap-3 ${
+        className={`fixed right-4 bottom-20 xl:right-6 xl:bottom-8 z-50 transition-transform duration-300 flex items-center gap-2 xl:gap-3 ${
           visible
             ? "scale-100 opacity-100"
             : "scale-0 opacity-0 pointer-events-none"
         }`}
         aria-hidden={!visible}
       >
-        {/* Animated label */}
+        {/* Animated label - hidden on mobile */}
         <motion.span
           initial={{ opacity: 0, x: 8 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.45 }}
-          className="text-sm text-white/90 font-medium select-none flex items-center gap-3"
+          className="hidden xl:flex text-sm text-white/90 font-medium select-none items-center gap-3"
         >
           <motion.span
             className="inline-block text-white/80"

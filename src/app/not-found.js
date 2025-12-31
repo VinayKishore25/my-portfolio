@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { HiHome, HiArrowLeft, HiMagnifyingGlass } from "react-icons/hi2";
+import { HiHome, HiArrowLeft } from "react-icons/hi2";
 import { FaGhost, FaRocket, FaSatellite } from "react-icons/fa";
 
 // Floating particle component
@@ -45,29 +45,75 @@ const GlitchText = ({ children }) => {
   );
 };
 
+// Animated stars background
+const Stars = () => {
+  const stars = Array.from({ length: 50 }, (_, i) => ({
+    id: i,
+    size: Math.random() * 3 + 1,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    duration: Math.random() * 3 + 2,
+    delay: Math.random() * 2,
+  }));
+
+  return (
+    <>
+      {stars.map((star) => (
+        <motion.div
+          key={star.id}
+          className="absolute bg-white rounded-full"
+          style={{
+            width: star.size,
+            height: star.size,
+            left: `${star.left}%`,
+            top: `${star.top}%`,
+          }}
+          animate={{
+            opacity: [0.2, 1, 0.2],
+            scale: [1, 1.5, 1],
+          }}
+          transition={{
+            duration: star.duration,
+            delay: star.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </>
+  );
+};
+
 export default function NotFound() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [glitchActive, setGlitchActive] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [mounted]);
 
   // Random glitch effect
   useEffect(() => {
+    if (!mounted) return;
     const interval = setInterval(() => {
       setGlitchActive(true);
       setTimeout(() => setGlitchActive(false), 200);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [mounted]);
 
   // Generate random particles
-  const particles = Array.from({ length: 20 }, (_, i) => ({
+  const particles = Array.from({ length: 15 }, (_, i) => ({
     id: i,
     delay: Math.random() * 2,
     duration: 3 + Math.random() * 2,
@@ -81,13 +127,16 @@ export default function NotFound() {
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary/30 to-primary" />
 
+      {/* Stars background */}
+      <Stars />
+
       {/* Grid pattern overlay */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
                            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: "50px 50px",
+          backgroundSize: "60px 60px",
         }}
       />
 
@@ -97,31 +146,33 @@ export default function NotFound() {
       ))}
 
       {/* Spotlight effect following mouse */}
-      <div
-        className="pointer-events-none absolute w-[500px] h-[500px] rounded-full opacity-20"
-        style={{
-          background: `radial-gradient(circle, var(--color-accent) 0%, transparent 70%)`,
-          left: mousePosition.x - 250,
-          top: mousePosition.y - 250,
-          transition: "left 0.3s ease-out, top 0.3s ease-out",
-        }}
-      />
+      {mounted && (
+        <div
+          className="pointer-events-none absolute w-[600px] h-[600px] rounded-full opacity-15"
+          style={{
+            background: `radial-gradient(circle, var(--color-accent) 0%, transparent 70%)`,
+            left: mousePosition.x - 300,
+            top: mousePosition.y - 300,
+            transition: "left 0.3s ease-out, top 0.3s ease-out",
+          }}
+        />
+      )}
 
       {/* Orbiting elements */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <motion.div
-          className="absolute"
+          className="absolute w-80 h-80"
           animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         >
-          <FaSatellite className="text-accent/30 text-2xl absolute -top-40 left-0" />
+          <FaSatellite className="text-accent/40 text-3xl absolute -top-4 left-1/2 -translate-x-1/2" />
         </motion.div>
         <motion.div
-          className="absolute"
+          className="absolute w-[500px] h-[500px]"
           animate={{ rotate: -360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
         >
-          <FaRocket className="text-cyan-400/30 text-xl absolute top-32 -right-32 rotate-45" />
+          <FaRocket className="text-purple-400/30 text-2xl absolute -top-4 left-1/2 -translate-x-1/2 rotate-45" />
         </motion.div>
       </div>
 
@@ -132,10 +183,10 @@ export default function NotFound() {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative mb-8"
+          className="relative mb-6"
         >
           <motion.h1
-            className={`text-[150px] sm:text-[200px] md:text-[250px] font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 select-none ${
+            className={`text-[120px] sm:text-[180px] md:text-[220px] font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-white/10 select-none ${
               glitchActive ? "animate-pulse" : ""
             }`}
             animate={glitchActive ? { x: [-2, 2, -2, 0] } : {}}
@@ -147,10 +198,13 @@ export default function NotFound() {
           {/* Ghost floating animation */}
           <motion.div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            animate={{
+              y: [-10, 10, -10],
+              rotate: [-5, 5, -5],
+            }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <FaGhost className="text-6xl sm:text-8xl text-accent/40" />
+            <FaGhost className="text-5xl sm:text-7xl text-accent/50 drop-shadow-lg" />
           </motion.div>
         </motion.div>
 
@@ -160,10 +214,10 @@ export default function NotFound() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-3">
             Oops! <span className="text-accent">Lost in Space</span>
           </h2>
-          <p className="text-white/60 text-lg mb-2 max-w-md mx-auto">
+          <p className="text-white/60 text-base sm:text-lg mb-2 max-w-lg mx-auto">
             The page you're looking for has drifted into the cosmic void.
           </p>
           <p className="text-white/40 text-sm mb-8">
@@ -180,8 +234,11 @@ export default function NotFound() {
         >
           <Link href="/">
             <motion.button
-              className="group relative px-8 py-4 bg-accent text-white font-semibold rounded-full overflow-hidden flex items-center gap-3 shadow-lg shadow-accent/25"
-              whileHover={{ scale: 1.05 }}
+              className="group relative px-8 py-4 bg-accent text-white font-semibold rounded-full overflow-hidden flex items-center gap-3 shadow-lg shadow-accent/30"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 40px rgba(var(--color-accent-rgb), 0.4)",
+              }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -192,7 +249,7 @@ export default function NotFound() {
 
           <motion.button
             onClick={() => window.history.back()}
-            className="group px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-full flex items-center gap-3 hover:border-accent/50 hover:bg-white/10 transition-all duration-300"
+            className="group px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 text-white font-semibold rounded-full flex items-center gap-3 hover:border-accent/50 hover:bg-white/10 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -201,26 +258,27 @@ export default function NotFound() {
           </motion.button>
         </motion.div>
 
-        {/* Search suggestion */}
+        {/* Quick links */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-12"
         >
-          <p className="text-white/40 text-sm mb-4">
-            Or try exploring these pages:
-          </p>
+          <p className="text-white/40 text-sm mb-4">Or explore these pages:</p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
               { name: "About", path: "/about" },
               { name: "Skills", path: "/skills" },
               { name: "Work", path: "/work" },
-            ].map((link) => (
+            ].map((link, index) => (
               <Link key={link.path} href={link.path}>
                 <motion.span
-                  className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-sm hover:text-accent hover:border-accent/30 transition-all duration-300 inline-block"
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  className="px-5 py-2.5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-white/70 text-sm hover:text-accent hover:border-accent/40 hover:bg-accent/5 transition-all duration-300 inline-block cursor-pointer"
+                  whileHover={{ scale: 1.05, y: -3 }}
                 >
                   {link.name}
                 </motion.span>
@@ -229,37 +287,58 @@ export default function NotFound() {
           </div>
         </motion.div>
 
-        {/* Fun animated footer */}
+        {/* Animated footer text */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-16 text-white/30 text-sm"
+          transition={{ duration: 0.6, delay: 1 }}
+          className="mt-16 text-white/20 text-xs sm:text-sm"
         >
-          <motion.p
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 2, repeat: Infinity }}
+          <motion.div
+            animate={{ opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="flex items-center justify-center gap-2"
           >
-            Error Code: 404 | Page Not Found
-          </motion.p>
+            <span className="inline-block w-2 h-2 bg-accent/50 rounded-full animate-pulse" />
+            <span>Error Code: 404 | Page Not Found</span>
+            <span className="inline-block w-2 h-2 bg-accent/50 rounded-full animate-pulse" />
+          </motion.div>
         </motion.div>
       </div>
 
       {/* Decorative corner elements */}
-      <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-accent/20 rounded-tl-3xl" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-accent/20 rounded-br-3xl" />
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        className="absolute top-4 left-4 sm:top-8 sm:left-8 w-20 h-20 sm:w-32 sm:h-32 border-l-2 border-t-2 border-accent/30 rounded-tl-3xl"
+      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+        className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 w-20 h-20 sm:w-32 sm:h-32 border-r-2 border-b-2 border-accent/30 rounded-br-3xl"
+      />
 
       {/* Scanline effect */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-5"
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           background: `repeating-linear-gradient(
             0deg,
             transparent,
             transparent 2px,
-            rgba(255,255,255,0.03) 2px,
-            rgba(255,255,255,0.03) 4px
+            rgba(255,255,255,0.05) 2px,
+            rgba(255,255,255,0.05) 4px
           )`,
+        }}
+      />
+
+      {/* Vignette effect */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%)`,
         }}
       />
     </div>
