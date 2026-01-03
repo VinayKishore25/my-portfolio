@@ -9,12 +9,12 @@ const ResumeButtons = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex justify-center gap-4 mx-auto xl:mx-0">
+    <div className="flex flex-col sm:flex-row justify-center gap-3 w-full max-w-md mx-auto xl:mx-0">
       {/* View Resume Button opens modal */}
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="relative w-[185px] h-[50px] flex justify-center items-center bg-white text-black font-semibold rounded-lg group z-50 hover:opacity-90 transition"
+        className="w-full sm:w-44 h-12 flex justify-center items-center bg-white text-black font-semibold rounded-lg shadow hover:shadow-md hover:opacity-95 transition"
       >
         View Resume
       </button>
@@ -23,7 +23,7 @@ const ResumeButtons = () => {
       <a
         href="/Vinay_SDE.pdf"
         download
-        className="relative w-[185px] h-[50px] flex justify-center items-center text-lg font-semibold rounded-lg group z-50 transition-all duration-300 hover:scale-105"
+        className="w-full sm:w-44 h-12 flex justify-center items-center text-sm sm:text-base font-semibold rounded-lg shadow hover:shadow-md transition-all duration-300 hover:scale-[1.02]"
         style={{ backgroundColor: theme.accent, color: theme.primary }}
       >
         Download Resume

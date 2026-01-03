@@ -1,6 +1,7 @@
 "use client";
 //Importing React and other important libraries
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import {
   HiBolt,
   HiRocketLaunch,
@@ -16,6 +17,8 @@ import {
   HiCheckBadge,
   HiArrowTrendingUp,
   HiCommandLine,
+  HiMapPin,
+  HiEnvelope,
 } from "react-icons/hi2";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import CountUp from "react-countup";
@@ -134,13 +137,22 @@ const Home = () => {
     },
   ];
 
-  const funFacts = [
-    { icon: <HiClock />, text: "500+ cups of coffee consumed while coding" },
+  const availability = [
     {
-      icon: <HiLightBulb />,
-      text: "Night owl coder - best ideas come at 2 AM",
+      icon: <HiEnvelope />,
+      title: "Email",
+      text: "vinaykishore2512@gmail.com",
     },
-    { icon: <HiCpuChip />, text: "Built my first website at age 14" },
+    {
+      icon: <HiMapPin />,
+      title: "Location",
+      text: "Andhra Pradesh, India",
+    },
+    {
+      icon: <HiClock />,
+      title: "Response Time",
+      text: "Replies within 24 hours",
+    },
   ];
 
   return (
@@ -177,15 +189,12 @@ const Home = () => {
             tech landscape.
           </motion.p>
           {/* Resume Buttons */}
-          <div className="flex justify-center xl:hidden relative">
-            <ResumeButtons />
-          </div>
           <motion.div
             variants={fadeIn("down", 0.4)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="hidden xl:flex"
+            className="flex justify-center xl:justify-start"
           >
             <ResumeButtons />
           </motion.div>
@@ -491,7 +500,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Fun Facts */}
+            {/* Availability & Contact */}
             <motion.div
               variants={fadeIn("up", 0.3)}
               initial="hidden"
@@ -503,17 +512,24 @@ const Home = () => {
                   <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
                     <HiSparkles className="text-accent text-xl" />
                   </div>
-                  <h4 className="text-2xl font-bold text-white">Fun Facts</h4>
+                  <h4 className="text-2xl font-bold text-white">Availability</h4>
                 </div>
 
                 <div className="space-y-4">
-                  {funFacts.map((fact, i) => (
+                  {availability.map((item, i) => (
                     <div
                       key={i}
                       className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5"
                     >
-                      <span className="text-accent text-xl">{fact.icon}</span>
-                      <p className="text-white/80 text-sm">{fact.text}</p>
+                      <span className="text-accent text-xl">{item.icon}</span>
+                      <div className="flex flex-col">
+                        <span className="text-white font-semibold text-sm">
+                          {item.title}
+                        </span>
+                        <span className="text-white/70 text-sm">
+                          {item.text}
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -548,8 +564,19 @@ const Home = () => {
               I&apos;m here to help bring your vision to life.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <ResumeButtons />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-accent text-primary font-semibold shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all text-center"
+              >
+                Start a Project
+              </Link>
+              <Link
+                href="/work"
+                className="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl border border-white/15 text-white font-semibold bg-white/5 hover:bg-white/10 hover:border-accent/40 transition-all text-center"
+              >
+                View Work
+              </Link>
             </div>
 
             {/* Social links */}
@@ -557,7 +584,7 @@ const Home = () => {
               <span className="text-white/60 text-sm">Find me on</span>
               <div className="flex gap-3">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/VinayKishore25"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-white/20 transition-all"
@@ -565,7 +592,7 @@ const Home = () => {
                   <FaGithub />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/vinaykishore2512"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-white/20 transition-all"
@@ -573,12 +600,10 @@ const Home = () => {
                   <FaLinkedin />
                 </a>
                 <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="mailto:vinaykishore2512@gmail.com"
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-white/20 transition-all"
                 >
-                  <FaTwitter />
+                  <HiEnvelope />
                 </a>
               </div>
             </div>
