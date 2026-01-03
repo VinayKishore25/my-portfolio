@@ -512,7 +512,9 @@ const Home = () => {
                   <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
                     <HiSparkles className="text-accent text-xl" />
                   </div>
-                  <h4 className="text-2xl font-bold text-white">Availability</h4>
+                  <h4 className="text-2xl font-bold text-white">
+                    Availability
+                  </h4>
                 </div>
 
                 <div className="space-y-4">

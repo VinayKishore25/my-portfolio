@@ -293,10 +293,7 @@ const AboutMe = () => {
                   </motion.div>
                 </a>
 
-                <a
-                  href="mailto:vinaykishore2512@gmail.com"
-                  className="group"
-                >
+                <a href="mailto:vinaykishore2512@gmail.com" className="group">
                   <motion.div
                     className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:bg-accent/20 hover:border-accent/30 hover:text-accent transition-all"
                     whileHover={{ scale: 1.1, rotate: 5 }}
