@@ -1,6 +1,5 @@
 "use client";
-import React, { useState, useMemo, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
 import {
@@ -11,32 +10,17 @@ import {
   HiMagnifyingGlass,
   HiAdjustmentsHorizontal,
   HiChevronDown,
-    HiBriefcase,
-    HiCodeBracketSquare,
+  HiCodeBracketSquare,
 } from "react-icons/hi2";
 import Bulb from "@/components/ui/Bulb";
 import WorkDetails from "@/components/features/WorkDetails";
 import { projectStats, projectCategories } from "@/data/projects";
 
-const Work = () => {
-  const searchParams = useSearchParams();
-  const tabParam = searchParams.get("tab");
-  const [activeTab, setActiveTab] = useState("all");
+const Freelance = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
-
-  // Update active tab based on URL parameter
-  useEffect(() => {
-    if (tabParam === "experience") {
-      setActiveTab("experience");
-    } else if (tabParam === "freelance") {
-      setActiveTab("freelance");
-    } else {
-      setActiveTab("all");
-    }
-  }, [tabParam]);
 
   // Stats data
   const stats = [
@@ -83,8 +67,8 @@ const Work = () => {
             className="inline-block mb-4"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium">
-              <HiSparkles className="w-4 h-4" />
-              Portfolio Showcase
+              <HiCodeBracketSquare className="w-4 h-4" />
+              Professional Work
             </span>
           </motion.div>
 
@@ -95,7 +79,7 @@ const Work = () => {
             exit="hidden"
             className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 xl:mb-6"
           >
-            Featured{" "}
+            Freelance{" "}
             <span className="text-accent bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">
               Projects
             </span>
@@ -108,53 +92,8 @@ const Work = () => {
             exit="hidden"
             className="max-w-3xl mx-auto text-white/70 text-base xl:text-lg leading-relaxed"
           >
-            A curated collection of my work showcasing technical expertise,
-            creative problem-solving, and passion for building impactful digital
-            experiences across various domains and technologies.
+            Professional client work and freelance projects delivered with excellence. These showcase real-world solutions built for actual clients with specific requirements and business goals.
           </motion.p>
-
-            {/* Tab Selector */}
-            <motion.div
-              variants={fadeIn("up", 0.5)}
-              initial="hidden"
-              animate="show"
-              exit="hidden"
-              className="flex justify-center items-center gap-3 mt-8"
-            >
-              <button
-                onClick={() => setActiveTab("all")}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  activeTab === "all"
-                    ? "bg-accent text-white shadow-lg shadow-accent/30"
-                    : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                <HiSparkles className="w-5 h-5" />
-                All Projects
-              </button>
-              <button
-                onClick={() => setActiveTab("experience")}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  activeTab === "experience"
-                    ? "bg-accent text-white shadow-lg shadow-accent/30"
-                    : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                <HiBriefcase className="w-5 h-5" />
-                Experience
-              </button>
-              <button
-                onClick={() => setActiveTab("freelance")}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  activeTab === "freelance"
-                    ? "bg-accent text-white shadow-lg shadow-accent/30"
-                    : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                <HiCodeBracketSquare className="w-5 h-5" />
-                Freelance Projects
-              </button>
-            </motion.div>
         </div>
 
         {/* Stats Cards */}
@@ -208,25 +147,25 @@ const Work = () => {
           <div className="flex flex-col sm:flex-row gap-3 xl:gap-4 mb-6">
             {/* Search Input */}
             <div className="flex-1 relative">
-              <HiMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <HiMagnifyingGlass className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/40 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search projects by name, tech, or description..."
+                placeholder="Search projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-xl pl-12 pr-4 py-3 xl:py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-accent/50 transition-colors"
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-accent/30 focus:bg-white/10 transition-all duration-300"
               />
             </div>
 
             {/* Filter Toggle Button */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="sm:w-auto flex items-center justify-center gap-2 bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-xl px-4 xl:px-6 py-3 xl:py-4 text-white hover:border-accent/30 transition-all"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-medium transition-all duration-300"
             >
               <HiAdjustmentsHorizontal className="w-5 h-5" />
-              <span className="font-medium">Filters</span>
+              <span className="hidden sm:inline">Filters</span>
               <HiChevronDown
-                className={`w-4 h-4 transition-transform ${
+                className={`w-5 h-5 transition-transform duration-300 ${
                   showFilters ? "rotate-180" : ""
                 }`}
               />
@@ -321,7 +260,7 @@ const Work = () => {
             searchQuery={searchQuery}
             selectedCategory={selectedCategory}
             sortBy={sortBy}
-              activeTab={activeTab}
+            activeTab="freelance"
           />
         </motion.div>
       </div>
@@ -331,4 +270,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Freelance;

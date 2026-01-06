@@ -36,42 +36,191 @@ const CenteredLoader = () => (
   </div>
 );
 
-// Full-screen Confetti Overlay - Similar to loader with blur background
+// Premium Confetti Overlay with elegant animations
 const ConfettiOverlay = ({ isVisible, confettiRef }) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[70]">
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 flex flex-col items-center gap-4 border border-white/20">
-        <div className="relative">
-          <BsCheckCircle className="text-green-500 text-6xl animate-bounce" />
-          <div className="absolute inset-0 bg-green-400 rounded-full opacity-30 animate-ping"></div>
-        </div>
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-[70]">
+      {/* Premium Success Card */}
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0, rotateY: -180 }}
+        animate={{ scale: 1, opacity: 1, rotateY: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+          duration: 0.8,
+        }}
+        className="relative bg-gradient-to-br from-white/15 via-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-10 flex flex-col items-center gap-6 border border-white/20 shadow-2xl max-w-md"
+      >
+        {/* Animated gradient border effect */}
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-accent via-purple-500 to-accent opacity-20 blur-xl animate-pulse"></div>
 
-        <div className="text-center">
-          <div className="text-green-400 font-bold text-2xl mb-2 tracking-wide">
-            🎉 Message Sent! 🎉
+        {/* Success Icon with Premium Animation */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1, rotate: 360 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          className="relative"
+        >
+          {/* Outer glow rings */}
+          <motion.div
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.5, 0, 0.5],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute inset-0 bg-green-400 rounded-full blur-2xl"
+          ></motion.div>
+
+          {/* Icon container */}
+          <div className="relative bg-gradient-to-br from-green-400 to-emerald-500 p-6 rounded-full shadow-lg shadow-green-500/50">
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <BsCheckCircle className="text-white text-5xl drop-shadow-lg" />
+            </motion.div>
           </div>
-          <div className="text-white text-lg leading-relaxed">
-            Thank you for reaching out!
-            <br />
-            I'll get back to you soon.
-          </div>
-        </div>
 
-        <div className="flex gap-2 mt-2">
-          <span className="text-yellow-400 text-xl animate-pulse">✨</span>
-          <span className="text-yellow-300 text-lg animate-pulse delay-200">
-            ⭐
-          </span>
-          <span className="text-yellow-400 text-xl animate-pulse delay-400">
-            ✨
-          </span>
-        </div>
-      </div>
+          {/* Sparkle particles around icon */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{ scale: 0, rotate: 0 }}
+              animate={{
+                scale: [0, 1, 0],
+                rotate: [0, 180, 360],
+                x: [0, Math.cos((i * Math.PI * 2) / 8) * 60, 0],
+                y: [0, Math.sin((i * Math.PI * 2) / 8) * 60, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.1,
+                ease: "easeInOut",
+              }}
+              className="absolute top-1/2 left-1/2 w-2 h-2 bg-yellow-400 rounded-full"
+              style={{ marginLeft: "-4px", marginTop: "-4px" }}
+            />
+          ))}
+        </motion.div>
 
-      {/* Confetti container - full screen */}
-      <div ref={confettiRef} className="fixed inset-0 pointer-events-none">
+        {/* Success Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="text-center space-y-3 relative z-10"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5 }}
+            className="space-y-2"
+          >
+            <h3 className="text-3xl font-bold bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
+              Message Sent Successfully!
+            </h3>
+            <div className="flex items-center justify-center gap-2">
+              <motion.span
+                animate={{ rotate: [0, 20, -20, 0] }}
+                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }}
+                className="text-2xl"
+              >
+                🎉
+              </motion.span>
+              <motion.span
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{
+                  duration: 0.5,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                  delay: 0.2,
+                }}
+                className="text-2xl"
+              >
+                ✨
+              </motion.span>
+              <motion.span
+                animate={{ rotate: [0, -20, 20, 0] }}
+                transition={{
+                  duration: 0.5,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                  delay: 0.4,
+                }}
+                className="text-2xl"
+              >
+                🎊
+              </motion.span>
+            </div>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="text-white/80 text-lg leading-relaxed max-w-sm"
+          >
+            Thank you for reaching out! I've received your message and will get
+            back to you as soon as possible.
+          </motion.p>
+
+          {/* Premium badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent/20 to-purple-500/20 border border-accent/30 rounded-full backdrop-blur-sm"
+          >
+            <span className="text-accent text-sm font-medium">
+              Estimated Response Time: 24-48 hours
+            </span>
+          </motion.div>
+        </motion.div>
+
+        {/* Decorative elements */}
+        <motion.div
+          animate={{
+            rotate: 360,
+            scale: [1, 1.05, 1],
+          }}
+          transition={{
+            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+            scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-accent/10 to-purple-500/10 rounded-full blur-2xl"
+        />
+        <motion.div
+          animate={{
+            rotate: -360,
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            rotate: { duration: 15, repeat: Infinity, ease: "linear" },
+            scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-accent/10 rounded-full blur-2xl"
+        />
+      </motion.div>
+
+      {/* Premium Confetti container - full screen */}
+      <div
+        ref={confettiRef}
+        className="fixed inset-0 pointer-events-none z-[60]"
+      >
         {/* Confetti particles will be added here by GSAP */}
       </div>
     </div>
@@ -96,107 +245,210 @@ const ContactForm = ({ compact = false }) => {
       // Start confetti animation immediately
       createConfetti();
 
-      // Auto-hide timer for 5 seconds
-      const timer = setTimeout(() => setStatus(null), 5000);
+      // Auto-hide timer for 6 seconds to appreciate the premium animation
+      const timer = setTimeout(() => setStatus(null), 6000);
       return () => clearTimeout(timer);
     }
   }, [status]);
 
   const createConfetti = () => {
     const colors = [
-      "#4CAF50",
-      "#2196F3",
-      "#FF9800",
-      "#E91E63",
-      "#9C27B0",
-      "#FFC107",
-      "#00BCD4",
-      "#FF5722",
+      "#10b981", // emerald-500
+      "#34d399", // emerald-400
+      "#6ee7b7", // emerald-300
+      "#f59e0b", // amber-500
+      "#fbbf24", // amber-400
+      "#a855f7", // purple-500
+      "#c084fc", // purple-400
+      "#ec4899", // pink-500
+      "#f472b6", // pink-400
+      "#3b82f6", // blue-500
+      "#60a5fa", // blue-400
     ];
     const confettiContainer = confettiRef.current;
 
     if (!confettiContainer) return;
 
-    // Get screen dimensions
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
+    const centerX = screenWidth / 2;
+    const centerY = screenHeight / 2;
 
-    // Create confetti from bottom-left corner
-    for (let i = 0; i < 30; i++) {
-      createConfettiPiece(confettiContainer, colors, 0, screenHeight, "left");
-    }
-
-    // Create confetti from bottom-right corner
-    for (let i = 0; i < 30; i++) {
-      createConfettiPiece(
+    // Create premium burst from center
+    for (let i = 0; i < 80; i++) {
+      createPremiumConfetti(
         confettiContainer,
         colors,
-        screenWidth,
-        screenHeight,
-        "right"
+        centerX,
+        centerY,
+        "burst"
       );
+    }
+
+    // Create elegant floating ribbons
+    for (let i = 0; i < 20; i++) {
+      createRibbonConfetti(confettiContainer, colors, centerX, centerY);
+    }
+
+    // Create shimmering stars
+    for (let i = 0; i < 30; i++) {
+      createStarConfetti(confettiContainer, centerX, centerY);
     }
   };
 
-  const createConfettiPiece = (container, colors, startX, startY, corner) => {
+  const createPremiumConfetti = (container, colors, startX, startY, type) => {
     const confetti = document.createElement("div");
-    const size = Math.random() * 12 + 8; // 8-20px
-    const shape = Math.random() > 0.5 ? "circle" : "square";
+    const size = Math.random() * 14 + 10; // 10-24px
+    const shapes = ["circle", "square", "diamond"];
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    let borderRadius = "0";
+    let transform = "rotate(0deg)";
+
+    if (shape === "circle") {
+      borderRadius = "50%";
+    } else if (shape === "diamond") {
+      borderRadius = "2px";
+      transform = "rotate(45deg)";
+    } else {
+      borderRadius = "3px";
+    }
 
     confetti.style.cssText = `
       position: absolute;
       width: ${size}px;
       height: ${size}px;
-      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      background: linear-gradient(135deg, ${color}, ${color}dd);
       top: ${startY}px;
       left: ${startX}px;
       pointer-events: none;
-      border-radius: ${shape === "circle" ? "50%" : "0"};
+      border-radius: ${borderRadius};
       z-index: 60;
-      transform-origin: center;
+      box-shadow: 0 0 10px ${color}88;
+      transform: ${transform};
     `;
     container.appendChild(confetti);
 
-    // Calculate explosion direction based on corner
-    let xDirection, yDirection;
-    if (corner === "left") {
-      xDirection = Math.random() * 0.8 + 0.2; // 0.2 to 1 (mostly right)
-      yDirection = -(Math.random() * 0.8 + 0.2); // -0.2 to -1 (upward)
-    } else {
-      xDirection = -(Math.random() * 0.8 + 0.2); // -0.2 to -1 (mostly left)
-      yDirection = -(Math.random() * 0.8 + 0.2); // -0.2 to -1 (upward)
-    }
+    // Random explosion angle
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 600 + 300;
+    const xEnd = Math.cos(angle) * velocity;
+    const yEnd = Math.sin(angle) * velocity;
 
-    const velocity = Math.random() * 600 + 400; // 400-1000px
-    const xEnd = xDirection * velocity;
-    const yEnd = yDirection * velocity;
-
-    // Main explosion animation
+    // Main explosion with rotation
     gsap.to(confetti, {
       x: xEnd,
       y: yEnd,
-      rotation: Math.random() * 1440 + 720, // 2-4 full rotations
-      scale: Math.random() * 1.5 + 0.5,
-      duration: Math.random() * 3 + 2.5, // 2.5-5.5s
-      ease: "power2.out",
-      onComplete: () => {
-        confetti.remove();
-      },
+      rotation: Math.random() * 1800 + 720,
+      scale: [1, Math.random() * 0.5 + 0.8, Math.random() * 0.3 + 0.2],
+      duration: Math.random() * 3 + 2,
+      ease: "power3.out",
+      onComplete: () => confetti.remove(),
     });
 
-    // Add gravity effect (falling down after initial explosion)
+    // Gravity effect
     gsap.to(confetti, {
-      y: `+=${Math.random() * 400 + 300}`, // Additional fall
-      duration: Math.random() * 2 + 2,
-      delay: Math.random() * 1.5 + 0.5, // Start falling after some time
+      y: `+=${Math.random() * 500 + 400}`,
+      duration: Math.random() * 2.5 + 2,
+      delay: 0.5,
+      ease: "power2.in",
+    });
+
+    // Fade out elegantly
+    gsap.to(confetti, {
+      opacity: 0,
+      duration: 1.5,
+      delay: Math.random() * 2 + 2.5,
+      ease: "power2.inOut",
+    });
+  };
+
+  const createRibbonConfetti = (container, colors, startX, startY) => {
+    const ribbon = document.createElement("div");
+    const width = Math.random() * 30 + 15;
+    const height = Math.random() * 6 + 4;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    ribbon.style.cssText = `
+      position: absolute;
+      width: ${width}px;
+      height: ${height}px;
+      background: linear-gradient(90deg, ${color}, ${color}cc, ${color});
+      top: ${startY}px;
+      left: ${startX}px;
+      pointer-events: none;
+      border-radius: 2px;
+      z-index: 60;
+      box-shadow: 0 0 15px ${color}66;
+    `;
+    container.appendChild(ribbon);
+
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 500 + 350;
+    const xEnd = Math.cos(angle) * velocity;
+    const yEnd = Math.sin(angle) * velocity;
+
+    gsap.to(ribbon, {
+      x: xEnd,
+      y: yEnd,
+      rotation: Math.random() * 2160 + 1080,
+      scaleX: [1, 1.5, 0.8, 0.3],
+      scaleY: [1, 0.8, 1.2, 0.5],
+      duration: Math.random() * 3.5 + 2.5,
+      ease: "power3.out",
+      onComplete: () => ribbon.remove(),
+    });
+
+    gsap.to(ribbon, {
+      y: `+=${Math.random() * 600 + 300}`,
+      duration: Math.random() * 3 + 2,
+      delay: 0.8,
       ease: "power1.in",
     });
 
-    // Fade out towards the end
-    gsap.to(confetti, {
+    gsap.to(ribbon, {
       opacity: 0,
-      duration: 1,
-      delay: Math.random() * 2 + 3, // Start fading after 3-5 seconds
+      duration: 2,
+      delay: Math.random() * 2 + 3,
+      ease: "power2.in",
+    });
+  };
+
+  const createStarConfetti = (container, startX, startY) => {
+    const star = document.createElement("div");
+    const size = Math.random() * 8 + 6;
+
+    star.innerHTML = "✨";
+    star.style.cssText = `
+      position: absolute;
+      font-size: ${size * 2}px;
+      top: ${startY}px;
+      left: ${startX}px;
+      pointer-events: none;
+      z-index: 60;
+      filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+    `;
+    container.appendChild(star);
+
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 450 + 250;
+    const xEnd = Math.cos(angle) * velocity;
+    const yEnd = Math.sin(angle) * velocity;
+
+    gsap.to(star, {
+      x: xEnd,
+      y: yEnd,
+      rotation: Math.random() * 720 + 360,
+      scale: [1, 1.5, 0],
+      duration: Math.random() * 3 + 2,
+      ease: "power2.out",
+      onComplete: () => star.remove(),
+    });
+
+    gsap.to(star, {
+      opacity: [1, 1, 0],
+      duration: 2.5,
       ease: "power2.in",
     });
   };

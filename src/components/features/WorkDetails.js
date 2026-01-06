@@ -21,6 +21,7 @@ const WorkDetails = ({
   searchQuery = "",
   selectedCategory = "All",
   sortBy = "featured",
+    activeTab = "all",
 }) => {
   const [hoveredProject, setHoveredProject] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -29,6 +30,13 @@ const WorkDetails = ({
   // Filter and sort projects
   const filteredProjects = useMemo(() => {
     let filtered = projectData;
+
+      // Filter by type (experience or freelance)
+      if (activeTab === "experience") {
+        filtered = filtered.filter((p) => p.type === "experience");
+      } else if (activeTab === "freelance") {
+        filtered = filtered.filter((p) => p.type === "freelance");
+      }
 
     // Filter by category
     if (selectedCategory !== "All") {
@@ -66,7 +74,7 @@ const WorkDetails = ({
     });
 
     return sorted;
-  }, [selectedCategory, searchQuery, sortBy]);
+    }, [selectedCategory, searchQuery, sortBy, activeTab]);
 
   const openLink = (url, e) => {
     e?.stopPropagation();

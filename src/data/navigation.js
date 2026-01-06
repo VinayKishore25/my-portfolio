@@ -15,7 +15,15 @@ export const navData = [
   { name: "about", path: "/about", icon: <HiUser /> },
   { name: "blogs", path: "/blogs", icon: <HiBookOpen /> },
   { name: "skills", path: "/skills", icon: <HiRectangleGroup /> },
-  { name: "work", path: "/work", icon: <HiViewColumns /> },
+    { 
+      name: "work", 
+      path: "/work", 
+      icon: <HiViewColumns />,
+      submenu: [
+        { name: "experience", path: "/work/experience", label: "Experience" },
+        { name: "freelance", path: "/work/freelance", label: "Freelance Projects" },
+      ]
+    },
   {
     name: "journey",
     path: "/coding-journey",
