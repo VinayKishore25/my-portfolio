@@ -30,7 +30,9 @@ export const MenuItem = ({ item, children, active, setActive }) => {
       <button
         className={cn(
           "px-4 py-2 rounded-xl font-semibold text-sm text-white transition-all duration-200",
-          isActive ? "bg-accent text-white shadow-md shadow-accent/30" : "hover:bg-white/10"
+          isActive
+            ? "bg-accent text-white shadow-md shadow-accent/30"
+            : "hover:bg-white/10"
         )}
       >
         {item}
@@ -54,7 +56,10 @@ export const MenuItem = ({ item, children, active, setActive }) => {
 
 // Optional ProductItem placeholder (not used now but kept for compatibility)
 export const ProductItem = ({ title, href, src, description }) => (
-  <Link href={href} className="block p-3 rounded-xl hover:bg-white/10 transition-colors">
+  <Link
+    href={href}
+    className="block p-3 rounded-xl hover:bg-white/10 transition-colors"
+  >
     <div className="text-white font-semibold mb-1">{title}</div>
     <div className="text-white/60 text-sm">{description}</div>
   </Link>

@@ -109,7 +109,9 @@ const Experience = () => {
             exit="hidden"
             className="max-w-3xl mx-auto text-white/70 text-base xl:text-lg leading-relaxed"
           >
-            Professional experience working with leading organizations, building impactful solutions and developing expertise across diverse technologies and domains.
+            Professional experience working with leading organizations, building
+            impactful solutions and developing expertise across diverse
+            technologies and domains.
           </motion.p>
         </div>
 
@@ -189,8 +191,12 @@ const Experience = () => {
             >
               <div className="text-center">
                 <HiMagnifyingGlass className="w-16 h-16 text-white/30 mx-auto mb-4" />
-                <p className="text-xl text-white/50">No companies found matching "{searchQuery}"</p>
-                <p className="text-sm text-white/40 mt-2">Try searching with different keywords</p>
+                <p className="text-xl text-white/50">
+                  No companies found matching "{searchQuery}"
+                </p>
+                <p className="text-sm text-white/40 mt-2">
+                  Try searching with different keywords
+                </p>
               </div>
             </motion.div>
           ) : (
@@ -307,14 +313,16 @@ const Experience = () => {
                                     </p>
                                     {project.technologies && (
                                       <div className="flex flex-wrap gap-1.5">
-                                        {project.technologies.map((tech, ti) => (
-                                          <span
-                                            key={ti}
-                                            className="text-xs px-2 py-1 bg-accent/10 text-accent rounded"
-                                          >
-                                            {tech}
-                                          </span>
-                                        ))}
+                                        {project.technologies.map(
+                                          (tech, ti) => (
+                                            <span
+                                              key={ti}
+                                              className="text-xs px-2 py-1 bg-accent/10 text-accent rounded"
+                                            >
+                                              {tech}
+                                            </span>
+                                          )
+                                        )}
                                       </div>
                                     )}
                                   </motion.div>
@@ -324,28 +332,33 @@ const Experience = () => {
                           )}
 
                           {/* Achievements Section */}
-                          {company.achievements && company.achievements.length > 0 && (
-                            <div>
-                              <h4 className="text-sm xl:text-base font-bold text-white mb-3 flex items-center gap-2">
-                                <HiCheckCircle className="w-4 h-4 text-green-400" />
-                                Key Achievements
-                              </h4>
-                              <div className="space-y-2">
-                                {company.achievements.map((achievement, i) => (
-                                  <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="flex gap-2 text-xs xl:text-sm"
-                                  >
-                                    <HiCheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                                    <p className="text-white/70">{achievement}</p>
-                                  </motion.div>
-                                ))}
+                          {company.achievements &&
+                            company.achievements.length > 0 && (
+                              <div>
+                                <h4 className="text-sm xl:text-base font-bold text-white mb-3 flex items-center gap-2">
+                                  <HiCheckCircle className="w-4 h-4 text-green-400" />
+                                  Key Achievements
+                                </h4>
+                                <div className="space-y-2">
+                                  {company.achievements.map(
+                                    (achievement, i) => (
+                                      <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="flex gap-2 text-xs xl:text-sm"
+                                      >
+                                        <HiCheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                                        <p className="text-white/70">
+                                          {achievement}
+                                        </p>
+                                      </motion.div>
+                                    )
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
                         </motion.div>
                       )}
                     </AnimatePresence>

@@ -37,13 +37,16 @@ const Header = () => {
                 const hasSubmenu = link.submenu && link.submenu.length > 0;
                 const isActive =
                   link.path === pathname ||
-                  (hasSubmenu && link.submenu.some((sub) => pathname.includes(sub.name)));
+                  (hasSubmenu &&
+                    link.submenu.some((sub) => pathname.includes(sub.name)));
 
                 return (
                   <div
                     key={index}
                     className="relative group"
-                    onMouseEnter={() => hasSubmenu && setOpenDropdown(link.name)}
+                    onMouseEnter={() =>
+                      hasSubmenu && setOpenDropdown(link.name)
+                    }
                     onMouseLeave={() => hasSubmenu && setOpenDropdown(null)}
                   >
                     <Link
@@ -53,16 +56,28 @@ const Header = () => {
                       } flex items-center gap-2 hover:text-accent transition-all duration-300 capitalize font-medium text-sm sm:text-base`}
                     >
                       <span className="text-lg sm:text-xl">{link.icon}</span>
-                      <span className="hidden xs:inline sm:inline">{link.name}</span>
+                      <span className="hidden xs:inline sm:inline">
+                        {link.name}
+                      </span>
                       {hasSubmenu && (
                         <svg
                           className="hidden sm:inline w-4 h-4 ml-1 transition-transform duration-300"
-                          style={{ transform: openDropdown === link.name ? "rotate(180deg)" : "rotate(0deg)" }}
+                          style={{
+                            transform:
+                              openDropdown === link.name
+                                ? "rotate(180deg)"
+                                : "rotate(0deg)",
+                          }}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       )}
                     </Link>

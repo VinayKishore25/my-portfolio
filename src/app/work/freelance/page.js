@@ -92,7 +92,9 @@ const Freelance = () => {
             exit="hidden"
             className="max-w-3xl mx-auto text-white/70 text-base xl:text-lg leading-relaxed"
           >
-            Professional client work and freelance projects delivered with excellence. These showcase real-world solutions built for actual clients with specific requirements and business goals.
+            Professional client work and freelance projects delivered with
+            excellence. These showcase real-world solutions built for actual
+            clients with specific requirements and business goals.
           </motion.p>
         </div>
 

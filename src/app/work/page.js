@@ -11,8 +11,8 @@ import {
   HiMagnifyingGlass,
   HiAdjustmentsHorizontal,
   HiChevronDown,
-    HiBriefcase,
-    HiCodeBracketSquare,
+  HiBriefcase,
+  HiCodeBracketSquare,
 } from "react-icons/hi2";
 import Bulb from "@/components/ui/Bulb";
 import WorkDetails from "@/components/features/WorkDetails";
@@ -113,48 +113,48 @@ const Work = () => {
             experiences across various domains and technologies.
           </motion.p>
 
-            {/* Tab Selector */}
-            <motion.div
-              variants={fadeIn("up", 0.5)}
-              initial="hidden"
-              animate="show"
-              exit="hidden"
-              className="flex justify-center items-center gap-3 mt-8"
+          {/* Tab Selector */}
+          <motion.div
+            variants={fadeIn("up", 0.5)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            className="flex justify-center items-center gap-3 mt-8"
+          >
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                activeTab === "all"
+                  ? "bg-accent text-white shadow-lg shadow-accent/30"
+                  : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+              }`}
             >
-              <button
-                onClick={() => setActiveTab("all")}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  activeTab === "all"
-                    ? "bg-accent text-white shadow-lg shadow-accent/30"
-                    : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                <HiSparkles className="w-5 h-5" />
-                All Projects
-              </button>
-              <button
-                onClick={() => setActiveTab("experience")}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  activeTab === "experience"
-                    ? "bg-accent text-white shadow-lg shadow-accent/30"
-                    : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                <HiBriefcase className="w-5 h-5" />
-                Experience
-              </button>
-              <button
-                onClick={() => setActiveTab("freelance")}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  activeTab === "freelance"
-                    ? "bg-accent text-white shadow-lg shadow-accent/30"
-                    : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                <HiCodeBracketSquare className="w-5 h-5" />
-                Freelance Projects
-              </button>
-            </motion.div>
+              <HiSparkles className="w-5 h-5" />
+              All Projects
+            </button>
+            <button
+              onClick={() => setActiveTab("experience")}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                activeTab === "experience"
+                  ? "bg-accent text-white shadow-lg shadow-accent/30"
+                  : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <HiBriefcase className="w-5 h-5" />
+              Experience
+            </button>
+            <button
+              onClick={() => setActiveTab("freelance")}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                activeTab === "freelance"
+                  ? "bg-accent text-white shadow-lg shadow-accent/30"
+                  : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <HiCodeBracketSquare className="w-5 h-5" />
+              Freelance Projects
+            </button>
+          </motion.div>
         </div>
 
         {/* Stats Cards */}
@@ -321,7 +321,7 @@ const Work = () => {
             searchQuery={searchQuery}
             selectedCategory={selectedCategory}
             sortBy={sortBy}
-              activeTab={activeTab}
+            activeTab={activeTab}
           />
         </motion.div>
       </div>

@@ -7,51 +7,55 @@ export const companiesData = [
     duration: "6 months",
     startDate: "2023",
     endDate: "2024",
-    description: "Worked as a full stack developer building web applications and managing databases.",
+    description:
+      "Worked as a full stack developer building web applications and managing databases.",
     location: "Remote",
     type: "experience",
     skills: ["React", "Node.js", "MongoDB", "Express", "JavaScript"],
     projects: [
       {
         title: "Event Management System",
-        description: "Built a complete event management platform with registration and payment gateway",
+        description:
+          "Built a complete event management platform with registration and payment gateway",
         technologies: ["React", "Node.js", "MongoDB", "Razorpay"],
         highlights: [
           "Handled 1000+ registrations",
           "Integrated payment processing",
           "Real-time event tracking",
-          "Admin dashboard"
-        ]
+          "Admin dashboard",
+        ],
       },
       {
         title: "Dashboard Analytics",
-        description: "Created an interactive analytics dashboard for event metrics",
+        description:
+          "Created an interactive analytics dashboard for event metrics",
         technologies: ["React", "Chart.js", "API Integration"],
         highlights: [
           "Real-time data visualization",
           "Custom chart components",
-          "Export functionality"
-        ]
+          "Export functionality",
+        ],
       },
       {
         title: "Email Notification System",
-        description: "Implemented automated email notifications for event updates",
+        description:
+          "Implemented automated email notifications for event updates",
         technologies: ["Node.js", "Nodemailer", "Cron Jobs"],
         highlights: [
           "Scheduled email campaigns",
           "Template-based notifications",
-          "Error handling and logging"
-        ]
-      }
+          "Error handling and logging",
+        ],
+      },
     ],
     achievements: [
       "Delivered 3+ major projects on time",
       "Improved system performance by 40%",
       "Mentored 2 junior developers",
-      "Implemented best practices for code quality"
+      "Implemented best practices for code quality",
     ],
     image: "/companies/technical-hub.jpg",
-    featured: true
+    featured: true,
   },
   {
     id: "airbus",
@@ -60,10 +64,17 @@ export const companiesData = [
     duration: "3 months",
     startDate: "2024",
     endDate: "2024",
-    description: "Interned as a software engineer working on aviation software systems and tools.",
+    description:
+      "Interned as a software engineer working on aviation software systems and tools.",
     location: "On-site",
     type: "experience",
-    skills: ["Java", "Python", "System Design", "Aviation Software", "Database Design"],
+    skills: [
+      "Java",
+      "Python",
+      "System Design",
+      "Aviation Software",
+      "Database Design",
+    ],
     projects: [
       {
         title: "Flight Management System",
@@ -72,8 +83,8 @@ export const companiesData = [
         highlights: [
           "Developed core modules",
           "Optimized database queries",
-          "Implemented real-time tracking"
-        ]
+          "Implemented real-time tracking",
+        ],
       },
       {
         title: "Data Analysis Tool",
@@ -82,8 +93,8 @@ export const companiesData = [
         highlights: [
           "Processed large datasets",
           "Generated insights and reports",
-          "Automated data pipeline"
-        ]
+          "Automated data pipeline",
+        ],
       },
       {
         title: "Testing Framework",
@@ -92,27 +103,30 @@ export const companiesData = [
         highlights: [
           "Created 100+ test cases",
           "Automated testing pipeline",
-          "CI/CD integration"
-        ]
-      }
+          "CI/CD integration",
+        ],
+      },
     ],
     achievements: [
       "Completed internship project ahead of schedule",
       "Received appreciation from team lead",
       "Identified and fixed critical bugs",
-      "Presented findings to senior management"
+      "Presented findings to senior management",
     ],
     image: "/companies/airbus.jpg",
-    featured: true
-  }
+    featured: true,
+  },
 ];
 
 export const experienceStats = {
   totalCompanies: companiesData.length,
-  totalProjects: companiesData.reduce((acc, company) => acc + company.projects.length, 0),
-  totalSkills: [...new Set(companiesData.flatMap(c => c.skills))].length,
+  totalProjects: companiesData.reduce(
+    (acc, company) => acc + company.projects.length,
+    0
+  ),
+  totalSkills: [...new Set(companiesData.flatMap((c) => c.skills))].length,
   totalMonths: companiesData.reduce((acc, company) => {
     const duration = company.duration.split(" ");
     return acc + parseInt(duration[0]);
-  }, 0)
+  }, 0),
 };

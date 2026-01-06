@@ -7,7 +7,12 @@ export function ProjectsNavbar({ className = "top-2" }) {
   const [active, setActive] = useState(null);
 
   return (
-    <div className={cn("relative w-full flex items-center justify-center", className)}>
+    <div
+      className={cn(
+        "relative w-full flex items-center justify-center",
+        className
+      )}
+    >
       <div className="fixed inset-x-0 max-w-2xl mx-auto z-50">
         <Menu setActive={setActive}>
           <MenuItem setActive={setActive} active={active} item="Projects">
