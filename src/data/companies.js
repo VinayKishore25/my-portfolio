@@ -10,7 +10,7 @@ export const companiesData = [
     description:
       "Worked as a full stack developer building web applications and managing databases.",
     location: "Remote",
-    type: "experience",
+    type: "internship",
     skills: ["React", "Node.js", "MongoDB", "Express", "JavaScript"],
     projects: [
       {
@@ -67,7 +67,7 @@ export const companiesData = [
     description:
       "Interned as a software engineer working on aviation software systems and tools.",
     location: "On-site",
-    type: "experience",
+    type: "internship",
     skills: [
       "Java",
       "Python",

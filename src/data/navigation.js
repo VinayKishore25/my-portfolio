@@ -22,6 +22,11 @@ export const navData = [
     submenu: [
       { name: "experience", path: "/work/experience", label: "Experience" },
       {
+        name: "interviews",
+        path: "/work/interviews",
+        label: "Interviews",
+      },
+      {
         name: "freelance",
         path: "/work/freelance",
         label: "Freelance Projects",
