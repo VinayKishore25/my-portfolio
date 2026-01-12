@@ -9,6 +9,8 @@ import {
   HiBookOpen,
   HiRss,
   HiEnvelope,
+  HiXMark,
+  HiChevronRight,
 } from "react-icons/hi2";
 
 // Next Link
@@ -21,6 +23,7 @@ import { navData } from "@/data/navigation";
 const Nav = () => {
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [mobileWorkMenu, setMobileWorkMenu] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-white/10 backdrop-blur-sm border-b border-white/10">
@@ -44,7 +47,13 @@ const Nav = () => {
                   className={`${
                     isActive ? "text-accent" : "text-white"
                   } flex items-center gap-2 hover:text-accent transition-all duration-300 capitalize font-medium text-sm md:text-base lg:text-lg`}
-                  href={link.path}
+                  href={hasSubmenu ? "#" : link.path}
+                  onClick={(e) => {
+                    if (hasSubmenu && window.innerWidth < 768) {
+                      e.preventDefault();
+                      setMobileWorkMenu(!mobileWorkMenu);
+                    }
+                  }}
                 >
                   {/* Icon */}
                   <div className="text-lg md:text-xl">{link.icon}</div>
@@ -72,9 +81,17 @@ const Nav = () => {
                       />
                     </svg>
                   )}
+                  {/* Mobile dropdown indicator */}
+                  {hasSubmenu && window.innerWidth < 768 && (
+                    <HiChevronRight
+                      className={`sm:hidden w-4 h-4 transition-transform duration-300 ${
+                        mobileWorkMenu ? "rotate-90" : ""
+                      }`}
+                    />
+                  )}
                 </Link>
 
-                {/* Dropdown Menu */}
+                {/* Desktop Dropdown Menu */}
                 {hasSubmenu && openDropdown === link.name && (
                   <div className="hidden sm:block absolute top-full left-0 mt-2 min-w-[200px] bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg overflow-hidden animate-fadeIn">
                     {link.submenu.map((subItem, subIndex) => (
@@ -82,6 +99,22 @@ const Nav = () => {
                         key={subIndex}
                         href={subItem.path}
                         className="block px-4 py-3 text-white hover:bg-accent/20 hover:text-accent transition-all duration-300 text-sm font-medium"
+                      >
+                        {subItem.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+
+                {/* Mobile Dropdown Menu */}
+                {hasSubmenu && mobileWorkMenu && (
+                  <div className="sm:hidden absolute top-full left-0 mt-2 min-w-[160px] bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg overflow-hidden animate-fadeIn z-50">
+                    {link.submenu.map((subItem, subIndex) => (
+                      <Link
+                        key={subIndex}
+                        href={subItem.path}
+                        className="block px-4 py-3 text-white hover:bg-accent/20 hover:text-accent transition-all duration-300 text-sm font-medium"
+                        onClick={() => setMobileWorkMenu(false)}
                       >
                         {subItem.label}
                       </Link>

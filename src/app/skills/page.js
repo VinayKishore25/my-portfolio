@@ -28,7 +28,6 @@ import { HiOutlineSpeakerphone } from "react-icons/hi";
 
 import SpiderChart from "@/components/features/SpiderChart";
 import Bulb from "@/components/ui/Bulb";
-import Circles from "@/components/ui/Circles";
 import { fadeIn } from "@/lib/animations";
 
 // --- SKILL CATEGORIES DATA ---
@@ -400,8 +399,6 @@ const Skills = () => {
 
   return (
     <div className="h-full bg-primary/30 py-20 xl:py-28 flex flex-col justify-center overflow-y-auto xl:overflow-hidden">
-      <Circles />
-
       <div className="container mx-auto px-4 h-full flex flex-col gap-6">
         {/* Header */}
         <motion.div

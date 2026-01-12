@@ -41,8 +41,16 @@ const aboutData = [
     title: "achievements",
     info: [
       {
-        title: "LeetCode - 660+ Problems Solved",
+        title: "LeetCode - Knight (660+ solved)",
         stage: "Peak Contest Rating: 1813",
+      },
+      {
+        title: "Codeforces - Specialist",
+        stage: "Handle: vinaykishore2512",
+      },
+      {
+        title: "CodeChef - 3 Star",
+        stage: "Highest Rating: 1643",
       },
       {
         title: "GeeksforGeeks - 650+ Problems",
@@ -51,10 +59,6 @@ const aboutData = [
       {
         title: "HackerRank - 5 Star Badges",
         stage: "C, Python & Java",
-      },
-      {
-        title: "CodeChef - 3 Star Rating",
-        stage: "Highest Rating: 1643",
       },
       {
         title: "Monthly Coding Contest - 3rd Place",

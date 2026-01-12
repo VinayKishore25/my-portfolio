@@ -10,7 +10,6 @@ const sora = Sora({
 
 // Components
 import Header from "./Header";
-import FooterControls from "./FooterControls";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const Layout = ({ children }) => {
@@ -21,8 +20,6 @@ const Layout = ({ children }) => {
       <Header />
       <ThemeToggle />
       {children}
-      {/* Mobile Footer Controls */}
-      <FooterControls />
     </div>
   );
 };

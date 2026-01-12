@@ -19,7 +19,7 @@ const FooterControls = () => {
       initial="hidden"
       animate="show"
       exit="hidden"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-primary/80 backdrop-blur-sm p-4 xl:hidden"
+      className="hidden md:block fixed bottom-0 left-0 right-0 z-40 bg-primary/80 backdrop-blur-sm p-4"
     >
       <div className="container mx-auto flex justify-between items-center">
         {/* Contact Button */}

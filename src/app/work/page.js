@@ -119,40 +119,43 @@ const Work = () => {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="flex justify-center items-center gap-3 mt-8"
+            className="flex justify-center items-center gap-2 md:gap-3 mt-8 flex-wrap"
           >
             <button
               onClick={() => setActiveTab("all")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              className={`flex items-center gap-1 md:gap-2 px-4 md:px-6 py-2 md:py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 ${
                 activeTab === "all"
                   ? "bg-accent text-white shadow-lg shadow-accent/30"
                   : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <HiSparkles className="w-5 h-5" />
-              All Projects
+              <HiSparkles className="w-4 md:w-5 h-4 md:h-5" />
+              <span className="hidden sm:inline">All Projects</span>
+              <span className="sm:hidden">All</span>
             </button>
             <button
               onClick={() => setActiveTab("experience")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              className={`flex items-center gap-1 md:gap-2 px-4 md:px-6 py-2 md:py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 ${
                 activeTab === "experience"
                   ? "bg-accent text-white shadow-lg shadow-accent/30"
                   : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <HiBriefcase className="w-5 h-5" />
-              Experience
+              <HiBriefcase className="w-4 md:w-5 h-4 md:h-5" />
+              <span className="hidden sm:inline">Experience</span>
+              <span className="sm:hidden">Work</span>
             </button>
             <button
               onClick={() => setActiveTab("freelance")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              className={`flex items-center gap-1 md:gap-2 px-4 md:px-6 py-2 md:py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 ${
                 activeTab === "freelance"
                   ? "bg-accent text-white shadow-lg shadow-accent/30"
                   : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <HiCodeBracketSquare className="w-5 h-5" />
-              Freelance Projects
+              <HiCodeBracketSquare className="w-4 md:w-5 h-4 md:h-5" />
+              <span className="hidden sm:inline">Freelance Projects</span>
+              <span className="sm:hidden">Freelance</span>
             </button>
           </motion.div>
         </div>
@@ -163,7 +166,7 @@ const Work = () => {
           initial="hidden"
           animate="show"
           exit="hidden"
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-6 mb-12 xl:mb-16"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 xl:gap-6 mb-8 md:mb-12 xl:mb-16"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -179,16 +182,16 @@ const Work = () => {
                   background: `linear-gradient(to bottom right, var(--color-accent), transparent)`,
                 }}
               />
-              <div className="bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-2xl p-4 xl:p-6 hover:border-accent/30 transition-all duration-300">
+              <div className="bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-2xl p-3 md:p-4 xl:p-6 hover:border-accent/30 transition-all duration-300">
                 <div
-                  className={`w-12 h-12 xl:w-14 xl:h-14 rounded-xl bg-gradient-to-br ${stat.color} p-2.5 xl:p-3 mb-3 xl:mb-4 text-white shadow-lg`}
+                  className={`w-10 h-10 md:w-12 md:h-12 xl:w-14 xl:h-14 rounded-xl bg-gradient-to-br ${stat.color} p-2 md:p-2.5 xl:p-3 mb-2 md:mb-3 xl:mb-4 text-white shadow-lg`}
                 >
                   {stat.icon}
                 </div>
-                <div className="text-2xl xl:text-3xl font-bold text-white mb-1">
+                <div className="text-xl md:text-2xl xl:text-3xl font-bold text-white mb-1">
                   {stat.value}
                 </div>
-                <div className="text-xs xl:text-sm text-white/60 font-medium">
+                <div className="text-xs md:text-sm text-white/60 font-medium line-clamp-2">
                   {stat.label}
                 </div>
               </div>
@@ -202,29 +205,30 @@ const Work = () => {
           initial="hidden"
           animate="show"
           exit="hidden"
-          className="mb-8 xl:mb-12"
+          className="mb-6 md:mb-8 xl:mb-12"
         >
           {/* Search Bar and Filter Toggle */}
-          <div className="flex flex-col sm:flex-row gap-3 xl:gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 xl:gap-4 mb-6">
             {/* Search Input */}
             <div className="flex-1 relative">
               <HiMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
               <input
                 type="text"
-                placeholder="Search projects by name, tech, or description..."
+                placeholder="Search projects by name, tech..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-xl pl-12 pr-4 py-3 xl:py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-accent/50 transition-colors"
+                className="w-full bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-xl pl-12 pr-4 py-2 sm:py-3 xl:py-4 text-sm sm:text-base text-white placeholder:text-white/40 focus:outline-none focus:border-accent/50 transition-colors"
               />
             </div>
 
             {/* Filter Toggle Button */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="sm:w-auto flex items-center justify-center gap-2 bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-xl px-4 xl:px-6 py-3 xl:py-4 text-white hover:border-accent/30 transition-all"
+              className="flex items-center justify-center gap-2 bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-xl px-3 sm:px-4 xl:px-6 py-2 sm:py-3 xl:py-4 text-white hover:border-accent/30 transition-all text-sm sm:text-base whitespace-nowrap"
             >
-              <HiAdjustmentsHorizontal className="w-5 h-5" />
-              <span className="font-medium">Filters</span>
+              <HiAdjustmentsHorizontal className="w-4 sm:w-5 h-4 sm:h-5" />
+              <span className="font-medium hidden sm:inline">Filters</span>
+              <span className="font-medium sm:hidden">Filter</span>
               <HiChevronDown
                 className={`w-4 h-4 transition-transform ${
                   showFilters ? "rotate-180" : ""
@@ -243,7 +247,7 @@ const Work = () => {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 xl:p-6 space-y-4 xl:space-y-6">
+                <div className="bg-secondary/40 backdrop-blur-sm border border-white/10 rounded-xl p-3 md:p-4 xl:p-6 space-y-3 md:space-y-4 xl:space-y-6">
                   {/* Category Filters */}
                   <div>
                     <h3 className="text-white font-semibold mb-3 xl:mb-4 text-sm xl:text-base">
