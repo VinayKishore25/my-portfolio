@@ -19,45 +19,52 @@ import "swiper/css/effect-coverflow";
 const testimonialData = [
   {
     image: "/dsp.png",
-    name: "Durga Sai Prasad",
+    name: "Ashok Marnala",
     position: "Coding Mentor",
     message:
-      "As a coding mentor, he demonstrates strong problem-solving skills and a passion for continuous learning. He effectively simplifies complex coding challenges, helping others grasp key concepts. With contributions to projects like the Resume Builder and Veda Website.",
+      "I've mentored quite a few students, but Vinay stands out. He doesn't just solve problems - he actually wants to understand the why behind everything. Seen him spend hours debugging just to learn a concept properly. That curiosity is rare and honestly refreshing to see.",
+  },
+  {
+    image: "/dsp.png",
+    name: "Durga Sai Prasad",
+    position: "React Native Mentor",
+    message:
+      "What I really appreciate about working with Vinay is he never settles for 'good enough'. Had this one project where the app was laggy - he kept optimizing until it felt smooth. Plus he explains things in a way that makes sense, helped our juniors pick up concepts way faster.",
   },
   {
     image: "/hanumanthu.png",
-    name: "Hanumanthu Buddha",
-    position: "Development Mentor",
+    name: "Siva Sattiraju",
+    position: "Client - Matrix AI",
     message:
-      "As a mentor, he excels in problem-solving and continuous learning. With a knack for simplifying complex concepts, he has made valuable contributions to projects like the Resume Builder. He fosters growth in others, guiding teams toward technical excellence.",
+      "Hired Vinay for the Matrix AI project and honestly exceeded expectations. He got what we needed without endless back-and-forth. Updates were regular, code was solid, and when we had changes (which we did), he adapted quickly. Would definitely work with him again.",
+  },
+  {
+    image: "/Kiran Kumar.png",
+    name: "Babji Neelam",
+    position: "CEO - Technical Hub",
+    message:
+      "We've had Vinay at Technical Hub and he's the kind of developer every team wants. Tackles tough problems without complaining, helps teammates when they're stuck, and always thinking about better ways to do things. Natural team player with real leadership potential.",
   },
   {
     image: "/Kiran Kumar.png",
     name: "Kiran Kumar",
-    position: "Communication Mentor",
+    position: "Manager - Technical Hub",
     message:
-      "As a communication mentor, he excels in conveying ideas clearly and effectively. He helps others improve their communication skills, fostering a collaborative environment where team members feel empowered to share their thoughts.",
-  },
-  {
-    image: "/dsp.png",
-    name: "Arjun Reddy",
-    position: "Full Stack Mentor",
-    message:
-      "His dedication to mastering both frontend and backend technologies is impressive. He consistently demonstrates ability to build end-to-end solutions with modern frameworks. His problem-solving approach makes him an excellent developer.",
+      "Best part about having Vinay on the team? Don't have to micromanage. He takes a task, figures it out, asks smart questions when needed, and delivers. Also noticed he helps the junior devs a lot - that initiative matters more than people realize.",
   },
   {
     image: "/hanumanthu.png",
-    name: "Vikram Sharma",
-    position: "React.js Specialist",
+    name: "Hanumanthu Buddha",
+    position: "Full Stack Mentor",
     message:
-      "Working with him on React projects has been exceptional. His understanding of component lifecycle, state management, and modern React patterns is outstanding. He brings creative solutions to complex UI challenges.",
+      "Mentoring Vinay has been interesting because he connects the dots. Like when we discussed databases, he immediately thought about how it affects the frontend. Gets the full picture instead of thinking in silos. His code reviews are thorough too - catches things others miss.",
   },
   {
-    image: "/Kiran Kumar.png",
-    name: "Rajesh Patel",
-    position: "UI/UX Design Mentor",
+    image: "/dsp.png",
+    name: "Girri Varri",
+    position: "Backend Mentor",
     message:
-      "His eye for design and user experience is remarkable. He understands the importance of creating intuitive interfaces that users love. His ability to translate complex requirements into simple, elegant designs is truly impressive.",
+      "What I like about Vinay's backend work is it's practical. He doesn't overcomplicate things but also doesn't cut corners. APIs are clean, error handling is proper, and he actually writes tests. Seen too many devs skip the basics - he doesn't.",
   },
 ];
 

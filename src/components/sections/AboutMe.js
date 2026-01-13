@@ -24,21 +24,21 @@ const AboutMe = () => {
   const stats = [
     {
       label: "Hours Coded",
-      value: "1,300+",
+      value: "4,055+",
       color: "from-blue-500 to-cyan-500",
       icon: <HiCodeBracket className="w-5 h-5" />,
-      description: "Dedicated coding time",
+      description: "Total practice time",
     },
     {
       label: "Projects Shipped",
-      value: "42+",
+      value: "18+",
       color: "from-accent to-orange-500",
       icon: <HiRocketLaunch className="w-5 h-5" />,
       description: "Production deployments",
     },
     {
       label: "LeetCode Solved",
-      value: "246+",
+      value: "660+",
       color: "from-green-500 to-emerald-500",
       icon: <HiChartBarSquare className="w-5 h-5" />,
       description: "Problem-solving mastery",

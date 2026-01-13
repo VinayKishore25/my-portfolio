@@ -27,7 +27,7 @@ import { motion, useInView } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
 import AboutMe from "@/components/sections/AboutMe";
 import { booksRead, booksSuggested } from "@/data/books";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // Lazy load below-the-fold components
 const TestimonialSlider = dynamic(
@@ -41,6 +41,9 @@ const TestimonialSlider = dynamic(
 const Home = () => {
   const statsRef = useRef(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
+  const [readBooksPage, setReadBooksPage] = useState(1);
+  const [suggestedBooksPage, setSuggestedBooksPage] = useState(1);
+  const booksPerPage = 8;
 
   const servicePillars = [
     {
@@ -83,18 +86,18 @@ const Home = () => {
 
   const currentlyBuilding = [
     {
-      title: "AI-Powered Portfolio Generator",
+      title: "Sign Language Converter",
       description:
-        "A tool that creates stunning portfolios using AI to analyze your work and generate personalized designs.",
-      progress: 75,
-      tags: ["Next.js", "OpenAI", "Tailwind"],
+        "Building an app that converts text to sign language gestures and vice versa, helping deaf and mute individuals communicate seamlessly with others.",
+      progress: 65,
+      tags: ["React Native", "TensorFlow", "Computer Vision"],
     },
     {
-      title: "Real-time Collaboration Suite",
+      title: "Connect App Separation",
       description:
-        "Building a Figma-like collaborative workspace for developers with live cursors and instant sync.",
-      progress: 45,
-      tags: ["WebSockets", "React", "PostgreSQL"],
+        "Converting the Connect app into 3 individual applications - Blood Donation Service, Human Safety Service, and Ambulance Service for better focus and performance.",
+      progress: 50,
+      tags: ["React Native", "Firebase", "Microservices"],
     },
   ];
 
@@ -117,7 +120,7 @@ const Home = () => {
             className="h1"
           >
             I&apos;m<span className="text-accent"> Vinay</span> <br />
-            Problem Solver
+            Software Developer
           </motion.h1>
           <motion.p
             variants={fadeIn("down", 0.3)}
@@ -126,10 +129,11 @@ const Home = () => {
             exit="hidden"
             className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
           >
-            Dedicated to transforming innovative concepts into impactful digital
-            solutions, with a strong emphasis on creativity and a continuous
-            commitment to personal and professional growth in the ever-evolving
-            tech landscape.
+            Crafting elegant, scalable digital experiences through modern web
+            technologies. I specialize in full-stack development, building
+            production-ready applications that solve real-world problems. Driven
+            by a passion for clean code, continuous learning, and creating
+            technology that truly matters.
           </motion.p>
           {/* Resume Buttons */}
           <motion.div
@@ -201,39 +205,88 @@ const Home = () => {
               📚 Books I've <span className="text-accent">Read</span>
             </motion.h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-              {booksRead.map((book, index) => (
-                <motion.div
-                  key={book.id}
-                  variants={fadeIn("up", 0.3 + index * 0.05)}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true }}
-                  className="group relative"
-                >
-                  <div className="relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-3 md:p-4 shadow-lg hover:border-accent/50 transition-all duration-300 h-full hover:bg-white/10">
-                    <div className="flex items-start justify-between mb-2">
-                      <h5 className="text-sm md:text-base font-semibold text-white group-hover:text-accent transition-colors flex-1">
-                        {book.title}
-                      </h5>
-                    </div>
-                    <p className="text-xs md:text-sm text-white/70 mb-3">
-                      {book.author}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-white/50 bg-white/5 px-2 py-1 rounded">
-                        {book.year}
-                      </span>
-                      <div className="flex items-center gap-1">
-                        <span className="text-accent text-sm">★</span>
-                        <span className="text-xs text-white/70">
-                          {book.rating}/5
+              {booksRead
+                .slice(
+                  (readBooksPage - 1) * booksPerPage,
+                  readBooksPage * booksPerPage
+                )
+                .map((book, index) => (
+                  <motion.div
+                    key={book.id}
+                    variants={fadeIn("up", 0.3 + index * 0.05)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="group relative"
+                  >
+                    <div className="relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-3 md:p-4 shadow-lg hover:border-accent/50 transition-all duration-300 h-full hover:bg-white/10">
+                      <div className="flex items-start justify-between mb-2">
+                        <h5 className="text-sm md:text-base font-semibold text-white group-hover:text-accent transition-colors flex-1">
+                          {book.title}
+                        </h5>
+                      </div>
+                      <p className="text-xs md:text-sm text-white/70 mb-3">
+                        {book.author}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-white/50 bg-white/5 px-2 py-1 rounded">
+                          {book.year}
                         </span>
+                        <div className="flex items-center gap-1">
+                          <span className="text-accent text-sm">★</span>
+                          <span className="text-xs text-white/70">
+                            {book.rating}/5
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
             </div>
+            {Math.ceil(booksRead.length / booksPerPage) > 1 && (
+              <div className="flex items-center justify-center gap-2 md:gap-4 mt-6 md:mt-8">
+                <button
+                  onClick={() => setReadBooksPage((p) => Math.max(1, p - 1))}
+                  disabled={readBooksPage === 1}
+                  className="px-3 md:px-4 py-2 rounded-lg bg-accent/20 text-accent border border-accent/50 hover:bg-accent/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm md:text-base"
+                >
+                  ← Prev
+                </button>
+                <div className="flex items-center gap-1 md:gap-2">
+                  {Array.from({
+                    length: Math.ceil(booksRead.length / booksPerPage),
+                  }).map((_, i) => (
+                    <button
+                      key={i + 1}
+                      onClick={() => setReadBooksPage(i + 1)}
+                      className={`w-8 h-8 md:w-10 md:h-10 rounded-lg text-sm font-semibold transition-all ${
+                        readBooksPage === i + 1
+                          ? "bg-accent text-primary"
+                          : "bg-white/5 text-white hover:bg-white/10"
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() =>
+                    setReadBooksPage((p) =>
+                      Math.min(
+                        Math.ceil(booksRead.length / booksPerPage),
+                        p + 1
+                      )
+                    )
+                  }
+                  disabled={
+                    readBooksPage === Math.ceil(booksRead.length / booksPerPage)
+                  }
+                  className="px-3 md:px-4 py-2 rounded-lg bg-accent/20 text-accent border border-accent/50 hover:bg-accent/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm md:text-base"
+                >
+                  Next →
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Books I Suggest */}
@@ -248,34 +301,86 @@ const Home = () => {
               💡 Books I <span className="text-accent">Suggest</span>
             </motion.h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-              {booksSuggested.map((book, index) => (
-                <motion.div
-                  key={book.id}
-                  variants={fadeIn("up", 0.4 + index * 0.05)}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true }}
-                  className="group relative"
-                >
-                  <div className="relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-3 md:p-4 shadow-lg hover:border-accent/50 transition-all duration-300 h-full hover:bg-white/10">
-                    <div className="flex items-start justify-between mb-2">
-                      <h5 className="text-sm md:text-base font-semibold text-white group-hover:text-accent transition-colors flex-1">
-                        {book.title}
-                      </h5>
+              {booksSuggested
+                .slice(
+                  (suggestedBooksPage - 1) * booksPerPage,
+                  suggestedBooksPage * booksPerPage
+                )
+                .map((book, index) => (
+                  <motion.div
+                    key={book.id}
+                    variants={fadeIn("up", 0.4 + index * 0.05)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="group relative"
+                  >
+                    <div className="relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-3 md:p-4 shadow-lg hover:border-accent/50 transition-all duration-300 h-full hover:bg-white/10">
+                      <div className="flex items-start justify-between mb-2">
+                        <h5 className="text-sm md:text-base font-semibold text-white group-hover:text-accent transition-colors flex-1">
+                          {book.title}
+                        </h5>
+                      </div>
+                      <p className="text-xs md:text-sm text-white/70 mb-2">
+                        {book.author}
+                      </p>
+                      <p className="text-xs text-white/60 mb-3 line-clamp-2">
+                        {book.why}
+                      </p>
+                      <span className="text-xs text-white/50 bg-white/5 px-2 py-1 rounded">
+                        {book.category}
+                      </span>
                     </div>
-                    <p className="text-xs md:text-sm text-white/70 mb-2">
-                      {book.author}
-                    </p>
-                    <p className="text-xs text-white/60 mb-3 line-clamp-2">
-                      {book.why}
-                    </p>
-                    <span className="text-xs text-white/50 bg-white/5 px-2 py-1 rounded">
-                      {book.category}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
             </div>
+            {Math.ceil(booksSuggested.length / booksPerPage) > 1 && (
+              <div className="flex items-center justify-center gap-2 md:gap-4 mt-6 md:mt-8">
+                <button
+                  onClick={() =>
+                    setSuggestedBooksPage((p) => Math.max(1, p - 1))
+                  }
+                  disabled={suggestedBooksPage === 1}
+                  className="px-3 md:px-4 py-2 rounded-lg bg-accent/20 text-accent border border-accent/50 hover:bg-accent/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm md:text-base"
+                >
+                  ← Prev
+                </button>
+                <div className="flex items-center gap-1 md:gap-2">
+                  {Array.from({
+                    length: Math.ceil(booksSuggested.length / booksPerPage),
+                  }).map((_, i) => (
+                    <button
+                      key={i + 1}
+                      onClick={() => setSuggestedBooksPage(i + 1)}
+                      className={`w-8 h-8 md:w-10 md:h-10 rounded-lg text-sm font-semibold transition-all ${
+                        suggestedBooksPage === i + 1
+                          ? "bg-accent text-primary"
+                          : "bg-white/5 text-white hover:bg-white/10"
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() =>
+                    setSuggestedBooksPage((p) =>
+                      Math.min(
+                        Math.ceil(booksSuggested.length / booksPerPage),
+                        p + 1
+                      )
+                    )
+                  }
+                  disabled={
+                    suggestedBooksPage ===
+                    Math.ceil(booksSuggested.length / booksPerPage)
+                  }
+                  className="px-3 md:px-4 py-2 rounded-lg bg-accent/20 text-accent border border-accent/50 hover:bg-accent/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm md:text-base"
+                >
+                  Next →
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -416,7 +521,7 @@ const Home = () => {
 
       {/* Competitive Achievements */}
       <section className="bg-primary px-4 md:px-6 lg:px-10 py-16 md:py-20">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-4xl">
           <motion.div
             variants={fadeIn("up", 0.2)}
             initial="hidden"
@@ -432,38 +537,32 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <motion.div
+            variants={fadeIn("up", 0.3)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-stretch justify-center gap-0 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm overflow-hidden"
+          >
             {achievements.map((item, i) => (
-              <motion.div
+              <div
                 key={item.title}
-                variants={fadeIn("up", 0.25 + i * 0.1)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="relative h-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 shadow-xl card-shine"
+                className={`flex-1 p-6 md:p-8 text-center ${
+                  i !== achievements.length - 1
+                    ? "border-b md:border-b-0 md:border-r border-white/10"
+                    : ""
+                }`}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center text-accent text-sm font-bold uppercase">
-                    {item.badge}
-                  </div>
-                  <div>
-                    <h4 className="text-lg md:text-xl font-semibold text-white">
-                      {item.title}
-                    </h4>
-                    <p className="text-white/60 text-sm">{item.subtitle}</p>
-                  </div>
+                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">
+                  {item.badge}
                 </div>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="text-xs uppercase tracking-wide text-white/50">
-                    Competitive Track
-                  </span>
-                  <span className="text-accent text-sm font-semibold">
-                    Verified
-                  </span>
-                </div>
-              </motion.div>
+                <h4 className="text-lg font-semibold text-white mb-1">
+                  {item.title}
+                </h4>
+                <p className="text-white/50 text-sm">{item.subtitle}</p>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
