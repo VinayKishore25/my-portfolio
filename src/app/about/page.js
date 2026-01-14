@@ -124,27 +124,27 @@ const aboutData = [
       {
         title: "JavaScript Intermediate - HackerRank",
         stage: "2024",
-        link: "#",
+        link: "https://www.hackerrank.com/certificates/9625a1e985cd",
       },
       {
         title: "IT Specialist - JavaScript - Pearson",
         stage: "2024",
-        link: "#",
+        link: "https://www.credly.com/badges/d88169ff-bd46-4789-abe2-8b93d0c0c918",
       },
       {
         title: "Oracle Database - Foundations",
         stage: "2024",
-        link: "#",
+        link: "https://drive.google.com/file/d/1_AJk7gPdhwDwBkw0wXRgjOU8qepQZbDH/view",
       },
       {
         title: "ServiceNow Certified System Admin",
         stage: "2024",
-        link: "#",
+        link: "https://drive.google.com/file/d/1Z7WvBywuvS-HxbBt7PJzQhhiwB1h8h6m/view?pli=1",
       },
       {
         title: "ServiceNow Certified App Developer",
         stage: "2024",
-        link: "#",
+        link: "https://drive.google.com/file/d/1wtA9rbIfmwPt1hF8sss6ASI6rOt2UFM3/view",
       },
     ],
   },
@@ -203,8 +203,8 @@ const About = () => {
             exit="hidden"
             className="h2"
           >
-            Compelling <span className="text-accent">ideas</span> inspire
-            exceptional creations.
+            Building solutions that <span className="text-accent">matter</span>{" "}
+            and impact <span className="text-accent">lives</span>
           </motion.h2>
           <motion.p
             variants={fadeIn("right", 0.4)}
@@ -213,11 +213,12 @@ const About = () => {
             exit="hidden"
             className="max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0"
           >
-            Software Engineer Intern at Airbus India with expertise in
-            full-stack development. Built production-ready applications at
-            Technical Hub achieving 95% Lighthouse scores. Competitive
-            programmer with 660+ LeetCode problems solved (rating 1813) and
-            5-star HackerRank badges in C, Python, and Java.
+            I'm a software engineer who actually cares about building things
+            people use. Currently interning at Airbus, previously shipped
+            production apps at Technical Hub. When I code, I think about users
+            first - that's why I focus on performance, accessibility, and clean
+            architecture. Love competitive programming because it keeps me sharp
+            and humble.
           </motion.p>
           {/* Counters */}
           <motion.div
@@ -230,38 +231,40 @@ const About = () => {
             <div className="flex flex-1 xl:gap-x-6 z-60">
               {/* Experience */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={1300} duration={2} /> +
+                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2 flex items-baseline gap-1">
+                  <CountUp start={0} end={2400} duration={2} />
+                  <span>+</span>
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Problems Solved
+                  Coding Problems
                 </div>
               </div>
               {/* Clients */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={12} duration={2} /> +
+                  <CountUp start={0} end={30} duration={2} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Certifications
+                  Skills Mastered
                 </div>
               </div>
               {/* Projects */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={10000} duration={2} /> +
+                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2 flex items-baseline gap-1">
+                  <CountUp start={0} end={9999} duration={2} />
+                  <span>+</span>
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  Users Impacted
+                  People Impacted
                 </div>
               </div>
               {/* Awards */}
               <div className="relative flex-1">
                 <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={1813} duration={2} />
+                  <CountUp start={0} end={120} duration={2} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                  LeetCode Rating
+                  Contests Battled
                 </div>
               </div>
             </div>
