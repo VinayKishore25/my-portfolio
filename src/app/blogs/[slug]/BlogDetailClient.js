@@ -6,9 +6,10 @@ import Link from "next/link";
 import { HiArrowLeft, HiCalendar, HiClock, HiUser } from "react-icons/hi2";
 
 const BlogDetailClient = ({ post, allPosts = [] }) => {
-  const currentIndex = allPosts.findIndex(p => p.slug === post.slug);
+  const currentIndex = allPosts.findIndex((p) => p.slug === post.slug);
   const previousBlog = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
-  const nextBlog = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  const nextBlog =
+    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
   return (
     <div className="relative bg-primary min-h-screen pt-20 sm:pt-24 pb-12">
@@ -82,10 +83,13 @@ const BlogDetailClient = ({ post, allPosts = [] }) => {
                     {post.author.name}
                   </h3>
                   <p className="text-white/70 text-xs">
-                    {post.author.title} {post.author.org && `• ${post.author.org}`}
+                    {post.author.title}{" "}
+                    {post.author.org && `• ${post.author.org}`}
                   </p>
                   {post.author.location && (
-                    <p className="text-white/50 text-xs">{post.author.location}</p>
+                    <p className="text-white/50 text-xs">
+                      {post.author.location}
+                    </p>
                   )}
                 </div>
               </div>
@@ -152,7 +156,9 @@ const BlogDetailClient = ({ post, allPosts = [] }) => {
           {/* Table of Contents */}
           {post.sections && post.sections.length > 0 && (
             <div className="mt-6 p-4 rounded-lg border border-white/10 bg-white/[0.02]">
-              <h3 className="text-sm font-semibold text-white mb-3">In this article:</h3>
+              <h3 className="text-sm font-semibold text-white mb-3">
+                In this article:
+              </h3>
               <ul className="space-y-1">
                 {post.sections.map((section, idx) => (
                   <li key={idx}>
@@ -204,7 +210,9 @@ const BlogDetailClient = ({ post, allPosts = [] }) => {
                 <ul className="space-y-2 text-white/80 text-sm leading-relaxed mt-3 ml-3">
                   {section.bullets.map((point, bIdx) => (
                     <li key={bIdx} className="flex gap-2">
-                      <span className="text-accent font-bold mt-0.5 flex-shrink-0">•</span>
+                      <span className="text-accent font-bold mt-0.5 flex-shrink-0">
+                        •
+                      </span>
                       <span>{point}</span>
                     </li>
                   ))}

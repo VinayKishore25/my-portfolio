@@ -605,8 +605,7 @@ export const blogPosts = [
       },
       {
         title: "Performance & Scale Considerations",
-        description:
-          "Building for reliability when lives depend on it.",
+        description: "Building for reliability when lives depend on it.",
         paragraphs: [
           "Blood donation notifications must be instant. We batch process nearby donors and send notifications within 2 seconds of request creation. FCM handles 99.9% delivery with exponential backoff retries. If push fails, we fall back to SMS via Twilio.",
           "Live location tracking for safety and ambulance apps generates massive data—users update location every 5-10 seconds. We stream updates via WebSocket, store only critical checkpoints in the database (every 30 seconds or significant location change >50m), and expire old data after 7 days to manage storage costs.",
@@ -625,8 +624,7 @@ export const blogPosts = [
       },
       {
         title: "Challenges & Lessons Learned",
-        description:
-          "What we didn't expect and how we adapted.",
+        description: "What we didn't expect and how we adapted.",
         paragraphs: [
           "Battery drain from background location was our biggest complaint in beta. We optimized by using geofencing (only track when user enters/exits safe zones), reducing GPS accuracy when stationary, and batching location updates. Battery consumption dropped from 15%/hour to 3%/hour.",
           "Sign language varies by region—ASL differs from ISL. Facial expressions carry 50% of meaning. Early versions ignored this, and Deaf users felt misunderstood. We added facial tracking and let users select their sign language variant at signup.",
@@ -642,8 +640,7 @@ export const blogPosts = [
       },
       {
         title: "Tech Stack Summary",
-        description:
-          "The complete picture of tools and frameworks.",
+        description: "The complete picture of tools and frameworks.",
         paragraphs: [
           "Frontend: React Native (0.72+), Redux Toolkit, Socket.io-client, React Navigation, MediaPipe (TensorFlow.js), react-native-maps, react-native-background-geolocation, react-native-push-notification.",
           "Backend: Node.js (v18+), Express, Socket.io with Redis adapter, MongoDB (6.0+) with geospatial indexing, Redis (7.0+) for caching and pub/sub, Firebase Admin SDK for push notifications.",
