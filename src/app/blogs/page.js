@@ -34,57 +34,59 @@ const BlogsPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {blogPosts.map((post, idx) => (
-            <motion.article
+            <Link
               key={post.slug}
-              variants={fadeIn("up", 0.12 + idx * 0.05)}
-              initial="hidden"
-              animate="show"
-              exit="hidden"
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-lg shadow-black/10"
+              href={`/blogs/${post.slug}`}
+              className="block"
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-accent/15 via-transparent to-white/10" />
-              <div className="relative p-6 flex flex-col gap-4">
-                <div className="flex items-center justify-between text-white/70 text-sm">
-                  <span>{post.date}</span>
-                  <span>{post.readingTime} read</span>
-                </div>
+              <motion.article
+                variants={fadeIn("up", 0.12 + idx * 0.05)}
+                initial="hidden"
+                animate="show"
+                exit="hidden"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-lg shadow-black/10 h-full cursor-pointer"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-accent/15 via-transparent to-white/10" />
+                <div className="relative p-6 flex flex-col gap-4">
+                  <div className="flex items-center justify-between text-white/70 text-sm">
+                    <span>{post.date}</span>
+                    <span>{post.readingTime} read</span>
+                  </div>
 
-                <h3 className="text-white text-xl font-semibold leading-snug">
-                  {post.title}
-                </h3>
+                  <h3 className="text-white text-xl font-semibold leading-snug">
+                    {post.title}
+                  </h3>
 
-                <p className="text-white/70 text-xs uppercase tracking-wide">
-                  By {post.author?.name || "Guest Author"}
-                </p>
+                  <p className="text-white/70 text-xs uppercase tracking-wide">
+                    By {post.author?.name || "Guest Author"}
+                  </p>
 
-                <p className="text-white/80 text-sm leading-relaxed">
-                  {post.excerpt}
-                </p>
+                  <p className="text-white/80 text-sm leading-relaxed">
+                    {post.excerpt}
+                  </p>
 
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs px-2 py-1 rounded-full bg-white/10 border border-white/10 text-white/80"
-                    >
-                      #{t}
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="text-xs px-2 py-1 rounded-full bg-white/10 border border-white/10 text-white/80"
+                      >
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="pt-2 flex items-center justify-between">
+                    <span className="text-accent text-sm font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                      Read the article
+                      <span className="text-lg" aria-hidden>
+                        -&gt;
+                      </span>
                     </span>
-                  ))}
+                  </div>
                 </div>
-
-                <div className="pt-2 flex items-center justify-between">
-                  <Link
-                    href={`/blogs/${post.slug}`}
-                    className="text-accent text-sm font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all"
-                  >
-                    Read the article
-                    <span className="text-lg" aria-hidden>
-                      -&gt;
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </motion.article>
+              </motion.article>
+            </Link>
           ))}
         </div>
       </div>

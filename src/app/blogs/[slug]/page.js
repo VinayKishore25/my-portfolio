@@ -10,7 +10,7 @@ const BlogDetailPage = async ({ params }) => {
     return notFound();
   }
 
-  return <BlogDetailClient post={post} />;
+  return <BlogDetailClient post={post} allPosts={blogPosts} />;
 };
 
 export default BlogDetailPage;
