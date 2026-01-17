@@ -44,11 +44,20 @@ const Nav = () => {
                 onMouseLeave={() => hasSubmenu && setOpenDropdown(null)}
               >
                 <Link
-                  className={`${
+                  className={`$
                     isActive ? "text-accent" : "text-white"
-                  } flex items-center gap-2 hover:text-accent transition-all duration-300 capitalize font-medium text-sm md:text-base lg:text-lg`}
+                  } flex items-center gap-2 ${
+                    link.name === "work"
+                      ? "cursor-default"
+                      : "hover:text-accent"
+                  } transition-all duration-300 capitalize font-medium text-sm md:text-base lg:text-lg`}
                   href={hasSubmenu ? "#" : link.path}
                   onClick={(e) => {
+                    // Disable any click behavior for top-level Work item
+                    if (link.name === "work") {
+                      e.preventDefault();
+                      return;
+                    }
                     if (hasSubmenu && window.innerWidth < 768) {
                       e.preventDefault();
                       setMobileWorkMenu(!mobileWorkMenu);

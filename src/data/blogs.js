@@ -4,7 +4,7 @@ export const blogPosts = [
     title: "Competitive Programming: A Practical Playbook",
     excerpt:
       "How I build patterns, consistency, and mental clarity to solve problems faster—without burning out.",
-    date: "Dec 30, 2025",
+    date: "Sep 20, 2025",
     readingTime: "11 min",
     tags: ["Algorithms", "Problem-Solving", "Practice"],
     author: {
@@ -180,7 +180,7 @@ export const blogPosts = [
     title: "Spring Boot for Real-World APIs",
     excerpt:
       "How to build APIs that are fast, observable, and don't wake you up at 3am with production issues.",
-    date: "Dec 30, 2025",
+    date: "Oct 12, 2025",
     readingTime: "12 min",
     tags: ["Spring Boot", "Java", "APIs"],
     author: {
@@ -353,7 +353,7 @@ export const blogPosts = [
       "Web Application Development: Frontend, Backend, & Database Trade-offs",
     excerpt:
       "Comprehensive guide to choosing frameworks (React vs Angular vs Next.js vs Vue), backend (Express vs Spring Boot vs Flask), databases (SQL vs NoSQL), and deployment strategies.",
-    date: "Dec 30, 2025",
+    date: "Nov 10, 2025",
     readingTime: "16 min",
     tags: ["Full Stack", "Architecture", "Frameworks"],
     author: {
@@ -489,7 +489,7 @@ export const blogPosts = [
     title: "Mobile App Development: Building Cross-Platform with React Native",
     excerpt:
       "How to build mobile apps that don't stutter, stay on the network, and handle real-world conditions gracefully. Includes Expo CLI vs Native CLI comparison.",
-    date: "Dec 30, 2025",
+    date: "Dec 22, 2025",
     readingTime: "12 min",
     tags: ["React Native", "Mobile", "Performance"],
     author: {

@@ -236,10 +236,14 @@ const Experience = () => {
               <div className="text-center">
                 <HiMagnifyingGlass className="w-16 h-16 text-white/30 mx-auto mb-4" />
                 <p className="text-xl text-white/50">
-                  No companies found matching "{searchQuery}"
+                  {typeFilter === "full-time"
+                    ? "Currently focusing on internships & exciting full-time opportunities ahead!"
+                    : `Nothing matches "${searchQuery}" yet. Try another search?`}
                 </p>
                 <p className="text-sm text-white/40 mt-2">
-                  Try searching with different keywords
+                  {typeFilter === "full-time"
+                    ? "My journey continues with impactful roles 🚀"
+                    : "Browse all experiences or refine your search"}
                 </p>
               </div>
             </motion.div>
