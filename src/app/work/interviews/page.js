@@ -63,9 +63,20 @@ const Interviews = () => {
   const filteredInterviews = useMemo(() => {
     if (!searchQuery.trim() && statusFilter === "all") return interviewsData;
     const query = searchQuery.toLowerCase();
+    const completedStatuses = [
+      "Completed",
+      "Selected",
+      "Rejected",
+      "Not shortlisted",
+      "Dropped",
+      "Offer",
+    ];
     return interviewsData.filter((interview) => {
       const matchesStatus =
-        statusFilter === "all" || interview.status === statusFilter;
+        statusFilter === "all" ||
+        (statusFilter === "Completed"
+          ? completedStatuses.includes(interview.status)
+          : interview.status === statusFilter);
 
       const matchesSearch =
         interview.company.toLowerCase().includes(query) ||
@@ -76,7 +87,7 @@ const Interviews = () => {
           (round) =>
             round.title.toLowerCase().includes(query) ||
             round.focus.toLowerCase().includes(query) ||
-            round.summary.toLowerCase().includes(query)
+            round.summary.toLowerCase().includes(query),
         );
 
       return matchesStatus && matchesSearch;
@@ -265,6 +276,10 @@ const Interviews = () => {
                     transition={{ duration: 0.3 }}
                     className="relative h-full bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-6 xl:p-8 hover:border-accent/50 transition-all duration-300 backdrop-blur-sm"
                   >
+                    {/* Highlight badge top-right */}
+                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-accent/20 border border-accent/40 text-accent shadow-lg">
+                      {interview.status}
+                    </div>
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
@@ -294,16 +309,8 @@ const Interviews = () => {
                       <div className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-xs text-blue-300 font-medium">
                         {interview.type}
                       </div>
-                      <div className="px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full text-xs text-green-300 font-medium flex items-center gap-1">
-                        <HiCheckCircle className="w-3 h-3" />
-                        {interview.status}
-                      </div>
                       <div className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs text-white/70">
                         {interview.duration}
-                      </div>
-                      <div className="px-3 py-1 bg-purple-500/20 border border-purple-500/30 rounded-full text-xs text-purple-200 font-medium">
-                        {interview.roundsCount || interview.rounds?.length || 0}{" "}
-                        rounds
                       </div>
                     </div>
 

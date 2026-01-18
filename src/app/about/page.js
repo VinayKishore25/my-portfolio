@@ -164,7 +164,7 @@ const aboutData = [
       {
         title: "Aditya Engineering College (AI & ML)",
         stage: "October 2022 - Present",
-        marks: "8.82",
+        marks: "8.78",
       },
     ],
   },
