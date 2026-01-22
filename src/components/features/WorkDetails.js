@@ -51,7 +51,7 @@ const WorkDetails = ({
           p.name.toLowerCase().includes(query) ||
           p.description.toLowerCase().includes(query) ||
           p.techStack.some((tech) => tech.toLowerCase().includes(query)) ||
-          p.tagline.toLowerCase().includes(query)
+          p.tagline.toLowerCase().includes(query),
       );
     }
 
@@ -150,88 +150,29 @@ const WorkDetails = ({
 
                 {/* Card */}
                 <div className="relative bg-secondary/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 group-hover:border-accent/30 transition-all duration-500 h-full flex flex-col">
-                  {/* Image Container */}
-                  <div className="relative h-48 xl:h-56 overflow-hidden bg-secondary/60">
-                    {/* Featured Badge */}
-                    {project.featured && (
-                      <div className="absolute top-3 left-3 z-10">
-                        <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-accent/90 backdrop-blur-sm text-white text-xs font-bold shadow-lg">
-                          <HiStar className="w-3.5 h-3.5" />
+                  {/* Content */}
+                  <div className="p-5 xl:p-6 flex flex-col flex-grow">
+                    {/* Badges Row */}
+                    <div className="flex items-center justify-between mb-3">
+                      {/* Featured Badge */}
+                      {project.featured ? (
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-accent/20 text-accent text-xs font-semibold">
+                          <HiStar className="w-3 h-3" />
                           <span>Featured</span>
                         </div>
-                      </div>
-                    )}
+                      ) : (
+                        <div />
+                      )}
 
-                    {/* Status Badge */}
-                    <div className="absolute top-3 right-3 z-10">
+                      {/* Status Badge */}
                       <div
-                        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg backdrop-blur-sm ${statusConfig.textColor} ${statusConfig.borderColor} border text-xs font-semibold bg-gradient-to-br ${statusConfig.color}`}
+                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg backdrop-blur-sm ${statusConfig.textColor} ${statusConfig.borderColor} border text-xs font-medium bg-gradient-to-br ${statusConfig.color}`}
                       >
                         {statusConfig.icon}
                         <span>{project.status}</span>
                       </div>
                     </div>
 
-                    {/* Project Image */}
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
-                      onLoadingComplete={() =>
-                        setImageLoading((prev) => ({
-                          ...prev,
-                          [project.id]: false,
-                        }))
-                      }
-                    />
-
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-
-                    {/* Quick Actions on Hover */}
-                    <div
-                      className={`absolute inset-0 flex items-center justify-center gap-3 transition-opacity duration-300 ${
-                        hoveredProject === project.id
-                          ? "opacity-100"
-                          : "opacity-0"
-                      }`}
-                    >
-                      {project.link &&
-                        project.link !== "#" &&
-                        project.link !== "/_notfound" && (
-                          <motion.button
-                            initial={{ scale: 0 }}
-                            animate={{
-                              scale: hoveredProject === project.id ? 1 : 0,
-                            }}
-                            transition={{ delay: 0.1 }}
-                            onClick={(e) => openLink(project.link, e)}
-                            className="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center hover:bg-accent/90 shadow-lg hover:scale-110 transition-all"
-                            title="View Live"
-                          >
-                            <HiArrowTopRightOnSquare className="w-5 h-5" />
-                          </motion.button>
-                        )}
-                      {project.github && (
-                        <motion.button
-                          initial={{ scale: 0 }}
-                          animate={{
-                            scale: hoveredProject === project.id ? 1 : 0,
-                          }}
-                          transition={{ delay: 0.15 }}
-                          onClick={(e) => openLink(project.github, e)}
-                          className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/20 shadow-lg hover:scale-110 transition-all"
-                          title="View Code"
-                        >
-                          <FaGithub className="w-5 h-5" />
-                        </motion.button>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-5 xl:p-6 flex flex-col flex-grow">
                     {/* Tagline */}
                     <div className="text-xs font-semibold text-accent mb-2 uppercase tracking-wider">
                       {project.tagline}
@@ -273,6 +214,30 @@ const WorkDetails = ({
                         <span className="bg-white/5 border border-white/10 text-white/60 text-xs px-2.5 py-1 rounded-md font-medium">
                           +{project.techStack.length - 3} more
                         </span>
+                      )}
+                    </div>
+
+                    {/* Action Buttons Row */}
+                    <div className="flex items-center gap-2 mb-4">
+                      {project.link &&
+                        project.link !== "#" &&
+                        project.link !== "/_notfound" && (
+                          <button
+                            onClick={(e) => openLink(project.link, e)}
+                            className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white/70 text-xs font-medium hover:bg-accent hover:border-accent hover:text-white transition-all"
+                          >
+                            <HiArrowTopRightOnSquare className="w-3.5 h-3.5" />
+                            <span>Live Demo</span>
+                          </button>
+                        )}
+                      {project.github && (
+                        <button
+                          onClick={(e) => openLink(project.github, e)}
+                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white/70 text-xs font-medium hover:bg-white/10 hover:text-white transition-all"
+                        >
+                          <FaGithub className="w-3.5 h-3.5" />
+                          <span>Source</span>
+                        </button>
                       )}
                     </div>
 
@@ -391,28 +356,19 @@ const ProjectDetailModal = ({ project, onClose, openLink }) => {
           <HiXMark className="w-6 h-6" />
         </button>
 
-        {/* Header Image */}
-        <div className="relative h-64 xl:h-80 overflow-hidden rounded-t-3xl bg-secondary">
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/50 to-transparent" />
-
-          {/* Featured Badge */}
-          {project.featured && (
-            <div className="absolute top-6 left-6">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-accent/90 backdrop-blur-sm text-white text-sm font-bold shadow-lg">
+        {/* Content */}
+        <div className="p-6 xl:p-8">
+          {/* Badges Container */}
+          <div className="flex items-center gap-3 mb-4">
+            {/* Featured Badge */}
+            {project.featured && (
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-accent/90 backdrop-blur-sm text-white text-sm font-bold">
                 <HiStar className="w-4 h-4" />
                 <span>Featured Project</span>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Status Badge */}
-          <div className="absolute top-6 right-6">
+            {/* Status Badge */}
             <div
               className={`flex items-center gap-2 px-3 py-2 rounded-lg backdrop-blur-sm ${statusConfig.textColor} ${statusConfig.borderColor} border text-sm font-semibold bg-gradient-to-br ${statusConfig.color}`}
             >
@@ -420,10 +376,7 @@ const ProjectDetailModal = ({ project, onClose, openLink }) => {
               <span>{project.status}</span>
             </div>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="p-6 xl:p-8">
           {/* Title and Tagline */}
           <div className="mb-6">
             <div className="text-sm font-bold text-accent mb-2 uppercase tracking-wider">
@@ -568,17 +521,21 @@ const ProjectDetailModal = ({ project, onClose, openLink }) => {
               <h3 className="text-white font-bold text-xl mb-4">
                 Project Impact
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {Object.entries(project.impact).map(([key, value], index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-2xl xl:text-3xl font-bold text-accent mb-1">
-                      {value}
+              <div className="flex justify-center">
+                <div
+                  className={`grid ${Object.keys(project.impact).length === 1 ? "grid-cols-1" : Object.keys(project.impact).length === 2 ? "grid-cols-2" : "grid-cols-2 md:grid-cols-3"} gap-4`}
+                >
+                  {Object.entries(project.impact).map(([key, value], index) => (
+                    <div key={index} className="text-center">
+                      <div className="text-2xl xl:text-3xl font-bold text-accent mb-1">
+                        {value}
+                      </div>
+                      <div className="text-white/60 text-sm capitalize">
+                        {key.replace(/([A-Z])/g, " $1").trim()}
+                      </div>
                     </div>
-                    <div className="text-white/60 text-sm capitalize">
-                      {key.replace(/([A-Z])/g, " $1").trim()}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           )}

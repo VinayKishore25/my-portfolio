@@ -1,6 +1,11 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useMemo, useState, useEffect } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import { fadeIn } from "@/lib/animations";
 import {
   HiSparkles,
@@ -22,42 +27,38 @@ import {
 import Bulb from "@/components/ui/Bulb";
 import { interviewsData, interviewStats } from "@/data/interviews";
 
+// Cursor Glow Component
+const CursorGlow = () => {
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
+  useEffect(() => {
+    const moveCursor = (e) => {
+      cursorX.set(e.clientX - 200);
+      cursorY.set(e.clientY - 200);
+    };
+    window.addEventListener("mousemove", moveCursor);
+    return () => window.removeEventListener("mousemove", moveCursor);
+  }, [cursorX, cursorY]);
+
+  return (
+    <motion.div
+      className="pointer-events-none fixed inset-0 z-0 opacity-50"
+      style={{
+        background: `radial-gradient(400px circle at ${cursorXSpring}px ${cursorYSpring}px, rgba(241, 48, 36, 0.06), transparent 80%)`,
+      }}
+    />
+  );
+};
+
 const Interviews = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedInterview, setSelectedInterview] = useState(null);
-  const [statusFilter, setStatusFilter] = useState("all"); // "all", "completed"
-
-  // Premium stats data
-  const stats = [
-    {
-      icon: <HiBriefcase className="w-6 h-6" />,
-      label: "Total Interviews",
-      value: interviewStats.totalInterviews,
-      color: "from-purple-500 to-pink-500",
-      delay: 0.2,
-    },
-    {
-      icon: <HiCheckCircle className="w-6 h-6" />,
-      label: "Completed",
-      value: interviewStats.completedInterviews,
-      color: "from-green-500 to-emerald-500",
-      delay: 0.3,
-    },
-    {
-      icon: <HiClock className="w-6 h-6" />,
-      label: "Avg Duration",
-      value: interviewStats.avgDuration,
-      color: "from-blue-500 to-cyan-500",
-      delay: 0.4,
-    },
-    {
-      icon: <HiFire className="w-6 h-6" />,
-      label: "Topics Covered",
-      value: interviewStats.totalTopics,
-      color: "from-orange-500 to-red-500",
-      delay: 0.5,
-    },
-  ];
+  const [statusFilter, setStatusFilter] = useState("all");
 
   // Filter interviews by search
   const filteredInterviews = useMemo(() => {
@@ -95,152 +96,151 @@ const Interviews = () => {
   }, [searchQuery, statusFilter]);
 
   return (
-    <div className="min-h-screen bg-primary/30 py-12 xl:py-20">
-      <div className="container mx-auto px-4">
-        {/* Hero Section */}
-        <div className="text-center mb-12 xl:mb-16">
-          <motion.div
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            className="inline-block mb-4"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium">
-              <HiUserGroup className="w-4 h-4" />
-              Interview Journey
-            </span>
-          </motion.div>
+    <div className="min-h-screen bg-primary/30 relative overflow-hidden">
+      <CursorGlow />
 
-          <motion.h1
-            variants={fadeIn("up", 0.3)}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 xl:mb-6"
-          >
-            My{" "}
-            <span className="text-accent bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">
-              Interview Experiences
-            </span>
-          </motion.h1>
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse" />
+        <div
+          className="absolute bottom-40 right-10 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        />
+      </div>
 
-          <motion.p
-            variants={fadeIn("up", 0.4)}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            className="max-w-3xl mx-auto text-white/70 text-base xl:text-lg leading-relaxed"
-          >
-            Interviews with leading companies, insights from technical
-            assessments, and learnings from preparation and performance across
-            various positions.
-          </motion.p>
-        </div>
-
-        {/* Search Bar */}
+      <div className="container mx-auto px-4 py-12 xl:py-20 relative z-10">
+        {/* Compact Hero Section */}
         <motion.div
-          variants={fadeIn("up", 0.5)}
-          initial="hidden"
-          animate="show"
-          exit="hidden"
-          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-10 xl:mb-14"
         >
-          <div className="flex-1 relative max-w-2xl mx-auto">
-            <HiMagnifyingGlass className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/40 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search by company, position, or topics..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-accent/30 focus:bg-white/10 transition-all duration-300"
-            />
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="flex items-center gap-3 mb-4"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                  <HiUserGroup className="w-6 h-6 text-white" />
+                </div>
+                <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-purple-500/50 to-transparent" />
+              </motion.div>
+
+              <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white mb-3">
+                Interview <span className="text-accent">Experiences</span>
+              </h1>
+              <p className="text-white/60 max-w-xl text-sm md:text-base">
+                Technical assessments, learnings, and insights from interviews
+                with leading companies
+              </p>
+            </div>
+
+            {/* Inline Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-wrap gap-6 lg:gap-8"
+            >
+              {[
+                {
+                  value: interviewStats.totalInterviews,
+                  label: "Interviews",
+                  icon: <HiBriefcase className="w-4 h-4" />,
+                },
+                {
+                  value: interviewStats.completedInterviews,
+                  label: "Completed",
+                  icon: <HiCheckCircle className="w-4 h-4" />,
+                },
+                {
+                  value: interviewStats.totalTopics,
+                  label: "Topics",
+                  icon: <HiFire className="w-4 h-4" />,
+                },
+              ].map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className="flex items-center justify-center gap-1.5 text-accent mb-1">
+                    {stat.icon}
+                    <span className="text-2xl xl:text-3xl font-bold">
+                      {stat.value}
+                    </span>
+                  </div>
+                  <span className="text-xs text-white/50 uppercase tracking-wider">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Status Filter Buttons */}
+        {/* Search & Filter Bar */}
         <motion.div
-          variants={fadeIn("up", 0.5)}
-          initial="hidden"
-          animate="show"
-          exit="hidden"
-          className="mb-12 flex justify-center gap-4 flex-wrap"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-10"
         >
-          {[
-            {
-              label: "All Interviews",
-              value: "all",
-              icon: <HiBriefcase className="w-4 h-4" />,
-            },
-            {
-              label: "Completed",
-              value: "Completed",
-              icon: <HiCheckBadge className="w-4 h-4" />,
-            },
-          ].map((filter) => (
-            <motion.button
-              key={filter.value}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setStatusFilter(filter.value)}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
-                statusFilter === filter.value
-                  ? "bg-accent text-white shadow-lg shadow-accent/50"
-                  : "bg-white/10 border border-white/20 text-white/70 hover:bg-white/20 hover:border-white/40"
-              }`}
-            >
-              {filter.icon}
-              {filter.label}
-            </motion.button>
-          ))}
-        </motion.div>
-
-        {/* Premium Stats Cards */}
-        <motion.div
-          variants={fadeIn("up", 0.5)}
-          initial="hidden"
-          animate="show"
-          exit="hidden"
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-6 mb-12 xl:mb-16"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              variants={fadeIn("up", stat.delay)}
-              initial="hidden"
-              animate="show"
-              whileHover={{ translateY: -5 }}
-              className="relative group"
-            >
-              <div
-                className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl blur-xl -z-10"
-                style={{
-                  background: `linear-gradient(to bottom right, var(--color-accent), transparent)`,
-                }}
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
+            {/* Search Input */}
+            <div className="relative flex-1 max-w-md">
+              <HiMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search company, position, topics..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-white/5 border border-white/10 rounded-full pl-12 pr-6 py-3 text-white placeholder-white/40 focus:outline-none focus:border-accent/50 focus:bg-white/10 transition-all duration-300 text-sm"
               />
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-4 xl:p-6 hover:border-accent/50 transition-all duration-300">
-                <div
-                  className={`w-12 h-12 xl:w-14 xl:h-14 rounded-xl bg-gradient-to-br ${stat.color} p-2.5 xl:p-3 mb-3 xl:mb-4 text-white shadow-lg`}
+            </div>
+
+            {/* Filter Pills */}
+            <div className="flex gap-2">
+              {[
+                {
+                  label: "All",
+                  value: "all",
+                  icon: <HiSparkles className="w-4 h-4" />,
+                },
+                {
+                  label: "Completed",
+                  value: "Completed",
+                  icon: <HiCheckBadge className="w-4 h-4" />,
+                },
+              ].map((filter) => (
+                <motion.button
+                  key={filter.value}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setStatusFilter(filter.value)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                    statusFilter === filter.value
+                      ? "bg-accent text-white shadow-lg shadow-accent/30"
+                      : "bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"
+                  }`}
                 >
-                  {stat.icon}
-                </div>
-                <div className="text-2xl xl:text-3xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-xs xl:text-sm text-white/60 font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                  {filter.icon}
+                  <span>{filter.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* Interviews Grid */}
         <motion.div
-          variants={fadeIn("up", 0.7)}
-          initial="hidden"
-          animate="show"
-          exit="hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
           className="w-full"
         >
           {filteredInterviews.length === 0 ? (
@@ -250,8 +250,10 @@ const Interviews = () => {
               className="flex flex-col items-center justify-center py-20"
             >
               <div className="text-center">
-                <HiMagnifyingGlass className="w-16 h-16 text-white/30 mx-auto mb-4" />
-                <p className="text-xl text-white/50">
+                <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
+                  <HiMagnifyingGlass className="w-8 h-8 text-white/30" />
+                </div>
+                <p className="text-lg text-white/50">
                   No interviews found matching "{searchQuery}"
                 </p>
                 <p className="text-sm text-white/40 mt-2">
@@ -260,96 +262,85 @@ const Interviews = () => {
               </div>
             </motion.div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-6">
               {filteredInterviews.map((interview, idx) => (
                 <motion.div
                   key={interview.id}
-                  variants={fadeIn("up", 0.3 + idx * 0.1)}
-                  initial="hidden"
-                  animate="show"
-                  exit="hidden"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * idx, duration: 0.4 }}
                   onClick={() => setSelectedInterview(interview)}
                   className="group cursor-pointer"
                 >
                   <motion.div
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.3 }}
-                    className="relative h-full bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-6 xl:p-8 hover:border-accent/50 transition-all duration-300 backdrop-blur-sm"
+                    whileHover={{ y: -5, scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative h-full bg-white/5 border border-white/10 rounded-2xl p-5 xl:p-6 hover:border-accent/40 hover:bg-white/[0.07] transition-all duration-300 backdrop-blur-sm"
                   >
-                    {/* Highlight badge top-right */}
-                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-accent/20 border border-accent/40 text-accent shadow-lg">
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Status badge */}
+                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium bg-accent/10 border border-accent/30 text-accent">
                       {interview.status}
                     </div>
+
                     {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <h3 className="text-xl xl:text-2xl font-bold text-white mb-1">
-                          {interview.company}
-                        </h3>
-                        <p className="text-sm xl:text-base text-accent font-semibold mb-2">
-                          {interview.position}
-                        </p>
-                        <div className="flex flex-col gap-1 text-xs xl:text-sm text-white/60">
-                          <div className="flex items-center gap-2">
-                            <HiCalendarDays className="w-4 h-4 flex-shrink-0" />
-                            <span>{interview.date}</span>
-                          </div>
-                          {interview.location && (
-                            <div className="flex items-center gap-2">
-                              <HiMapPin className="w-4 h-4 flex-shrink-0" />
-                              <span>{interview.location}</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Type & Status Badges */}
-                    <div className="mb-6 flex gap-2 flex-wrap">
-                      <div className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-xs text-blue-300 font-medium">
-                        {interview.type}
-                      </div>
-                      <div className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs text-white/70">
-                        {interview.duration}
-                      </div>
-                    </div>
-
-                    {/* Topics Tags */}
-                    <div className="mb-6">
-                      <p className="text-xs xl:text-sm text-white/50 mb-3 font-semibold uppercase tracking-wider">
-                        Topics Covered
+                    <div className="relative mb-4">
+                      <h3 className="text-lg xl:text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors">
+                        {interview.company}
+                      </h3>
+                      <p className="text-sm text-accent/80 font-medium mb-3">
+                        {interview.position}
                       </p>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-3 text-xs text-white/50">
+                        <div className="flex items-center gap-1.5">
+                          <HiCalendarDays className="w-3.5 h-3.5" />
+                          <span>{interview.date}</span>
+                        </div>
+                        {interview.location && (
+                          <div className="flex items-center gap-1.5">
+                            <HiMapPin className="w-3.5 h-3.5" />
+                            <span>{interview.location}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Type & Duration Pills */}
+                    <div className="relative mb-5 flex gap-2 flex-wrap">
+                      <span className="px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs text-blue-400 font-medium">
+                        {interview.type}
+                      </span>
+                      <span className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/60">
+                        {interview.duration}
+                      </span>
+                    </div>
+
+                    {/* Topics */}
+                    <div className="relative mb-5">
+                      <div className="flex flex-wrap gap-1.5">
                         {interview.topics.slice(0, 3).map((topic, i) => (
-                          <motion.div
+                          <span
                             key={i}
-                            whileHover={{ scale: 1.05 }}
-                            className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs text-white/70 hover:bg-accent/20 hover:border-accent/50 transition-all"
+                            className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-md text-xs text-white/60"
                           >
                             {topic}
-                          </motion.div>
+                          </span>
                         ))}
                         {interview.topics.length > 3 && (
-                          <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs text-white/70 hover:bg-accent/20 hover:border-accent/50 transition-all"
-                          >
-                            +{interview.topics.length - 3} more
-                          </motion.div>
+                          <span className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-md text-xs text-white/50">
+                            +{interview.topics.length - 3}
+                          </span>
                         )}
                       </div>
                     </div>
 
                     {/* View Details Button */}
-                    <motion.button
-                      onClick={() => setSelectedInterview(interview)}
-                      className="w-full bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/30 text-accent py-3 rounded-xl font-semibold hover:from-accent hover:to-accent/90 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
+                    <button className="relative w-full bg-white/5 border border-white/10 text-white/70 py-2.5 rounded-xl text-sm font-medium group-hover:bg-accent group-hover:border-accent group-hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
                       <span>View Details</span>
                       <HiRocketLaunch className="w-4 h-4" />
-                    </motion.button>
+                    </button>
                   </motion.div>
                 </motion.div>
               ))}
@@ -357,6 +348,8 @@ const Interviews = () => {
           )}
         </motion.div>
       </div>
+
+      <Bulb />
 
       {/* Interview Detail Modal */}
       <AnimatePresence>
