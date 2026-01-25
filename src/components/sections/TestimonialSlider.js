@@ -18,7 +18,7 @@ import "swiper/css/effect-coverflow";
 // --- DATA ---
 const testimonialData = [
   {
-    image: "/dsp.png",
+    image: "/ashok marnala.jpg",
     name: "Ashok Marnala",
     position: "Coding Mentor",
     message:
@@ -32,14 +32,14 @@ const testimonialData = [
       "What I really appreciate about working with Vinay is he never settles for 'good enough'. Had this one project where the app was laggy - he kept optimizing until it felt smooth. Plus he explains things in a way that makes sense, helped our juniors pick up concepts way faster.",
   },
   {
-    image: "/hanumanthu.png",
+    image: "/siva sattiraju.jpg",
     name: "Siva Sattiraju",
     position: "Client - Matrix AI",
     message:
       "Hired Vinay for the Matrix AI project and honestly exceeded expectations. He got what we needed without endless back-and-forth. Updates were regular, code was solid, and when we had changes (which we did), he adapted quickly. Would definitely work with him again.",
   },
   {
-    image: "/Kiran Kumar.png",
+    image: "/babjineelam.jpg",
     name: "Babji Neelam",
     position: "CEO - Technical Hub",
     message:
@@ -60,7 +60,7 @@ const testimonialData = [
       "Mentoring Vinay has been interesting because he connects the dots. Like when we discussed databases, he immediately thought about how it affects the frontend. Gets the full picture instead of thinking in silos. His code reviews are thorough too - catches things others miss.",
   },
   {
-    image: "/dsp.png",
+    image: "/girish varri.jpg",
     name: "Girri Varri",
     position: "Backend Mentor",
     message:

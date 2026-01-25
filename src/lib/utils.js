@@ -3,8 +3,6 @@
  * Common helper functions used across the application
  */
 
-import { clsx } from "clsx";
-
 /**
  * Merge class names conditionally
  * @param  {...any} inputs - Class names or conditional class objects

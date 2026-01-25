@@ -1,9 +1,6 @@
 export { default as Avatar } from "./Avatar";
 export { default as Bulb } from "./Bulb";
 export { default as Circles } from "./Circles";
-export { default as TopLeftImg } from "./TopLeftImg";
-export { default as Socials } from "./Socials";
 export { default as ResumeButtons } from "./ResumeButtons";
 export { default as ThemeToggle } from "./ThemeToggle";
 export { default as ProjectsNavbar } from "./ProjectsNavbar";
-export { default as Globe } from "./globe";

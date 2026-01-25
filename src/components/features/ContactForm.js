@@ -36,193 +36,51 @@ const CenteredLoader = () => (
   </div>
 );
 
-// Premium Confetti Overlay with elegant animations
+// Clean Success Overlay
 const ConfettiOverlay = ({ isVisible, confettiRef }) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-[70]">
-      {/* Premium Success Card */}
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[70] p-4">
       <motion.div
-        initial={{ scale: 0.5, opacity: 0, rotateY: -180 }}
-        animate={{ scale: 1, opacity: 1, rotateY: 0 }}
-        transition={{
-          type: "spring",
-          stiffness: 260,
-          damping: 20,
-          duration: 0.8,
-        }}
-        className="relative bg-gradient-to-br from-white/15 via-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-10 flex flex-col items-center gap-6 border border-white/20 shadow-2xl max-w-md"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        className="relative bg-primary/95 backdrop-blur-xl rounded-3xl p-8 md:p-10 flex flex-col items-center gap-6 border border-white/10 shadow-2xl max-w-sm w-full"
       >
-        {/* Animated gradient border effect */}
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-accent via-purple-500 to-accent opacity-20 blur-xl animate-pulse"></div>
-
-        {/* Success Icon with Premium Animation */}
+        {/* Success Icon */}
         <motion.div
           initial={{ scale: 0 }}
-          animate={{ scale: 1, rotate: 360 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          className="relative"
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+          className="w-20 h-20 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-green-500/30"
         >
-          {/* Outer glow rings */}
-          <motion.div
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.5, 0, 0.5],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute inset-0 bg-green-400 rounded-full blur-2xl"
-          ></motion.div>
-
-          {/* Icon container */}
-          <div className="relative bg-gradient-to-br from-green-400 to-emerald-500 p-6 rounded-full shadow-lg shadow-green-500/50">
-            <motion.div
-              animate={{
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <BsCheckCircle className="text-white text-5xl drop-shadow-lg" />
-            </motion.div>
-          </div>
-
-          {/* Sparkle particles around icon */}
-          {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ scale: 0, rotate: 0 }}
-              animate={{
-                scale: [0, 1, 0],
-                rotate: [0, 180, 360],
-                x: [0, Math.cos((i * Math.PI * 2) / 8) * 60, 0],
-                y: [0, Math.sin((i * Math.PI * 2) / 8) * 60, 0],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: i * 0.1,
-                ease: "easeInOut",
-              }}
-              className="absolute top-1/2 left-1/2 w-2 h-2 bg-yellow-400 rounded-full"
-              style={{ marginLeft: "-4px", marginTop: "-4px" }}
-            />
-          ))}
+          <BsCheckCircle className="text-white text-4xl" />
         </motion.div>
 
-        {/* Success Message */}
+        {/* Message */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-center space-y-3 relative z-10"
+          transition={{ delay: 0.2 }}
+          className="text-center space-y-3"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
-            className="space-y-2"
-          >
-            <h3 className="text-3xl font-bold bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
-              Message Sent Successfully!
-            </h3>
-            <div className="flex items-center justify-center gap-2">
-              <motion.span
-                animate={{ rotate: [0, 20, -20, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }}
-                className="text-2xl"
-              >
-                🎉
-              </motion.span>
-              <motion.span
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{
-                  duration: 0.5,
-                  repeat: Infinity,
-                  repeatDelay: 1,
-                  delay: 0.2,
-                }}
-                className="text-2xl"
-              >
-                ✨
-              </motion.span>
-              <motion.span
-                animate={{ rotate: [0, -20, 20, 0] }}
-                transition={{
-                  duration: 0.5,
-                  repeat: Infinity,
-                  repeatDelay: 1,
-                  delay: 0.4,
-                }}
-                className="text-2xl"
-              >
-                🎊
-              </motion.span>
-            </div>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-white/80 text-lg leading-relaxed max-w-sm"
-          >
-            Thank you for reaching out! I've received your message and will get
-            back to you as soon as possible.
-          </motion.p>
-
-          {/* Premium badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent/20 to-purple-500/20 border border-accent/30 rounded-full backdrop-blur-sm"
-          >
-            <span className="text-accent text-sm font-medium">
-              Estimated Response Time: 24-48 hours
-            </span>
-          </motion.div>
+          <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
+          <p className="text-white/60 leading-relaxed">
+            Thanks for reaching out. I'll get back to you within 24 hours.
+          </p>
         </motion.div>
 
-        {/* Decorative elements */}
-        <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-            scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-          }}
-          className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-accent/10 to-purple-500/10 rounded-full blur-2xl"
-        />
-        <motion.div
-          animate={{
-            rotate: -360,
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            rotate: { duration: 15, repeat: Infinity, ease: "linear" },
-            scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
-          }}
-          className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-accent/10 rounded-full blur-2xl"
-        />
+        {/* Close hint */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-white/30 text-sm"
+        >
+          This will close automatically
+        </motion.p>
       </motion.div>
-
-      {/* Premium Confetti container - full screen */}
-      <div
-        ref={confettiRef}
-        className="fixed inset-0 pointer-events-none z-[60]"
-      >
-        {/* Confetti particles will be added here by GSAP */}
-      </div>
     </div>
   );
 };
@@ -281,7 +139,7 @@ const ContactForm = ({ compact = false }) => {
         colors,
         centerX,
         centerY,
-        "burst"
+        "burst",
       );
     }
 
@@ -573,34 +431,40 @@ const ContactForm = ({ compact = false }) => {
             {/* Error Message */}
             {status === "error" && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="mt-6 flex flex-col items-center gap-3 bg-red-500/10 border border-red-400/50 rounded-xl p-6 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 p-5 rounded-2xl bg-red-500/10 border border-red-500/20"
               >
-                <svg
-                  fill="none"
-                  className="w-8 h-8 text-red-400"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    fill="currentColor"
-                    opacity="0.1"
-                  />
-                  <path
-                    d="M15 9l-6 6m0-6l6 6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <div className="text-red-400 font-semibold text-lg">
-                  Oops! Something went wrong.
-                </div>
-                <div className="text-red-300 text-center">
-                  Please try again or contact me directly.
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-5 h-5 text-red-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-red-400 font-semibold mb-1">
+                      Failed to send message
+                    </p>
+                    <p className="text-red-300/70 text-sm">
+                      Something went wrong. Please email me directly at{" "}
+                      <a
+                        href="mailto:vinaykishore2512@gmail.com"
+                        className="text-red-400 underline hover:no-underline"
+                      >
+                        vinaykishore2512@gmail.com
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             )}

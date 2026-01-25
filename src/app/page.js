@@ -2,18 +2,7 @@
 //Importing React and other important libraries
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import {
-  HiBolt,
-  HiRocketLaunch,
-  HiWrenchScrewdriver,
-  HiSparkles,
-  HiMiniBriefcase,
-  HiCpuChip,
-  HiLightBulb,
-  HiCheckBadge,
-  HiArrowTrendingUp,
-  HiEnvelope,
-} from "react-icons/hi2";
+import { HiArrowTrendingUp, HiEnvelope } from "react-icons/hi2";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 //Importing Components
@@ -34,7 +23,7 @@ const TestimonialSlider = dynamic(
   () => import("@/components/sections/TestimonialSlider"),
   {
     loading: () => <div className="h-screen" />,
-  }
+  },
 );
 
 //Home Page
@@ -45,31 +34,10 @@ const Home = () => {
   const [suggestedBooksPage, setSuggestedBooksPage] = useState(1);
   const booksPerPage = 8;
 
-  const servicePillars = [
-    {
-      title: "Product Engineering",
-      copy: "From idea to launch with frontend, backend, and DX focus. Building scalable solutions that users love.",
-      icon: <HiMiniBriefcase />,
-      gradient: "from-rose-500/20 to-orange-500/10",
-    },
-    {
-      title: "Experience Design",
-      copy: "UI/UX with motion, accessibility, and responsive polish. Creating delightful digital experiences.",
-      icon: <HiSparkles />,
-      gradient: "from-violet-500/20 to-purple-500/10",
-    },
-    {
-      title: "Systems & Tooling",
-      copy: "APIs, pipelines, and dev tooling that scale reliably. Infrastructure that just works.",
-      icon: <HiWrenchScrewdriver />,
-      gradient: "from-cyan-500/20 to-blue-500/10",
-    },
-  ];
-
   const achievements = [
     {
       title: "LeetCode Knight",
-      subtitle: "660+ solved | Peak 1813",
+      subtitle: "700+ solved | Peak 1896",
       badge: "Knight",
     },
     {
@@ -84,57 +52,112 @@ const Home = () => {
     },
   ];
 
-  const currentlyBuilding = [
-    {
-      title: "Sign Language Converter",
-      description:
-        "Building an app that converts text to sign language gestures and vice versa, helping deaf and mute individuals communicate seamlessly with others.",
-      progress: 65,
-      tags: ["React Native", "TensorFlow", "Computer Vision"],
-    },
-    {
-      title: "Connect App Separation",
-      description:
-        "Converting the Connect app into 3 individual applications - Blood Donation Service, Human Safety Service, and Ambulance Service for better focus and performance.",
-      progress: 50,
-      tags: ["React Native", "Firebase", "Microservices"],
-    },
-  ];
-
   return (
     <>
-      <div className="bg-primary/60 h-screen relative pt-24 sm:pt-28">
+      <div className="bg-primary/60 min-h-screen relative pt-24 sm:pt-28 overflow-hidden">
         {/* Particles Background - Top Layer */}
         <div className="absolute inset-0 z-0">
           <ParticlesContainer />
         </div>
 
+        {/* Animated gradient orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-pulse" />
+          <div
+            className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: "1s" }}
+          />
+          <div
+            className="absolute top-1/2 left-1/3 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: "2s" }}
+          />
+        </div>
+
         {/* Text */}
         <Bulb />
-        <div className="text-center flex flex-col justify-center xl:pt-40 xl:text-left h-full container mx-auto relative z-10">
+        <div className="text-center flex flex-col justify-center xl:pt-40 xl:text-left h-full container mx-auto relative z-10 px-4">
+          {/* Badge */}
+          <motion.div
+            variants={fadeIn("down", 0.1)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            className="flex justify-center xl:justify-start mb-6"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium">
+              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+              Available for opportunities
+            </span>
+          </motion.div>
+
           <motion.h1
             variants={fadeIn("down", 0.2)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="h1"
+            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold leading-tight mb-6"
           >
-            I&apos;m<span className="text-accent"> Vinay</span> <br />
-            Software Developer
+            I&apos;m{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-orange-400 to-accent">
+              Vinay
+            </span>
+            <br />
+            <span className="text-white/90">Software Developer</span>
           </motion.h1>
           <motion.p
             variants={fadeIn("down", 0.3)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
+            className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-8 xl:mb-10 text-white/70 text-base md:text-lg leading-relaxed"
           >
             Crafting elegant, scalable digital experiences through modern web
             technologies. I specialize in full-stack development, building
-            production-ready applications that solve real-world problems. Driven
-            by a passion for clean code, continuous learning, and creating
-            technology that truly matters.
+            production-ready applications that solve real-world problems.
           </motion.p>
+
+          {/* Quick Stats */}
+          <motion.div
+            variants={fadeIn("down", 0.35)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            className="flex flex-wrap justify-center xl:justify-start gap-6 mb-10"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-2xl md:text-3xl font-bold text-accent">
+                700+
+              </span>
+              <span className="text-white/60 text-sm">
+                LeetCode
+                <br />
+                Problems
+              </span>
+            </div>
+            <div className="w-px h-12 bg-white/10 hidden sm:block" />
+            <div className="flex items-center gap-2">
+              <span className="text-2xl md:text-3xl font-bold text-accent">
+                3+
+              </span>
+              <span className="text-white/60 text-sm">
+                Years of
+                <br />
+                Experience
+              </span>
+            </div>
+            <div className="w-px h-12 bg-white/10 hidden sm:block" />
+            <div className="flex items-center gap-2">
+              <span className="text-2xl md:text-3xl font-bold text-accent">
+                20+
+              </span>
+              <span className="text-white/60 text-sm">
+                Projects
+                <br />
+                Delivered
+              </span>
+            </div>
+          </motion.div>
+
           {/* Resume Buttons */}
           <motion.div
             variants={fadeIn("down", 0.4)}
@@ -208,7 +231,7 @@ const Home = () => {
               {booksRead
                 .slice(
                   (readBooksPage - 1) * booksPerPage,
-                  readBooksPage * booksPerPage
+                  readBooksPage * booksPerPage,
                 )
                 .map((book, index) => (
                   <motion.div
@@ -274,8 +297,8 @@ const Home = () => {
                     setReadBooksPage((p) =>
                       Math.min(
                         Math.ceil(booksRead.length / booksPerPage),
-                        p + 1
-                      )
+                        p + 1,
+                      ),
                     )
                   }
                   disabled={
@@ -304,7 +327,7 @@ const Home = () => {
               {booksSuggested
                 .slice(
                   (suggestedBooksPage - 1) * booksPerPage,
-                  suggestedBooksPage * booksPerPage
+                  suggestedBooksPage * booksPerPage,
                 )
                 .map((book, index) => (
                   <motion.div
@@ -367,8 +390,8 @@ const Home = () => {
                     setSuggestedBooksPage((p) =>
                       Math.min(
                         Math.ceil(booksSuggested.length / booksPerPage),
-                        p + 1
-                      )
+                        p + 1,
+                      ),
                     )
                   }
                   disabled={
@@ -381,140 +404,6 @@ const Home = () => {
                 </button>
               </div>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* Service Pillars - Enhanced */}
-      <section className="relative bg-primary/40 px-4 md:px-6 lg:px-10 py-16 md:py-20 overflow-hidden">
-        <div className="container mx-auto">
-          <motion.div
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-center mb-10 md:mb-14"
-          >
-            <span className="text-accent text-xs md:text-sm font-semibold tracking-widest uppercase mb-3 md:mb-4 block">
-              Services
-            </span>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-4">
-              How I Can <span className="text-accent">Help You</span>
-            </h3>
-            <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto">
-              Specialized expertise to bring your digital vision to life
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            {servicePillars.map((card, index) => (
-              <motion.div
-                key={card.title}
-                variants={fadeIn("up", 0.3 + index * 0.15)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div
-                  className={`relative h-full rounded-3xl border border-white/10 bg-gradient-to-br ${card.gradient} backdrop-blur-sm p-6 md:p-8 shadow-xl transition-all duration-500 hover:border-accent/40 hover:shadow-accent/10 hover:shadow-2xl card-shine`}
-                >
-                  {/* Icon container */}
-                  <div className="w-14 md:w-16 h-14 md:h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-accent/20 transition-all duration-300 group-hover:scale-110">
-                    <span className="text-accent text-2xl md:text-3xl">
-                      {card.icon}
-                    </span>
-                  </div>
-
-                  <h4 className="text-lg md:text-xl lg:text-2xl font-bold text-white mb-3 md:mb-4 group-hover:text-accent transition-colors duration-300">
-                    {card.title}
-                  </h4>
-                  <p className="text-white/70 leading-relaxed">{card.copy}</p>
-
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Currently Building Section */}
-      <section className="relative bg-primary px-4 md:px-6 lg:px-10 py-16 md:py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
-        </div>
-
-        <div className="container mx-auto relative z-10">
-          <motion.div
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-center mb-10 md:mb-14"
-          >
-            <span className="inline-flex items-center gap-2 text-accent text-xs md:text-sm font-semibold tracking-widest uppercase mb-3 md:mb-4 px-4 py-2 rounded-full bg-accent/10 border border-accent/20">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              Live Projects
-            </span>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-4">
-              What I&apos;m <span className="text-accent">Building</span>
-            </h3>
-            <p className="text-white/60 max-w-2xl mx-auto">
-              Current projects I&apos;m actively working on
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {currentlyBuilding.map((project, index) => (
-              <motion.div
-                key={project.title}
-                variants={fadeIn("up", 0.3 + index * 0.15)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="relative h-full rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 shadow-xl hover:border-accent/30 transition-all duration-500 card-shine">
-                  <div className="flex items-start justify-between mb-4">
-                    <h4 className="text-xl font-bold text-white group-hover:text-accent transition-colors">
-                      {project.title}
-                    </h4>
-                    <span className="text-accent font-bold text-lg">
-                      {project.progress}%
-                    </span>
-                  </div>
-
-                  <p className="text-white/70 mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Progress bar */}
-                  <div className="relative h-2 bg-white/10 rounded-full overflow-hidden mb-6">
-                    <motion.div
-                      className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent to-accent/70 rounded-full"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${project.progress}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5, ease: "easeOut" }}
-                    />
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
@@ -566,80 +455,246 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative bg-primary/40 px-4 md:px-6 lg:px-10 py-16 md:py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+      {/* Existing Sections */}
+      <TestimonialSlider />
+
+      {/* Footer Section */}
+      <footer className="relative bg-gradient-to-b from-primary via-primary/95 to-black border-t border-white/10 px-4 md:px-6 lg:px-10 py-16 md:py-24 overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-40 right-1/4 w-96 h-96 bg-accent/3 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/[0.02] rounded-full blur-3xl" />
         </div>
 
-        <div className="container mx-auto relative z-10">
+        <div className="container mx-auto relative z-10 max-w-7xl">
+          {/* Main CTA */}
           <motion.div
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView="show"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto"
+            className="text-center mb-16 md:mb-20"
           >
-            <h3 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
-              Ready to Build Something{" "}
-              <span className="text-accent">Amazing?</span>
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Let&apos;s Build Something{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-orange-400">
+                Amazing
+              </span>
             </h3>
-            <p className="text-white/70 text-lg mb-10 leading-relaxed">
-              Let&apos;s collaborate on your next project. Whether it&apos;s a
-              stunning website, a powerful web app, or anything in between –
-              I&apos;m here to help bring your vision to life.
+            <p className="text-white/60 max-w-xl mx-auto mb-8">
+              Have a project in mind? Let&apos;s collaborate and bring your
+              ideas to life.
             </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-accent to-accent/80 text-white font-semibold shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-105 transition-all"
+            >
+              Start a Conversation
+              <HiArrowTrendingUp size={20} />
+            </Link>
+          </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-accent text-primary font-semibold shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all text-center"
-              >
-                Start a Project
-              </Link>
-              <Link
-                href="/work"
-                className="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl border border-white/15 text-white font-semibold bg-white/5 hover:bg-white/10 hover:border-accent/40 transition-all text-center"
-              >
-                View Work
-              </Link>
-            </div>
-
-            {/* Social links */}
-            <div className="flex items-center justify-center gap-4 mt-10">
-              <span className="text-white/60 text-sm">Find me on</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 mb-12 md:mb-16">
+            {/* Brand Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-1"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center shadow-lg shadow-accent/20">
+                  <span className="text-white font-bold text-xl">VK</span>
+                </div>
+                <span className="text-xl font-bold text-white">
+                  Vinay Kishore
+                </span>
+              </div>
+              <p className="text-white/60 text-sm leading-relaxed mb-6">
+                Full-stack developer passionate about building amazing digital
+                experiences and solving complex problems.
+              </p>
               <div className="flex gap-3">
                 <a
                   href="https://github.com/VinayKishore25"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-white/20 transition-all"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-accent/10 hover:border-accent/30 transition-all"
                 >
-                  <FaGithub />
+                  <FaGithub size={18} />
                 </a>
                 <a
                   href="https://linkedin.com/in/vinaykishore2512"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-white/20 transition-all"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-accent/10 hover:border-accent/30 transition-all"
                 >
-                  <FaLinkedin />
+                  <FaLinkedin size={18} />
+                </a>
+                <a
+                  href="https://twitter.com/vinaykishore25"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-accent/10 hover:border-accent/30 transition-all"
+                >
+                  <FaTwitter size={18} />
                 </a>
                 <a
                   href="mailto:vinaykishore2512@gmail.com"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-white/20 transition-all"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:bg-accent/10 hover:border-accent/30 transition-all"
                 >
-                  <HiEnvelope />
+                  <HiEnvelope size={18} />
                 </a>
               </div>
+            </motion.div>
+
+            {/* Navigation Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <h4 className="text-white font-semibold mb-5 flex items-center gap-2">
+                <span className="w-8 h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full" />
+                Navigation
+              </h4>
+              <div className="space-y-3">
+                {[
+                  { name: "Home", path: "/" },
+                  { name: "About Me", path: "/about" },
+                  { name: "My Skills", path: "/skills" },
+                  { name: "Blog Posts", path: "/blogs" },
+                ].map((link) => (
+                  <Link
+                    key={link.path}
+                    href={link.path}
+                    className="flex items-center gap-2 text-white/60 hover:text-accent transition-all group"
+                  >
+                    <span className="w-0 group-hover:w-4 h-[1px] bg-accent transition-all duration-300" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      {link.name}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Work & Projects */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <h4 className="text-white font-semibold mb-5 flex items-center gap-2">
+                <span className="w-8 h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full" />
+                Work & Projects
+              </h4>
+              <div className="space-y-3">
+                {[
+                  { name: "Experience", path: "/work/experience" },
+                  { name: "Interviews", path: "/work/interviews" },
+                  { name: "Freelance", path: "/work/freelance" },
+                  { name: "Coding Journey", path: "/coding-journey" },
+                ].map((link) => (
+                  <Link
+                    key={link.path}
+                    href={link.path}
+                    className="flex items-center gap-2 text-white/60 hover:text-accent transition-all group"
+                  >
+                    <span className="w-0 group-hover:w-4 h-[1px] bg-accent transition-all duration-300" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      {link.name}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Get In Touch */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <h4 className="text-white font-semibold mb-5 flex items-center gap-2">
+                <span className="w-8 h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full" />
+                Get In Touch
+              </h4>
+              <p className="text-white/60 text-sm mb-6">
+                Ready to collaborate? Reach out and let&apos;s create something
+                amazing together.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 w-full px-5 py-3 rounded-xl bg-gradient-to-r from-accent to-accent/80 text-white font-semibold shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all text-center justify-center text-sm"
+              >
+                <HiEnvelope size={16} />
+                Contact Me
+              </Link>
+              <div className="mt-4 p-4 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+                <p className="text-white/40 text-xs mb-2">Email me at</p>
+                <a
+                  href="mailto:vinaykishore2512@gmail.com"
+                  className="text-white/80 text-sm hover:text-accent transition-colors"
+                >
+                  vinaykishore2512@gmail.com
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
+
+          {/* Bottom Footer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row items-center justify-between gap-4"
+          >
+            <p className="text-white/50 text-sm text-center sm:text-left">
+              © {new Date().getFullYear()} Vinay Kishore. Crafted with ❤️ using
+              Next.js
+            </p>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/blogs"
+                className="text-white/50 hover:text-accent text-sm transition-colors"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/skills"
+                className="text-white/50 hover:text-accent text-sm transition-colors"
+              >
+                Skills
+              </Link>
+              <Link
+                href="/contact"
+                className="text-white/50 hover:text-accent text-sm transition-colors"
+              >
+                Contact
+              </Link>
             </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Existing Sections */}
-      <TestimonialSlider />
+          {/* Scroll to top button */}
+          <motion.button
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent/20 border border-accent/40 text-accent flex items-center justify-center hover:bg-accent/30 transition-all z-40 hidden lg:flex"
+          >
+            <HiArrowTrendingUp className="rotate-[-45deg]" size={20} />
+          </motion.button>
+        </div>
+      </footer>
+
       <ScrollControls />
     </>
   );

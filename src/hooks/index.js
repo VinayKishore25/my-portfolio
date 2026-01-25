@@ -3,10 +3,4 @@
  * Export all custom hooks from a single entry point
  */
 
-export { useInViewAnimation } from "./useInViewAnimation";
-export {
-  useMediaQuery,
-  useIsMobile,
-  useIsTablet,
-  useIsDesktop,
-} from "./useMediaQuery";
+// Currently no hooks in use - placeholder for future hooks
