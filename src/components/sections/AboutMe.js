@@ -23,7 +23,7 @@ const AboutMe = () => {
     },
     {
       icon: <HiRocketLaunch />,
-      label: "18+ Projects Shipped",
+      label: "12+ Projects Shipped",
       color: "text-accent",
     },
     {

@@ -10,7 +10,6 @@ import ParticlesContainer from "@/components/features/ParticlesContainer";
 import ResumeButtons from "@/components/ui/ResumeButtons";
 import Avatar from "@/components/ui/Avatar";
 import Bulb from "@/components/ui/Bulb";
-import ScrollControls from "@/components/features/ScrollControls";
 //Importing Framer Motion
 import { motion, useInView } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
@@ -148,7 +147,7 @@ const Home = () => {
             <div className="w-px h-12 bg-white/10 hidden sm:block" />
             <div className="flex items-center gap-2">
               <span className="text-2xl md:text-3xl font-bold text-accent">
-                20+
+                12
               </span>
               <span className="text-white/60 text-sm">
                 Projects
@@ -694,8 +693,6 @@ const Home = () => {
           </motion.button>
         </div>
       </footer>
-
-      <ScrollControls />
     </>
   );
 };
