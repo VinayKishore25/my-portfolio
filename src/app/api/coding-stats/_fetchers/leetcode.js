@@ -166,7 +166,9 @@ export const fetchLeetCodeStats = async (username) => {
       badges: badges.slice(0, 10).map((badge) => ({
         id: badge.id,
         displayName: badge.displayName,
-        icon: badge.icon,
+        icon: badge.icon?.startsWith("http")
+          ? badge.icon
+          : `https://leetcode.com${badge.icon}`,
       })),
       contestRating: contestRanking?.rating
         ? Math.round(contestRanking.rating)

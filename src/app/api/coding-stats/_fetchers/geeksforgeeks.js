@@ -123,31 +123,37 @@ const getFallbackData = (username) => ({
  * @returns {Promise<Object>} GFG stats object
  */
 export const fetchGeeksforGeeksStats = async (username) => {
-  try {
-    const url = `https://www.geeksforgeeks.org/user/${username}/`;
-    console.log(`Fetching GFG profile: ${url}`);
+  // Try different GFG URLs - auth.geeksforgeeks.org works for scraping
+  const urls = [
+    `https://auth.geeksforgeeks.org/user/${username}`,
+    `https://www.geeksforgeeks.org/user/${username}/`,
+  ];
 
-    const response = await fetchWithTimeout(url);
+  for (const url of urls) {
+    try {
+      console.log(`Fetching GFG profile: ${url}`);
+      const response = await fetchWithTimeout(url);
 
-    if (response.ok) {
-      const html = await response.text();
-      const data = parseGFGProfileData(html);
+      if (response.ok) {
+        const html = await response.text();
+        const data = parseGFGProfileData(html);
 
-      if (data) {
-        console.log("GFG profile data parsed successfully");
-        return {
-          ...data,
-          username: data.username || username,
-        };
+        if (data) {
+          console.log("GFG profile data parsed successfully");
+          return {
+            ...data,
+            username: data.username || username,
+          };
+        }
       }
-    }
 
-    console.log(`GFG fetch failed with status: ${response.status}`);
-  } catch (error) {
-    console.log(`GFG fetch failed:`, error.message);
+      console.log(`GFG fetch failed with status: ${response.status}`);
+    } catch (error) {
+      console.log(`GFG fetch failed:`, error.message);
+    }
   }
 
-  // Scraping failed - return fallback data
+  // All URLs failed - return fallback data
   console.log("GFG scraping failed, returning fallback data");
   return getFallbackData(username);
 };
