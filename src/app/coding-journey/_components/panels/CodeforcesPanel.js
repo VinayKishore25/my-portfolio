@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * CodeforcesPanel Component
  * Displays detailed Codeforces statistics

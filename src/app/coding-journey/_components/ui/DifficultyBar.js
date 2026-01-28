@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * DifficultyBar Component
  * Displays progress bars for LeetCode difficulty levels

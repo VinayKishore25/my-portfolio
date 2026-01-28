@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * GitHubPanel Component
  * Displays detailed GitHub statistics

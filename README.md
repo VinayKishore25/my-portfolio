@@ -1,78 +1,126 @@
-# Vinay's Portfolio
+# Vinay's Portfolio 🚀
 
-A modern, performant portfolio website built with Next.js 16, React 19, and Tailwind CSS.
+A modern, high-performance portfolio website showcasing my journey as a Software Engineer with real-time coding statistics, interactive visualizations, and dynamic content.
 
 ## 🌐 Live Demo
 
 **[vinaykishore25-portfolio.vercel.app](https://vinaykishore25-portfolio.vercel.app)**
 
-## � About
+## 📋 About
 
-This portfolio showcases my journey as a Software Engineer, featuring:
+This portfolio is a comprehensive showcase featuring:
 
-- **Professional Experience** - Work history at Airbus India and other organizations
-- **Technical Skills** - Interactive spider charts and comprehensive skill breakdowns
-- **Coding Journey** - Real-time stats from competitive programming platforms (LeetCode, Codeforces, CodeChef, HackerRank) and GitHub contributions
-- **Projects** - Freelance work, personal projects, and interview experiences
-- **Blog Posts** - Technical articles and learning experiences
-- **Contact Integration** - Direct communication through an integrated contact form
+- **Professional Experience** - Work history at Airbus India, internships, and organizational contributions
+- **Technical Skills** - Interactive spider chart visualizations and comprehensive skill breakdowns
+- **Coding Journey** - Real-time statistics from 6 competitive programming platforms:
+  - LeetCode (problems solved, acceptance rate, ranking, badges)
+  - Codeforces (rating, rank, contest performance)
+  - CodeChef (rating, stars, global/country ranking)
+  - GeeksforGeeks (coding score, problems solved, institute rank, streaks)
+  - HackerRank (skill badges, certifications)
+  - GitHub (contributions, repositories, stars, languages)
+- **Projects Portfolio** - Freelance work, personal projects, and technical interviews
+- **Blog Integration** - Technical articles and learning experiences
+- **Contact System** - Integrated email communication with validation
 
-Built with modern web technologies emphasizing performance, accessibility, and user experience.
+Built with cutting-edge web technologies emphasizing performance, accessibility, and exceptional user experience.
 
-## �🚀 Tech Stack
+## 🛠️ Tech Stack
 
-| Category       | Technologies                           |
-| -------------- | -------------------------------------- |
-| **Framework**  | Next.js 16.1.1 (App Router, Turbopack) |
-| **Frontend**   | React 19, Tailwind CSS                 |
-| **Animations** | Framer Motion, GSAP                    |
-| **Charts**     | Chart.js, react-chartjs-2              |
-| **Icons**      | React Icons (hi2, fa, si)              |
-| **Other**      | tsparticles, Swiper.js, react-pdf      |
+| Category            | Technologies                                             |
+| ------------------- | -------------------------------------------------------- |
+| **Framework**       | Next.js 16.1.1 (App Router, Turbopack)                   |
+| **Frontend**        | React 19, Tailwind CSS                                   |
+| **Animations**      | Framer Motion, GSAP                                      |
+| **Data Viz**        | Chart.js, react-chartjs-2                                |
+| **3D Graphics**     | Three.js, @react-three/fiber, @react-three/drei          |
+| **Icons**           | React Icons (hi2, fa, si, bs)                            |
+| **Particles**       | tsparticles, react-tsparticles                           |
+| **Other Libraries** | Swiper.js, react-pdf, react-countup, nodemailer, cheerio |
 
-## ✨ Features
+## ✨ Key Features
 
-### 🎨 Design & UI
+### 🎨 Design & User Experience
 
-- **8 Color Themes** - Dynamic theme switching with persistent storage (Default, Blue, Green, Purple, Orange, Sapphire VEIL, Amber MIRAGE, Obsidian ROSE)
-- **Fully Responsive** - Mobile-first design that works seamlessly on all devices
-- **Smooth Animations** - Page transitions, scroll animations, and micro-interactions using Framer Motion & GSAP
-- **Interactive Particles** - Dynamic background particle system using tsparticles
-- **Custom Components** - Avatar, decorative elements (bulb, circles), and reusable UI components
+- **8 Dynamic Color Themes**
+  - Default, Blue, Green, Purple, Orange, Sapphire VEIL, Amber MIRAGE, Obsidian ROSE
+  - Theme persistence with localStorage
+  - Smooth transitions between themes
+- **Fully Responsive Design**
+  - Mobile-first approach
+  - Optimized layouts for all screen sizes
+  - Touch-friendly interactions
 
-### ⚡ Performance & Technical
+- **Smooth Animations**
+  - Page transitions using Framer Motion
+  - Scroll-triggered animations with GSAP
+  - Micro-interactions for enhanced UX
+  - Exit animations for smooth navigation
 
-- **Next.js 16 App Router** - Server components, streaming, and optimized routing
-- **Turbopack** - Lightning-fast development builds
-- **Lazy Loading** - Components and images load on demand
-- **Code Splitting** - Automatic code splitting for optimal bundle sizes
-- **SEO Optimized** - Meta tags, structured data, and semantic HTML
+- **Interactive Particles Background**
+  - Dynamic particle system using tsparticles
+  - Configurable density and behavior
+  - Performance-optimized rendering
 
-### 📊 Dynamic Features
+### ⚡ Performance & Architecture
 
-- **Coding Journey Dashboard** - Real-time statistics from:
-  - LeetCode (problems solved, acceptance rate, ranking)
-  - Codeforces (rating, rank, contest participation)
-  - CodeChef (rating, stars, global ranking)
-  - HackerRank (badges, certifications)
-  - GitHub (contributions, repositories, stars)
-- **PDF Resume Viewer** - In-browser PDF rendering with download option
-- **Contact Form** - Email integration with validation and success confetti animation
-- **Spider Charts** - Interactive radar charts for skill visualization using Chart.js
-- **Project Showcases** - Dynamic project cards with filtering and detailed views
+- **Next.js 16 App Router**
+  - React Server Components
+  - Streaming SSR
+  - Optimized routing and navigation
+  - API routes for backend functionality
 
-## 📄 Pages Overview
+- **Turbopack Build System**
+  - Lightning-fast development builds
+  - Hot Module Replacement (HMR)
+  - Incremental compilation
 
-| Page               | Route             | Description                                                |
-| ------------------ | ----------------- | ---------------------------------------------------------- |
-| **Home**           | `/`               | Hero section with introduction and featured projects       |
-| **About**          | `/about`          | Personal background, journey, and professional summary     |
-| **Skills**         | `/skills`         | Interactive spider chart visualization of technical skills |
-| **Work**           | `/work`           | Experience, freelance projects, and interviews             |
-| **Coding Journey** | `/coding-journey` | Live statistics from coding platforms with detailed panels |
-| **Blogs**          | `/blogs`          | Technical articles and blog posts                          |
-| **Services**       | `/services`       | Service offerings with slider carousel                     |
-| **Contact**        | `/contact`        | Contact form with email integration                        |
+- **Optimizations**
+  - Lazy loading for components and images
+  - Automatic code splitting
+  - Image optimization with Next.js Image
+  - Font optimization with @next/font
+
+- **SEO & Accessibility**
+  - Semantic HTML structure
+  - Meta tags and Open Graph data
+  - ARIA labels and roles
+  - Keyboard navigation support
+
+### 📊 Dynamic Content & APIs
+
+- **Real-Time Coding Statistics**
+  - Custom API routes for each platform
+  - Web scraping fallbacks (GeeksforGeeks)
+  - Caching strategy (5-minute cache duration)
+  - Error handling with graceful fallbacks
+  - Loading skeletons for better UX
+
+- **Interactive Data Visualization**
+  - Spider/Radar charts for skill comparison
+  - Progress rings and difficulty bars
+  - Live stat cards with animations
+  - Platform-specific detail panels
+
+- **Email Integration**
+  - Contact form with Nodemailer
+  - Server-side validation
+  - Success animations with confetti effect
+  - Rate limiting and spam protection
+
+### 🎯 Featured Sections
+
+- **Hero Section** - Eye-catching introduction with typing animation
+- **Skills Visualization** - Interactive spider chart powered by Chart.js
+- **Coding Journey Dashboard** - Comprehensive platform statistics with:
+  - Quick stats bar for at-a-glance metrics
+  - Selectable platform cards
+  - Detailed panels with recent contests/submissions
+  - Direct links to profiles
+- **Work Experience** - Timeline of professional journey
+- **Projects Showcase** - Filterable portfolio with detailed views
+- **Blog Articles** - Dynamic blog listing with markdown support
+- **Resume Modal** - In-browser PDF viewer with download option
 
 ## 🏃‍♂️ Quick Start
 

@@ -7,3 +7,4 @@ export { fetchCodeforcesStats } from "./codeforces";
 export { fetchCodeChefStats } from "./codechef";
 export { fetchHackerRankStats } from "./hackerrank";
 export { fetchGitHubStats } from "./github";
+export { fetchGeeksforGeeksStats } from "./geeksforgeeks";

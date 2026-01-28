@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * LeetCodePanel Component
  * Displays detailed LeetCode statistics

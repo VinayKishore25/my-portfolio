@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * ProgressRing Component
  * A circular progress indicator with customizable appearance

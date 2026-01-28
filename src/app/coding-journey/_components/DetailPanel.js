@@ -12,6 +12,7 @@ import {
   CodeChefPanel,
   HackerRankPanel,
   GitHubPanel,
+  GeeksforGeeksPanel,
 } from "./panels";
 
 /**
@@ -23,6 +24,7 @@ const PANEL_MAP = {
   [PLATFORMS.CODECHEF]: CodeChefPanel,
   [PLATFORMS.HACKERRANK]: HackerRankPanel,
   [PLATFORMS.GITHUB]: GitHubPanel,
+  [PLATFORMS.GEEKSFORGEEKS]: GeeksforGeeksPanel,
 };
 
 /**

@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Skeleton Component
  * A placeholder loading indicator for content that is being fetched

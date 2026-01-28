@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * CodeChefPanel Component
  * Displays detailed CodeChef statistics
@@ -62,13 +64,23 @@ export const CodeChefPanel = ({ data, loading }) => {
   if (!data) return <ErrorPanel message="Failed to load CodeChef data" />;
   if (data.apiUnavailable) return <ApiUnavailablePanel />;
 
-  const starCount = parseInt(data.stars) || 0;
+  // Parse star count from string like "2★" or number
+  const starCount =
+    typeof data.stars === "string"
+      ? parseInt(data.stars.replace(/[^\d]/g, "")) || 0
+      : parseInt(data.stars) || 0;
+
+  // Format numbers with commas
+  const formatNumber = (num) => {
+    if (num === null || num === undefined) return "—";
+    return num.toLocaleString();
+  };
 
   const stats = [
-    { label: "Global Rank", value: data.globalRank || "—" },
-    { label: "Country Rank", value: data.countryRank || "—" },
-    { label: "Problems Solved", value: data.problemsSolved || "—" },
-    { label: "Contests", value: data.contests || "—" },
+    { label: "Global Rank", value: formatNumber(data.globalRank) },
+    { label: "Country Rank", value: formatNumber(data.countryRank) },
+    { label: "Problems Solved", value: formatNumber(data.problemsSolved) },
+    { label: "Contests", value: formatNumber(data.contests) },
   ];
 
   return (

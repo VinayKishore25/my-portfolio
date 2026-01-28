@@ -1,11 +1,11 @@
 /**
  * Coding Stats API Route
- * 
+ *
  * Provides a unified API endpoint for fetching coding platform statistics.
  * Supports LeetCode, Codeforces, CodeChef, HackerRank, and GitHub.
- * 
+ *
  * Usage: GET /api/coding-stats?platform=leetcode&username=VinayKishore25
- * 
+ *
  * @module api/coding-stats
  */
 
@@ -16,6 +16,7 @@ import {
   fetchCodeChefStats,
   fetchHackerRankStats,
   fetchGitHubStats,
+  fetchGeeksforGeeksStats,
 } from "./_fetchers";
 
 /**
@@ -27,6 +28,7 @@ const PLATFORMS = {
   CODECHEF: "codechef",
   HACKERRANK: "hackerrank",
   GITHUB: "github",
+  GEEKSFORGEEKS: "geeksforgeeks",
 };
 
 /**
@@ -38,6 +40,7 @@ const PLATFORM_FETCHERS = {
   [PLATFORMS.CODECHEF]: fetchCodeChefStats,
   [PLATFORMS.HACKERRANK]: fetchHackerRankStats,
   [PLATFORMS.GITHUB]: fetchGitHubStats,
+  [PLATFORMS.GEEKSFORGEEKS]: fetchGeeksforGeeksStats,
 };
 
 /**
@@ -57,7 +60,7 @@ const createSuccessResponse = (data) => {
       headers: {
         "Cache-Control": `public, s-maxage=${CACHE_DURATION}, stale-while-revalidate=600`,
       },
-    }
+    },
   );
 };
 
@@ -68,22 +71,19 @@ const createSuccessResponse = (data) => {
  * @returns {NextResponse} Next.js response
  */
 const createErrorResponse = (message, status = 400) => {
-  return NextResponse.json(
-    { success: false, error: message },
-    { status }
-  );
+  return NextResponse.json({ success: false, error: message }, { status });
 };
 
 /**
  * GET handler for coding stats
- * 
+ *
  * @param {Request} request - Incoming request
  * @returns {Promise<NextResponse>} JSON response with platform stats
- * 
+ *
  * @example
  * // Fetch LeetCode stats
  * GET /api/coding-stats?platform=leetcode&username=VinayKishore25
- * 
+ *
  * @example
  * // Response format
  * {
@@ -118,7 +118,7 @@ export async function GET(request) {
     if (!fetcher) {
       const supportedPlatforms = Object.values(PLATFORMS).join(", ");
       return createErrorResponse(
-        `Unsupported platform: ${platform}. Supported: ${supportedPlatforms}`
+        `Unsupported platform: ${platform}. Supported: ${supportedPlatforms}`,
       );
     }
 
@@ -128,9 +128,6 @@ export async function GET(request) {
     return createSuccessResponse(data);
   } catch (error) {
     console.error("Coding stats API error:", error);
-    return createErrorResponse(
-      error.message || "Failed to fetch data",
-      500
-    );
+    return createErrorResponse(error.message || "Failed to fetch data", 500);
   }
 }

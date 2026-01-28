@@ -12,6 +12,7 @@ import {
   SiCodechef,
   SiHackerrank,
   SiGithub,
+  SiGeeksforgeeks,
 } from "react-icons/si";
 import { PLATFORMS } from "../_constants";
 
@@ -39,6 +40,15 @@ const getQuickStatsConfig = (stats, loading) => [
     value: loading.codechef ? "..." : stats.codechef?.stars || "—",
     icon: SiCodechef,
     color: "#5B4638",
+  },
+  {
+    platform: PLATFORMS.GEEKSFORGEEKS,
+    label: "GFG Score",
+    value: loading.geeksforgeeks
+      ? "..."
+      : stats.geeksforgeeks?.codingScore || "—",
+    icon: SiGeeksforgeeks,
+    color: "#2F8D46",
   },
   {
     platform: PLATFORMS.GITHUB,

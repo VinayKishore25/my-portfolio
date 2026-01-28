@@ -10,10 +10,7 @@
  * CodeChef doesn't have a public API, so we use community APIs
  */
 const CODECHEF_APIS = [
-  (username) => `https://codechef-api.vercel.app/handle/${username}`,
-  (username) => `https://codechef-api.vercel.app/${username}`,
-  (username) =>
-    `https://competitive-coding-api.herokuapp.com/api/codechef/${username}`,
+  (username) => `https://codechefapi.vercel.app/${username}`,
 ];
 
 /**
@@ -47,31 +44,62 @@ const fetchWithTimeout = async (url, timeout = 8000) => {
  */
 const parseCodeChefResponse = (data) => {
   // Calculate stars from rating if not provided
-  const rating = data.currentRating || data.rating || 0;
+  const rating = data.currentRating || data.rating || data.current_rating || 0;
   const calculatedStars =
     rating > 0 ? Math.min(Math.floor(rating / 400) + 1, 7) : 0;
 
+  // Parse numeric values properly
+  const parseNumber = (val) => {
+    if (typeof val === "number") return val;
+    if (typeof val === "string") {
+      const num = parseInt(val.replace(/[^\d]/g, ""));
+      return isNaN(num) ? null : num;
+    }
+    return null;
+  };
+
   return {
-    username: data.username || data.name || data.handle,
-    fullName: data.name || data.fullName,
+    username: data.username || data.name || data.handle || data.user,
+    fullName: data.name || data.fullName || data.full_name,
     rating: rating,
-    highestRating: data.highestRating || data.maxRating || rating,
+    highestRating:
+      data.highestRating || data.maxRating || data.highest_rating || rating,
     stars:
       data.stars || (calculatedStars > 0 ? `${calculatedStars}★` : "Unrated"),
-    globalRank: data.globalRank || data.global_rank,
-    countryRank: data.countryRank || data.country_rank,
-    country: data.country,
+    globalRank:
+      parseNumber(data.globalRank) ||
+      parseNumber(data.global_rank) ||
+      parseNumber(data.rank),
+    countryRank:
+      parseNumber(data.countryRank) || parseNumber(data.country_rank),
+    country: data.country || data.countryName,
     problemsSolved:
-      data.problemsSolved || data.fully_solved?.count || data.problems_solved,
+      parseNumber(data.numberOfProblemsSolved) ||
+      parseNumber(data.problemsSolved) ||
+      parseNumber(data.fully_solved?.count) ||
+      parseNumber(data.problems_solved) ||
+      parseNumber(data.solved),
     contests:
-      data.contests || data.ratingData?.length || data.contest_participated,
-    recentContests: (data.ratingData || data.contests_history || [])
+      parseNumber(data.contests) ||
+      data.ratingData?.length ||
+      parseNumber(data.contest_participated) ||
+      parseNumber(data.contests_participated),
+    recentContests: (
+      data.ratingData ||
+      data.contests_history ||
+      data.rating_data ||
+      []
+    )
       .slice(-5)
       .reverse()
       .map((contest) => ({
-        name: contest.name || contest.code || contest.contest_name,
-        rank: contest.rank,
-        rating: contest.rating || contest.new_rating,
+        name:
+          contest.name ||
+          contest.code ||
+          contest.contest_name ||
+          contest.contestName,
+        rank: contest.rank || contest.contest_rank,
+        rating: contest.rating || contest.new_rating || contest.newRating,
       })),
   };
 };
@@ -114,13 +142,25 @@ export const fetchCodeChefStats = async (username) => {
 
       if (response.ok) {
         const data = await response.json();
+        const payload = data?.data ?? data;
+        const statusText = String(data?.status || "").toLowerCase();
 
         // Check if response has valid data
-        if (data && !data.error && !data.status?.includes("error")) {
+        // API might return error object or status field
+        if (
+          payload &&
+          data?.success !== false &&
+          !data?.error &&
+          !data?.message?.toLowerCase?.().includes("error") &&
+          !statusText.includes("error") &&
+          !statusText.includes("fail")
+        ) {
           console.log(`CodeChef API ${i + 1} succeeded`);
-          return parseCodeChefResponse(data);
+          return parseCodeChefResponse(payload);
         }
       }
+
+      console.log(`CodeChef API ${i + 1} returned status: ${response.status}`);
     } catch (error) {
       console.log(`CodeChef API ${i + 1} failed:`, error.message);
     }

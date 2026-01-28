@@ -29,6 +29,8 @@ const getQuickStat = (platform, data) => {
       return `${data.badgeCount || 0} badges`;
     case PLATFORMS.GITHUB:
       return `${data.publicRepos || 0} repos`;
+    case PLATFORMS.GEEKSFORGEEKS:
+      return data.codingScore ? `${data.codingScore} score` : "—";
     default:
       return "—";
   }

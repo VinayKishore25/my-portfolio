@@ -9,6 +9,7 @@ import {
   SiCodechef,
   SiHackerrank,
   SiGithub,
+  SiGeeksforgeeks,
 } from "react-icons/si";
 
 /**
@@ -20,6 +21,7 @@ export const PLATFORMS = {
   CODECHEF: "codechef",
   HACKERRANK: "hackerrank",
   GITHUB: "github",
+  GEEKSFORGEEKS: "geeksforgeeks",
 };
 
 /**
@@ -29,6 +31,7 @@ export const PLATFORM_LIST = [
   PLATFORMS.LEETCODE,
   PLATFORMS.CODEFORCES,
   PLATFORMS.CODECHEF,
+  PLATFORMS.GEEKSFORGEEKS,
   PLATFORMS.HACKERRANK,
   PLATFORMS.GITHUB,
 ];
@@ -76,6 +79,14 @@ export const platformConfig = {
     icon: SiGithub,
     color: "#ffffff",
     description: "Open Source Projects",
+  },
+  [PLATFORMS.GEEKSFORGEEKS]: {
+    name: "GeeksforGeeks",
+    username: "vinaykishore25",
+    profileUrl: "https://www.geeksforgeeks.org/user/vinaykishore25/",
+    icon: SiGeeksforgeeks,
+    color: "#2F8D46",
+    description: "DSA Practice",
   },
 };
 

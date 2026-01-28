@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * ErrorPanel Component
  * Displays error state for a platform panel

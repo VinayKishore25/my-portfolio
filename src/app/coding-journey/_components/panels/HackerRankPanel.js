@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * HackerRankPanel Component
  * Displays detailed HackerRank statistics

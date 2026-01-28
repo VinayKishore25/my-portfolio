@@ -53,7 +53,7 @@ const testimonialData = [
       "Best part about having Vinay on the team? Don't have to micromanage. He takes a task, figures it out, asks smart questions when needed, and delivers. Also noticed he helps the junior devs a lot - that initiative matters more than people realize.",
   },
   {
-    image: "/hanumanthu.png",
+    image: "/hanumanthu buddha.png",
     name: "Hanumanthu Buddha",
     position: "Full Stack Mentor",
     message:
